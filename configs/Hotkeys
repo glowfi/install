@@ -191,7 +191,7 @@ Comment=Simple_action
 TriggersCount=1
 
 [Data_1_6Triggers0]
-Key=Meta+S
+Key=Meta+U
 Type=SHORTCUT
 Uuid={7f69de8e-1a6e-4201-a8e4-0b50a57fca38}
 
