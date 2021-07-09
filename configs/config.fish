@@ -41,7 +41,7 @@ alias fm="cd ~/.local/bin/fm;python ./fetchmaster.py;cd"
 export EDITOR=nvim
 
 function searchFiles
-  du -a ~/.config/* ~/install/* ~/cdx/* ~/main/* | awk '{print $2}' |fzf --preview 'bat --style numbers,changes --color=always {}'|read -t args
+  du -a ~/.config/* ~/cdx/* ~/main/* | awk '{print $2}' |fzf --preview 'bat --style numbers,changes --color=always {}'|read -t args
   if test -z "$args"
     echo "Exited from searching files!"
   else
