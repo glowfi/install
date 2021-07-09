@@ -30,6 +30,4 @@ require('nv-vsnip')
 require('nv-autopairs')
 require('nv-autoformat')
 require('nv-lsp-saga')
-
--- COC
--- vim.cmd('source $HOME/.config/nvim/coc.vim')
+require('nv-sig-help')

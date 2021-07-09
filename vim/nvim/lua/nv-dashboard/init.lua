@@ -20,7 +20,11 @@ vim.g.dashboard_default_executive = 'fzf'
 vim.g.dashboard_custom_section = {
     a = {description = {'  Find File          '}, command = ':Files'},
     b = {description = {'  Find Word          '}, command = ':Rg'},
-    c = {description = {'  Settings           '}, command = ':e '..CONFIG_PATH..'/init.lua'},
-    d = {description = {'  Close              '}, command = ':qall'},
---     e = {description = {'  Close              '}, command = ':qall'},
-}
+    c = {description = {'  Open Folder        '}, command = ':RnvimrToggle'},
+    d = {description = {'  Load Last Session  '}, command = ':SessionLoad last'},
+    e = {description = {'  Settings           '}, command = ':e '..CONFIG_PATH..'/init.lua'},
+    f = {description = {'  Close              '}, command = ':qall'},
+    }
+
+-- Session Keymappings
+vim.cmd("nmap <S-q> :SessionSave last<CR>")

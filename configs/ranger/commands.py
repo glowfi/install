@@ -1,7 +1,7 @@
 from ranger.api.commands import Command
 
 
-class fzf_searchFile(Command):
+class fzf_searchFileIndexed(Command):
     """
     Find a file using fzf.
     """
@@ -30,6 +30,24 @@ class fzf_searchContent(Command):
         import os.path
         fzf = self.fm.execute_command(
             "rg . | fzf | awk -F':' '{ print $1 }'", universal_newlines=True, stdout=subprocess.PIPE)
+        stdout, stderr = fzf.communicate()
+        if fzf.returncode == 0:
+            fzf_file = os.path.abspath(stdout.rstrip('\n'))
+            if os.path.isdir(fzf_file):
+                self.fm.cd(fzf_file)
+            else:
+                self.fm.select_file(fzf_file)
+
+class fzf_searchCurrent(Command):
+    """
+    Find files inside current working directory using fzf.
+    """
+
+    def execute(self):
+        import subprocess
+        import os.path
+        fzf = self.fm.execute_command(
+            "du -a . | awk '{print $2}' |fzf --preview 'bat --style numbers,changes --color=always {}'", universal_newlines=True, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
             fzf_file = os.path.abspath(stdout.rstrip('\n'))

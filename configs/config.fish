@@ -40,10 +40,10 @@ alias fm="cd ~/.local/bin/fm;python ./fetchmaster.py;cd"
 # Default Editor
 export EDITOR=nvim
 
-function searchFiles
+function searchIndexedFiles
   du -a ~/.config/* ~/cdx/* ~/main/* | awk '{print $2}' |fzf --preview 'bat --style numbers,changes --color=always {}'|read -t args
   if test -z "$args"
-    echo "Exited from searching files!"
+    echo "Exited from searching indexed files!"
   else
     nvim $args
   end
@@ -58,11 +58,23 @@ function searchContents
   end
 end
 
-# Find file and open in editor
-alias sf="searchFiles"
+function searchFilesCurrent
+  du -a . | awk '{print $2}' |fzf --preview 'bat --style numbers,changes --color=always {}'|read -t args
+  if test -z "$args"
+    echo "Exited from searching current working directory files!"
+  else
+    nvim $args
+  end
+end
+
+# Find indexed file and open in editor
+alias si="searchIndexedFiles"
 
 # Find contents inside of the file and open in the editor
-alias sc="searchContents"
+alias sg="searchContents"
+
+# Find files in current location and open in editor
+alias sc="searchFilesCurrent"
 
 
 ### GIT FUNCTIONS
