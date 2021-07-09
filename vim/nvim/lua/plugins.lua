@@ -10,8 +10,24 @@ if fn.empty(fn.glob(install_path)) > 0 then
   execute 'packadd packer.nvim'
 end
 
+local packer_ok, packer = pcall(require, "packer")
+if not packer_ok then
+  return
+end
+
+packer.init {
+  git = { clone_timeout = 300 },
+  display = {
+    open_fn = function()
+      return require("packer.util").float { border = "single" }
+    end,
+  },
+}
+
+vim.cmd "autocmd BufWritePost plugins.lua PackerCompile"
+
   -- Plugins
-return require('packer').startup(function()
+return require('packer').startup(function(use)
 
   -- Packer Plugin Manager
   use 'wbthomason/packer.nvim'
@@ -31,15 +47,15 @@ return require('packer').startup(function()
   use 'vim-airline/vim-airline-themes'
 
   -- Fuzzy search
-  use 'junegunn/fzf.vim'
-  use 'junegunn/fzf'
+  use {'junegunn/fzf.vim',event = "BufRead"}
+  use {'junegunn/fzf',event = "BufRead"}
 
   -- Git Integration
   use 'tpope/vim-fugitive'
   use 'mhinz/vim-signify'
 
    -- Dashboard
-  use 'glepnir/dashboard-nvim'
+  use {'glepnir/dashboard-nvim',event = "BufWinEnter",}
 
   -- Code Runner
   use 'sbdchd/vim-run'
@@ -48,7 +64,7 @@ return require('packer').startup(function()
   use {'mg979/vim-visual-multi', branch = 'master'}
 
   -- Auto Comment
-  use 'KarimElghamry/vim-auto-comment'
+  use {'KarimElghamry/vim-auto-comment',event = "BufRead",}
 
   -- Tabs
   use 'romgrk/barbar.nvim'
@@ -68,17 +84,17 @@ return require('packer').startup(function()
 
   -- Nvim LSP and autocompletions
   use 'neovim/nvim-lspconfig'
-  use 'kabouzeid/nvim-lspinstall'
+  use {'kabouzeid/nvim-lspinstall',event = "BufRead"}
   use 'glepnir/lspsaga.nvim'
-  use 'hrsh7th/nvim-compe'
-  use 'hrsh7th/vim-vsnip'
+  use {'hrsh7th/nvim-compe',event = "InsertEnter"}
+  use {'hrsh7th/vim-vsnip',event = "InsertEnter"}
 
   -- Snippets
   use "rafamadriz/friendly-snippets"
   use 'dsznajder/vscode-es7-javascript-react-snippets'
 
   -- Auto pairs
-  use 'windwp/nvim-autopairs'
+  use {'windwp/nvim-autopairs',event = "InsertEnter"}
 
   -- Auto format document
   use 'Chiel92/vim-autoformat'

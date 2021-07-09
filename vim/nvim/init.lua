@@ -20,6 +20,7 @@ require('nv-rainbow-pairs')
 require('nv-gruvbox')
 require('nv-matchup')
 require('nv-tree')
+require('nv-barbar')
 
 -- LSP
 require('nv-lsp')
