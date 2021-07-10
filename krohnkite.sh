@@ -2,12 +2,13 @@
 
 # Download Krohnkite
 
+cd
 git clone https://github.com/esjeon/krohnkite
 cd krohnkite
 make install
 mkdir -p ~/.local/share/kservices5/
 ln -s ~/.local/share/kwin/scripts/krohnkite/metadata.desktop ~/.local/share/kservices5/krohnkite.desktop
-cd
+cd ..
 rm -rf krohnkite
 
 
