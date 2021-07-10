@@ -9,7 +9,7 @@ set TERM "xterm-256color"                         # Sets the terminal type
 ### ALIASES
 
 # Changing ls to exa
-alias ls='exa -l --color=always --group-directories-first'
+alias ls='exa --icons -l --color=always --group-directories-first'
 
 # Changing cat to bat
 alias cat='bat'

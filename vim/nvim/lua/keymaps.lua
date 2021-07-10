@@ -1,5 +1,5 @@
 -- Leader key
-vim.cmd('let mapleader = " "')
+vim.cmd('let mapleader="\\<space>"')
 
 -- Remapping vertical split.
 vim.api.nvim_set_keymap('n', '<c-v>', ':vsplit<cr>', {silent = true})
