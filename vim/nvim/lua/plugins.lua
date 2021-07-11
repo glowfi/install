@@ -63,8 +63,8 @@ return require('packer').startup(function(use)
   -- Multi Cursor
   use {'mg979/vim-visual-multi', branch = 'master'}
 
-  -- Auto Comment
-  use {'KarimElghamry/vim-auto-comment'}
+  -- Auto Comments
+  use {"terrortylor/nvim-comment"}
 
   -- Tabs
   use 'romgrk/barbar.nvim'
@@ -98,6 +98,30 @@ return require('packer').startup(function(use)
   use {'windwp/nvim-autopairs'}
 
   -- Auto format document
-  use 'Chiel92/vim-autoformat'
+  use "mhartington/formatter.nvim"
+
+  -- Cursorhold Fix
+  use 'antoinemadec/FixCursorHold.nvim'
+  vim.cmd("let g:cursorhold_updatetime = 100")
+
+  -- Indentline
+  use {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "BufRead",
+    setup = function()
+      vim.g.indentLine_enabled = 1
+      vim.g.indent_blankline_char = "▏"
+
+      vim.g.indent_blankline_filetype_exclude = {
+        "help",
+        "terminal",
+        "dashboard",
+      }
+      vim.g.indent_blankline_buftype_exclude = { "terminal" }
+
+      vim.g.indent_blankline_show_trailing_blankline_indent = false
+      vim.g.indent_blankline_show_first_indent_level = true
+    end,
+  }
 
 end)

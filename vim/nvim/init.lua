@@ -21,6 +21,7 @@ require('nv-gruvbox')
 require('nv-matchup')
 require('nv-tree')
 require('nv-barbar')
+require('nv-autocomments')
 
 -- LSP
 require('nv-lsp')
