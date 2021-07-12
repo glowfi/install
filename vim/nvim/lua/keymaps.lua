@@ -2,7 +2,7 @@
 vim.cmd('let mapleader="\\<space>"')
 
 -- Remapping vertical split.
-vim.api.nvim_set_keymap('n', '<c-v>', ':vsplit<cr>', {silent = true})
+vim.api.nvim_set_keymap('n', '<s-v>', ':vsplit<cr>', {silent = true})
 
 -- Remapping horizontal split.
 vim.api.nvim_set_keymap('n', '<c-s>', ':split<cr>', {silent = true})
