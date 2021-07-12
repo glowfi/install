@@ -41,7 +41,7 @@
 # PYTHON MODULES
 
 pip install jupyter pandas matplotlib numpy scikit-learn openpyxl xlrd
-pip install autopep8 virtualenv ranger-fm ueberzug
+pip install black virtualenv ranger-fm ueberzug
 
 # JUPYTER SETUP
 
