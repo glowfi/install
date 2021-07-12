@@ -17,7 +17,7 @@ vim.api.nvim_set_keymap('n', '<S-s>', ':w<cr>', {silent = true})
 vim.api.nvim_set_keymap('n', '<c-t>', ':%s///g<Left><Left>', {silent = true})
 
 -- Replace all instance in visual mode of selected word.Can be used to select a range of lines to replace words.
-vim.api.nvim_set_keymap('x', '<c-t>', ':s///g<Left><Left>', {silent = true})
+vim.cmd('vnoremap <C-t> "hy:%s/<C-r>h//gc<left><left><left>')
 
 -- Clear search highlights.
 vim.api.nvim_set_keymap('n', '<c-Space>', ':let @/=""<CR>', {silent = true})
