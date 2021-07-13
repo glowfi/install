@@ -104,10 +104,7 @@ sudo rm -r neovim
 
 # COPY NEOVIM SETTINGS
 
-cp -r ~/install/vim/nvim ~/.config
-mkdir -p ~/.local/share/fonts
-cp -r ~/install/vim/DejaVuSansMono/*.ttf ~/.local/share/fonts/
-fc-cache -f -v
+cp -r ~/install/nvim ~/.config
 npm install -g typescript typescript-language-server pyright vscode-langservers-extracted emmet-ls prettier eslint diagnostic-languageserver graphql-language-service-cli
 npx npm-check-updates -g
 nvim -c "PackerSync"
