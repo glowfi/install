@@ -1,18 +1,18 @@
 -- Treesitter
--- Matchup , Treesitter-text-objects
-require'nvim-treesitter.configs'.setup {
-    -- ensure_installed can be "all" or a list of languages { "python", "javascript" }
-    ensure_installed = "maintained",
 
-    highlight = { -- enable highlighting for all file types
-      enable = true, -- you can also use a table with list of langs here (e.g. { "python", "javascript" })
-    },
-        matchup = {
-        enable = true -- mandatory, false will disable the whole extension
-        -- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
-    },
+require'nvim-treesitter.configs'.setup {
+
+    ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+
+--  ignore_install = {}, -- List of parsers to ignore installing
+
+    highlight = {
+    enable = true,              -- false will disable the whole extension
+--  disable = { "c", "rust" },  -- list of language that will be disabled
+  },
+
     incremental_selection = {
-      enable = true,  -- you can also use a table with list of langs here (e.g. { "python", "javascript" })
+      enable = true,                    -- you can also use a table with list of langs here (e.g. { "python", "javascript" })
       disable = { "cpp", "lua" },
       keymaps = {                       -- mappings for incremental selection (visual mappings)
         init_selection = "gnn",         -- maps in normal mode to init the node/scope selection
@@ -20,21 +20,5 @@ require'nvim-treesitter.configs'.setup {
         scope_incremental = "grc",      -- increment to the upper scope (as defined in locals.scm)
         node_decremental = "grm",       -- decrement to the previous node
       }
-    },
-    textobjects = {
-      -- These are provided by
-      select = {
-        enable = true,  -- you can also use a table with list of langs here (e.g. { "python", "javascript" })
-        keymaps = {
-          -- You can use the capture groups defined here:
-	  -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects/blob/master/queries/c/textobjects.scm
-          ["af"] = "@function.outer",
-          ["if"] = "@function.inner",
-          ["ab"] = "@block.outer",
-          ["ib"] = "@block.inner",
-          ["as"] = "@statement.outer",
-          ["is"] = "@statement.inner",
-        },
-      },
     },
 }

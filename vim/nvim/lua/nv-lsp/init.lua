@@ -24,8 +24,6 @@ vim.cmd 'nnoremap <silent> <F1> <cmd>lua vim.lsp.buf.code_action()<CR>'
 vim.cmd "nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>"
 vim.cmd "nnoremap <silent> ga <cmd>lua vim.lsp.buf.declaration()<CR>"
 vim.cmd "nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>"
-vim.cmd "nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>"
-vim.cmd "nnoremap <silent> gp <cmd>lua require'lsp'.PeekDefinition()<CR>"
 vim.cmd "nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>"
 vim.cmd "nnoremap <silent> <c-[> :lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = 'single'}})<CR>"
 vim.cmd "nnoremap <silent> <c-]> :lua vim.lsp.diagnostic.goto_next({popup_opts = {border = 'single'}})<CR>"
@@ -105,78 +103,108 @@ end
 
 local lsp_config = {}
 
-
-function lsp_config.preview_location(location, context, before_context)
-  -- location may be LocationLink or Location (more useful for the former)
-  context = context or 15
-  before_context = before_context or 0
-  local uri = location.targetUri or location.uri
-  if uri == nil then
-    return
-  end
-  local bufnr = vim.uri_to_bufnr(uri)
-  if not vim.api.nvim_buf_is_loaded(bufnr) then
-    vim.fn.bufload(bufnr)
-  end
-
-  local range = location.targetRange or location.range
-  local contents = vim.api.nvim_buf_get_lines(
-    bufnr,
-    range.start.line - before_context,
-    range["end"].line + 1 + context,
-    false
-  )
-  local filetype = vim.api.nvim_buf_get_option(bufnr, "filetype")
-  return vim.lsp.util.open_floating_preview(contents, filetype, { border = O.lsp.popup_border })
-end
-
-function lsp_config.preview_location_callback(_, method, result)
-  local context = 15
-  if result == nil or vim.tbl_isempty(result) then
-    print("No location found: " .. method)
-    return nil
-  end
-  if vim.tbl_islist(result) then
-    lsp_config.floating_buf, lsp_config.floating_win = lsp_config.preview_location(result[1], context)
-  else
-    lsp_config.floating_buf, lsp_config.floating_win = lsp_config.preview_location(result, context)
-  end
-end
-
-function lsp_config.PeekDefinition()
-  if vim.tbl_contains(vim.api.nvim_list_wins(), lsp_config.floating_win) then
-    vim.api.nvim_set_current_win(lsp_config.floating_win)
-  else
-    local params = vim.lsp.util.make_position_params()
-    return vim.lsp.buf_request(0, "textDocument/definition", params, lsp_config.preview_location_callback)
-  end
-end
-
-function lsp_config.PeekTypeDefinition()
-  if vim.tbl_contains(vim.api.nvim_list_wins(), lsp_config.floating_win) then
-    vim.api.nvim_set_current_win(lsp_config.floating_win)
-  else
-    local params = vim.lsp.util.make_position_params()
-    return vim.lsp.buf_request(0, "textDocument/typeDefinition", params, lsp_config.preview_location_callback)
-  end
-end
-
-function lsp_config.PeekImplementation()
-  if vim.tbl_contains(vim.api.nvim_list_wins(), lsp_config.floating_win) then
-    vim.api.nvim_set_current_win(lsp_config.floating_win)
-  else
-    local params = vim.lsp.util.make_position_params()
-    return vim.lsp.buf_request(0, "textDocument/implementation", params, lsp_config.preview_location_callback)
-  end
-end
-
-
-
-
 function lsp_config.common_on_attach(client, bufnr)
     documentHighlight(client, bufnr)
 end
-function lsp_config.tsserver_on_attach(client, bufnr)
-    lsp_config.common_on_attach(client, bufnr)
-    client.resolved_capabilities.document_formatting = false
+
+
+-- Python LSP
+-- npm i -g pyright;pip install black
+require'lspconfig'.pyright.setup{}
+
+
+-- HTML CSS
+-- npm install -g vscode-langservers-extracted emmet-ls prettier
+--Enable (broadcasting) snippet capability for completion
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+require'lspconfig'.html.setup {
+  capabilities = capabilities,
+}
+
+require'lspconfig'.cssls.setup {
+  capabilities = capabilities,
+}
+
+-- Emmet
+local lspconfig = require'lspconfig'
+local configs = require'lspconfig/configs'
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+if not lspconfig.emmet_ls then
+  configs.emmet_ls = {
+    default_config = {
+      cmd = {'emmet-ls', '--stdio'};
+      filetypes = { "html", "css" },
+      root_dir = function(fname)
+        return vim.loop.cwd()
+      end;
+      settings = {};
+    };
+  }
 end
+lspconfig.emmet_ls.setup{ capabilities = capabilities; }
+
+-- GraphQL
+-- npm install -g graphql-language-service-cli
+require'lspconfig'.graphql.setup{
+        on_attach = common_on_attach,
+    cmd = { "graphql-lsp", "server", "-m", "stream" },
+    root_dir = require("lspconfig/util").root_pattern('.git', '.graphqlrc',"**/*"),
+    filetypes = { 'graphql', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' }
+    }
+
+
+-- TS TSX JS JSX
+-- npm install -g typescript typescript-language-server
+local nvim_lsp = require("lspconfig")
+
+-- enable null-ls integration (optional)
+require("null-ls").setup {}
+
+nvim_lsp.tsserver.setup {
+
+    on_attach = function(client, bufnr)
+        -- disable tsserver formatting if you plan on formatting via null-ls
+        client.resolved_capabilities.document_formatting = false
+
+        local ts_utils = require("nvim-lsp-ts-utils")
+
+        -- defaults
+        ts_utils.setup {
+            debug = false,
+            disable_commands = false,
+            enable_import_on_completion = false,
+            import_all_timeout = 5000, -- ms
+
+            -- eslint
+            eslint_enable_code_actions = true,
+            eslint_enable_disable_comments = true,
+            eslint_bin = "eslint",
+            eslint_config_fallback = nil,
+            eslint_enable_diagnostics = false,
+
+            -- formatting
+            enable_formatting = false,
+            formatter = "prettier",
+            formatter_config_fallback = nil,
+
+            -- update imports on file move
+            update_imports_on_move = false,
+            require_confirmation_on_move = false,
+            watch_dir = nil,
+        }
+
+        -- required to fix code action ranges
+        ts_utils.setup_client(client)
+
+        -- no default maps, so you may want to define some here
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "gs", ":TSLspOrganize<CR>", {silent = true})
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "qq", ":TSLspFixCurrent<CR>", {silent = true})
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":TSLspRenameFile<CR>", {silent = true})
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", ":TSLspImportAll<CR>", {silent = true})
+    end
+}

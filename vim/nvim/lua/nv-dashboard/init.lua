@@ -16,14 +16,15 @@ vim.g.dashboard_custom_header=custom_header
 vim.g.dashboard_custom_footer=custom_footer
 
 -- CHANGE START SCREEN
-vim.g.dashboard_default_executive = 'fzf'
+vim.g.dashboard_default_executive = 'telescope'
 vim.g.dashboard_custom_section = {
-    a = {description = {'  Find File          '}, command = ':Files'},
-    b = {description = {'  Find Word          '}, command = ':Rg'},
-    c = {description = {'  Open Folder        '}, command = ':RnvimrToggle'},
-    d = {description = {'  Load Last Session  '}, command = ':SessionLoad last'},
-    e = {description = {'  Settings           '}, command = ':e '..CONFIG_PATH..'/init.lua'},
-    f = {description = {'  Close              '}, command = ':qall'},
+    a = {description = {'  Find File          '}, command = 'Telescope find_files'},
+    b = {description = {'  Find Word          '}, command = 'Telescope live_grep'},
+    c = {description = { "  Recently Used Files" },command = "Telescope oldfiles",},
+    d = {description = {'  Open Folder        '}, command = ':RnvimrToggle'},
+    e = {description = {'  Load Last Session  '}, command = ':SessionLoad last'},
+    f = {description = {'  Settings           '}, command = ':e '..CONFIG_PATH..'/init.lua'},
+    g = {description = {'  Close              '}, command = ':qall'},
     }
 
 -- Session Keymappings

@@ -26,102 +26,124 @@ packer.init {
 
 vim.cmd "autocmd BufWritePost plugins.lua PackerCompile"
 
-  -- Plugins
+-- Plugins
 return require('packer').startup(function(use)
 
-  -- Packer Plugin Manager
-  use 'wbthomason/packer.nvim'
+    -- Packer Plugin Manager
+    use 'wbthomason/packer.nvim'
 
-  -- Ranger File Manager
-  use 'kevinhwang91/rnvimr'
+-- Utilities
 
-  -- Neovim File Tree
-  use 'kyazdani42/nvim-tree.lua'
+    -- Ranger File Manager
+    use 'kevinhwang91/rnvimr'
 
-  -- Devicons
-  use 'kyazdani42/nvim-web-devicons'
-  use 'ryanoasis/vim-devicons'
+    -- Fuzzy search
+    use {'nvim-telescope/telescope.nvim',
+        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+        }
 
-  -- Status line
-  use 'vim-airline/vim-airline'
-  use 'vim-airline/vim-airline-themes'
+    -- Git Integration
+    use 'lewis6991/gitsigns.nvim'
 
-  -- Fuzzy search
-  use {'junegunn/fzf.vim'}
-  use {'junegunn/fzf'}
+    -- Code Runner
+    use 'sbdchd/vim-run'
 
-  -- Git Integration
-  use 'tpope/vim-fugitive'
-  use 'mhinz/vim-signify'
+    -- Multi Cursor
+    use {'mg979/vim-visual-multi', branch = 'master'}
 
-   -- Dashboard
-  use {'glepnir/dashboard-nvim'}
+    -- Auto Comments
+    use {"terrortylor/nvim-comment"}
 
-  -- Code Runner
-  use 'sbdchd/vim-run'
+    -- Tabs
+    use 'romgrk/barbar.nvim'
 
-  -- Multi Cursor
-  use {'mg979/vim-visual-multi', branch = 'master'}
+    -- Cursorhold Fix
+    use 'antoinemadec/FixCursorHold.nvim'
+    vim.cmd "let g:cursorhold_updatetime = 100"
 
-  -- Auto Comments
-  use {"terrortylor/nvim-comment"}
 
-  -- Tabs
-  use 'romgrk/barbar.nvim'
+-- Ricing
 
-  -- Treesitter
-  use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
-  use 'nvim-treesitter/nvim-treesitter-textobjects'
+    -- Gruvbox theme
+    use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
 
-  -- Treesitter Rainbow pairs
-  use 'p00f/nvim-ts-rainbow'
+    -- Status line
+    use 'hoob3rt/lualine.nvim'
 
-  -- Bracket Matchup
-  use 'andymass/vim-matchup'
+    -- Devicons
+    use 'kyazdani42/nvim-web-devicons'
+    use 'ryanoasis/vim-devicons'
 
-  -- Gruvbox theme
-  use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
+    -- Dashboard
+    use {'glepnir/dashboard-nvim'}
 
-  -- Nvim LSP and autocompletions
-  use 'neovim/nvim-lspconfig'
-  use {'kabouzeid/nvim-lspinstall'}
---   use 'glepnir/lspsaga.nvim'
-  use {'hrsh7th/nvim-compe'}
-  use {'hrsh7th/vim-vsnip'}
-  use {"ray-x/lsp_signature.nvim"}
-
-  -- Snippets
-  use "rafamadriz/friendly-snippets"
-  use 'dsznajder/vscode-es7-javascript-react-snippets'
-
-  -- Auto pairs
-  use {'windwp/nvim-autopairs'}
-
-  -- Auto format document
-  use "mhartington/formatter.nvim"
-
-  -- Cursorhold Fix
-  use 'antoinemadec/FixCursorHold.nvim'
-  vim.cmd("let g:cursorhold_updatetime = 100")
-
-  -- Indentline
-  use {
+    -- Indentline
+    use {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufRead",
     setup = function()
-      vim.g.indentLine_enabled = 1
-      vim.g.indent_blankline_char = "▏"
+    vim.g.indentLine_enabled = 1
+    vim.g.indent_blankline_char = "▏"
 
-      vim.g.indent_blankline_filetype_exclude = {
-        "help",
-        "terminal",
-        "dashboard",
-      }
-      vim.g.indent_blankline_buftype_exclude = { "terminal" }
+    vim.g.indent_blankline_filetype_exclude = {
+    "help",
+    "terminal",
+    "dashboard",
+    }
+    vim.g.indent_blankline_buftype_exclude = { "terminal" }
 
-      vim.g.indent_blankline_show_trailing_blankline_indent = false
-      vim.g.indent_blankline_show_first_indent_level = true
+    vim.g.indent_blankline_show_trailing_blankline_indent = false
+    vim.g.indent_blankline_show_first_indent_level = true
     end,
-  }
+    }
+
+-- Treesitter integrations
+
+    -- Treesitter
+    use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
+
+    -- Treesitter text-objects
+    use 'nvim-treesitter/nvim-treesitter-textobjects'
+
+    -- Treesitter(integrated) Rainbow pairs
+    use 'p00f/nvim-ts-rainbow'
+
+    -- Bracket Matchup
+    use 'andymass/vim-matchup'
+
+
+-- Native LSP (ENGINE)
+
+    --   Nvim native LSP
+    use 'neovim/nvim-lspconfig'
+
+    --   Auto completion
+    use {'hrsh7th/nvim-compe'}
+
+    --   Snippet engine
+    use {'hrsh7th/vim-vsnip'}
+
+    --   Signature popup on typing
+    use {"ray-x/lsp_signature.nvim"}
+
+    --   Auto format document
+    use "mhartington/formatter.nvim"
+
+    --   Auto pairs
+    use {'windwp/nvim-autopairs'}
+
+
+-- Languages Plugins
+
+    --   Snippets
+    use "rafamadriz/friendly-snippets"
+    use 'dsznajder/vscode-es7-javascript-react-snippets'
+
+    --   Typescript
+    use "jose-elias-alvarez/null-ls.nvim"
+    use "jose-elias-alvarez/nvim-lsp-ts-utils"
+
+    --   Graphql
+    use 'jparise/vim-graphql'
 
 end)

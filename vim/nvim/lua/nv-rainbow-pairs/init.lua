@@ -1,4 +1,5 @@
 -- Rainbow brackets with treesitter integration
+
 require'nvim-treesitter.configs'.setup {
       rainbow = {
                 enable = true,

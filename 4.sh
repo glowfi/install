@@ -59,7 +59,7 @@ rm -rf ~/node.tar.xz
 # NODE MODULES
 
 npm i -g npm@next
-npm i -g yarn typescript
+npm i -g yarn
 
 # FZF TERMINAL INTEGRATION
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -108,11 +108,9 @@ cp -r ~/install/vim/nvim ~/.config
 mkdir -p ~/.local/share/fonts
 cp -r ~/install/vim/DejaVuSansMono/*.ttf ~/.local/share/fonts/
 fc-cache -f -v
+npm install -g typescript typescript-language-server pyright vscode-langservers-extracted emmet-ls prettier eslint diagnostic-languageserver graphql-language-service-cli
+npx npm-check-updates -g
 nvim -c "PackerSync"
-# nvim -c "CocInstall coc-json coc-pyright coc-snippets coc-vimlsp coc-pairs coc-diagnostic"
-curl https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/airline/themes/gruvbox.vim -o ~/gruvbox.vim
-cp -r ~/gruvbox.vim ~/.local/share/nvim/site/pack/packer/start/gruvbox.nvim/autoload/airline/themes/
-rm -rf ~/gruvbox.vim
 echo "done"
 
 # UNINSTALL NEOVIM

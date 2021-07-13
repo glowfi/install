@@ -8,24 +8,27 @@ require('settings')
 require('keymaps')
 require('plugins')
 
--- Global Plugins
+-- Utility Plugins
 require('nv-ranger')
-require('nv-airline')
-require('nv-fzf')
-require('nv-dashboard')
+require('nv-telescope')
 require('nv-coderunner')
-require('nv-signify')
-require('nv-treesitter')
-require('nv-rainbow-pairs')
-require('nv-gruvbox')
-require('nv-matchup')
-require('nv-tree')
-require('nv-barbar')
+require('nv-git-signs')
 require('nv-autocomments')
+require('nv-barbar')
 
--- LSP
+-- Ricing Plugins
+require('nv-gruvbox')
+require('nv-dashboard')
+require('nv-lualine')
+
+-- Treesitter Plugins
+require('nv-treesitter')
+require('nv-treesitter-textobjects')
+require('nv-rainbow-pairs')
+require('nv-matchup')
+
+-- Native LSP Plugins
 require('nv-lsp')
-require('nv-lsp-install')
 require('nv-completions')
 require('nv-vsnip')
 require('nv-autopairs')

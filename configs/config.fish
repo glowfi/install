@@ -1,5 +1,5 @@
 ## PATH
-set PATH ~/node-v16.4.1-linux-x64/bin/ $PATH                                    # sets NODEJS path
+set PATH ~/node-v16.4.2-linux-x64/bin/ $PATH                                    # sets NODEJS path
 set PATH ~/.local/bin/ $PATH                                                    # sets Universal path
 
 ### EXPORT
