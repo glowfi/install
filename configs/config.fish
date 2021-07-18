@@ -1,5 +1,5 @@
 ## PATH
-set PATH ~/node-v16.4.2-linux-x64/bin/ $PATH                                    # sets NODEJS path
+set PATH ~/node-v16.5.0-linux-x64/bin/ $PATH                                    # sets NODEJS path
 set PATH ~/.local/bin/ $PATH                                                    # sets Universal path
 
 ### EXPORT
@@ -36,6 +36,12 @@ yes | printf "Cleaned Orphans!"'
 
 # Fetchmaster alias
 alias fm="cd ~/.local/bin/fm;python ./fetchmaster.py;cd"
+
+# Browser-sync
+alias bs='browser-sync start --index $argv --server --files "./*.*"'
+
+# Postgres alias
+alias psql='psql -d delta'
 
 # Default Editor
 export EDITOR=nvim

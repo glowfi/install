@@ -129,3 +129,6 @@ vim.cmd("set termguicolors")
 
 -- Enable mouse support
 vim.o.mouse = "a"
+
+-- Disables a sql error
+vim.cmd "let g:omni_sql_no_default_maps = 1"

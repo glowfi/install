@@ -1,8 +1,5 @@
 -- Signature Help on writing
 
-vim.cmd('autocmd BufReadPost,FileReadPost lua require "lsp_signature".on_attach()')
-
-
  cfg = {
   bind = true, -- This is mandatory, otherwise border config won't get registered.
                -- If you want to hook lspsaga or other signature handler, pls set to false
@@ -22,12 +19,12 @@ vim.cmd('autocmd BufReadPost,FileReadPost lua require "lsp_signature".on_attach(
                    -- to view the hiding contents
   max_width = 120, -- max_width of signature floating_window, line will be wrapped if exceed max_width
   handler_opts = {
-    border = "none"   -- double, single, shadow, none
+    border = "shadow"   -- double, single, shadow, none
   },
   extra_trigger_chars = {} -- Array of extra characters that will trigger signature completion, e.g., {"(", ","}
   -- deprecate !!
   -- decorator = {"`", "`"}  -- this is no longer needed as nvim give me a handler and it allow me to highlight active parameter in floating_window
 
 }
-
+require "lsp_signature".setup()
 require'lsp_signature'.on_attach(cfg)

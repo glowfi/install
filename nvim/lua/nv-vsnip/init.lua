@@ -9,8 +9,9 @@ vim.cmd("smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'    
 
 -- Enable Snippets
 vim.cmd("let g:vsnip_filetypes = {}")
+
 vim.cmd("let g:vsnip_filetypes.javascriptreact = ['javascript']")
+vim.cmd("let g:vsnip_filetypes.javascriptreact = ['html']")
+
 vim.cmd("let g:vsnip_filetypes.typescriptreact = ['typescript']")
-vim.cmd("let g:vsnip_filetypes.typescriptreact = ['javascriptreact']")
-vim.cmd("let g:vsnip_filetypes.typescriptreact = ['typescriptreact']")
-vim.cmd("let g:vsnip_filetypes.python = ['python']")
+vim.cmd("let g:vsnip_filetypes.typescriptreact = ['html']")

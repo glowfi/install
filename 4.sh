@@ -52,7 +52,7 @@ pyppeteer-install
 
 # DOWNLOAD NODEJS
 
-wget https://nodejs.org/dist/v16.4.1/node-v16.4.1-linux-x64.tar.xz -O ~/node.tar.xz
+wget https://nodejs.org/dist/v16.5.0/node-v16.4.1-linux-x64.tar.xz -O ~/node.tar.xz
 tar -xf ~/node.tar.xz -C ~
 rm -rf ~/node.tar.xz
 
@@ -89,11 +89,13 @@ echo "echo '$gpu_name'" >> ~/.local/bin/fm/fetchmaster.sh
 # SETUP POSTGRES
 
 sudo su - postgres -c "initdb --locale en_US.UTF-8 -D /var/lib/postgres/data;exit"
-
+sudo su - postgres -c "createuser --interactive -P;createdb -O $USER delta;exit"
 
 # DOWNLOAD NEOVIM
 
-pip install neovim pylint rope ueberzug;npm i -g neovim
+pip install neovim pylint rope ueberzug
+npm i -g neovim typescript typescript-language-server pyright vscode-langservers-extracted emmet-ls prettier eslint diagnostic-languageserver graphql-language-service-cli browser-sync
+npx npm-check-updates -g
 sudo pacman -S --noconfirm cmake unzip ninja tree-sitter xclip
 git clone https://github.com/neovim/neovim --depth 1
 cd neovim
@@ -105,8 +107,6 @@ sudo rm -r neovim
 # COPY NEOVIM SETTINGS
 
 cp -r ~/install/nvim ~/.config
-npm install -g typescript typescript-language-server pyright vscode-langservers-extracted emmet-ls prettier eslint diagnostic-languageserver graphql-language-service-cli
-npx npm-check-updates -g
 nvim -c "PackerSync"
 echo "done"
 

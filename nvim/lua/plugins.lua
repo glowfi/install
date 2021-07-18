@@ -19,7 +19,7 @@ packer.init {
   git = { clone_timeout = 300 },
   display = {
     open_fn = function()
-      return require("packer.util").float { border = "single" }
+      return require("packer.util").float { border = "none" }
     end,
   },
 }
@@ -38,9 +38,10 @@ return require('packer').startup(function(use)
     use 'kevinhwang91/rnvimr'
 
     -- Fuzzy search
-    use {'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
-        }
+    use  'nvim-telescope/telescope.nvim'
+    use  'nvim-lua/popup.nvim'
+    use  'nvim-lua/plenary.nvim'
+    use  'nvim-telescope/telescope-fzy-native.nvim'
 
     -- Git Integration
     use 'lewis6991/gitsigns.nvim'
@@ -61,6 +62,11 @@ return require('packer').startup(function(use)
     use 'antoinemadec/FixCursorHold.nvim'
     vim.cmd "let g:cursorhold_updatetime = 100"
 
+    -- Colorizer
+    use 'norcalli/nvim-colorizer.lua'
+    require 'colorizer'.setup()
+
+
 
 -- Ricing
 
@@ -75,7 +81,7 @@ return require('packer').startup(function(use)
     use 'ryanoasis/vim-devicons'
 
     -- Dashboard
-    use {'glepnir/dashboard-nvim'}
+    use 'glepnir/dashboard-nvim'
 
     -- Indentline
     use {
@@ -145,5 +151,4 @@ return require('packer').startup(function(use)
 
     --   Graphql
     use 'jparise/vim-graphql'
-
 end)

@@ -25,8 +25,8 @@ vim.cmd "nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>"
 vim.cmd "nnoremap <silent> ga <cmd>lua vim.lsp.buf.declaration()<CR>"
 vim.cmd "nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>"
 vim.cmd "nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>"
-vim.cmd "nnoremap <silent> <c-[> :lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = 'single'}})<CR>"
-vim.cmd "nnoremap <silent> <c-]> :lua vim.lsp.diagnostic.goto_next({popup_opts = {border = 'single'}})<CR>"
+vim.cmd "nnoremap <silent> <c-[> :lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = 'none'}})<CR>"
+vim.cmd "nnoremap <silent> <c-]> :lua vim.lsp.diagnostic.goto_next({popup_opts = {border = 'none'}})<CR>"
 vim.cmd 'command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()'
 
 
@@ -45,11 +45,11 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = "single",
+  border = "none",
 })
 
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  border = "single",
+  border = "none",
 })
 
 
@@ -58,16 +58,16 @@ vim.lsp.protocol.CompletionItemKind = {
     "   (Text) ",
     "   (Method)",
     "   (Function)",
-    "   (Constructor)",
-    " ﴲ  (Field)",
+    "   (Constructor)",
+    "   (Field)",
     "[] (Variable)",
     "   (Class)",
-    " ﰮ  (Interface)",
+    " 蘒 (Interface)",
     "   (Module)",
-    " 襁 (Property)",
+    "   (Property)",
     "   (Unit)",
     "   (Value)",
-    " 練 (Enum)",
+    " 練 (Enum)",
     "   (Keyword)",
     "   (Snippet)",
     "   (Color)",
@@ -75,8 +75,8 @@ vim.lsp.protocol.CompletionItemKind = {
     "   (Reference)",
     "   (Folder)",
     "   (EnumMember)",
-    " ﲀ  (Constant)",
-    " ﳤ  (Struct)",
+    "   (Constant)",
+    "   (Struct)",
     "   (Event)",
     "   (Operator)",
     "   (TypeParameter)"
@@ -148,14 +148,27 @@ if not lspconfig.emmet_ls then
 end
 lspconfig.emmet_ls.setup{ capabilities = capabilities; }
 
+-- JSON
+require'lspconfig'.jsonls.setup {
+    commands = {
+      Format = {
+        function()
+          vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
+        end
+      }
+    }
+}
+-- Format on save JSON
+vim.cmd "autocmd BufWritePre *.json lua vim.lsp.buf.formatting_sync(nil, 100)"
+
+
 -- GraphQL
 -- npm install -g graphql-language-service-cli
-require'lspconfig'.graphql.setup{
-        on_attach = common_on_attach,
-    cmd = { "graphql-lsp", "server", "-m", "stream" },
-    root_dir = require("lspconfig/util").root_pattern('.git', '.graphqlrc',"**/*"),
-    filetypes = { 'graphql', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' }
-    }
+ require("lspconfig").graphql.setup {
+     on_attach = common_on_attach,
+     cmd = { "graphql-lsp", "server", "-m", "stream" },
+     filetypes = { "graphql" },
+     root_dir = require("lspconfig/util").root_pattern('.git', '.graphqlrc',"**/*.{graphql,js,ts,jsx,tsx}")}
 
 
 -- TS TSX JS JSX
