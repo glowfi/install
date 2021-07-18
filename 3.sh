@@ -55,6 +55,7 @@ sudo systemctl enable --now zramd
 # ADD FEATURES TO pacman.conf
 
 sudo sed -i 's/#Color/Color\nILoveCandy/' /etc/pacman.conf
+sudo sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 5/' /etc/pacman.conf
 
 # ADD FEATURES TO sudoers
 
