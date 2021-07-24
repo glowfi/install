@@ -25,8 +25,8 @@ vim.cmd "nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>"
 vim.cmd "nnoremap <silent> ga <cmd>lua vim.lsp.buf.declaration()<CR>"
 vim.cmd "nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>"
 vim.cmd "nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>"
-vim.cmd "nnoremap <silent> <c-[> :lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = 'none'}})<CR>"
-vim.cmd "nnoremap <silent> <c-]> :lua vim.lsp.diagnostic.goto_next({popup_opts = {border = 'none'}})<CR>"
+vim.cmd "nnoremap <S-p>  :lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = 'none'}})<CR>"
+vim.cmd "nnoremap <S-n>  :lua vim.lsp.diagnostic.goto_next({popup_opts = {border = 'none'}})<CR>"
 vim.cmd 'command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()'
 
 
@@ -179,7 +179,6 @@ local nvim_lsp = require("lspconfig")
 require("null-ls").setup {}
 
 nvim_lsp.tsserver.setup {
-
     on_attach = function(client, bufnr)
         -- disable tsserver formatting if you plan on formatting via null-ls
         client.resolved_capabilities.document_formatting = false

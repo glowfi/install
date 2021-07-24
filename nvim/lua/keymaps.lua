@@ -1,5 +1,5 @@
 -- Leader key
-vim.cmd("let mapleader=','")
+vim.cmd("let mapleader=' '")
 
 -- Remapping vertical split.
 vim.api.nvim_set_keymap('n', '<s-a>', ':vsplit<cr>', {silent = true})
@@ -14,10 +14,10 @@ vim.api.nvim_set_keymap('n', '<c-q>', ':quit<cr>', {silent = true})
 vim.api.nvim_set_keymap('n', '<S-s>', ':w<cr>', {silent = true})
 
 -- Replace all instance in normal mode of selected word.
-vim.api.nvim_set_keymap('n', '<c-t>', ':%s///g<Left><Left>', {silent = true})
+vim.api.nvim_set_keymap('n', '<c-r>', ':%s///g<Left><Left>', {silent = true})
 
 -- Replace all instance in visual mode of selected word.Can be used to select a range of lines to replace words.
-vim.cmd('vnoremap <C-t> "hy:%s/<C-r>h//gc<left><left><left>')
+vim.cmd('vnoremap <c-r> "hy:%s/<C-r>h//gc<left><left><left>')
 
 -- Clear search highlights.
 vim.api.nvim_set_keymap('n', '<c-Space>', ':let @/=""<CR>', {silent = true})

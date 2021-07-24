@@ -1,5 +1,4 @@
 -- Format on save
-
 require('formatter').setup({
   logging = false,
   filetype = {

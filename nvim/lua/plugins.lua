@@ -56,7 +56,16 @@ return require('packer').startup(function(use)
     use {"terrortylor/nvim-comment"}
 
     -- Tabs
-    use 'romgrk/barbar.nvim'
+    use {'romgrk/barbar.nvim',
+         event = "BufRead",
+         setup = function()
+            vim.g.indent_blankline_filetype_exclude = {
+            "help",
+            "terminal",
+            "dashboard",
+            }
+        end
+        }
 
     -- Cursorhold Fix
     use 'antoinemadec/FixCursorHold.nvim'
@@ -144,6 +153,7 @@ return require('packer').startup(function(use)
     --   Snippets
     use "rafamadriz/friendly-snippets"
     use 'dsznajder/vscode-es7-javascript-react-snippets'
+    use 'wyattferguson/jinja2-kit-vscode'
 
     --   Typescript
     use "jose-elias-alvarez/null-ls.nvim"
@@ -151,4 +161,7 @@ return require('packer').startup(function(use)
 
     --   Graphql
     use 'jparise/vim-graphql'
+
+    -- HTML Autotag and Autorename tags
+    use 'windwp/nvim-ts-autotag'
 end)

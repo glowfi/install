@@ -1,5 +1,8 @@
-from ranger.api.commands import Command
+# ===================================================================
+#                      Python Functions
+# ===================================================================
 
+from ranger.api.commands import Command
 
 class fzf_searchFileIndexed(Command):
     """
@@ -10,7 +13,7 @@ class fzf_searchFileIndexed(Command):
         import subprocess
         import os.path
         fzf = self.fm.execute_command(
-            "du -a ~/.config/* ~/cdx/* ~/main/* | awk '{print $2}' |fzf --preview 'bat --style numbers,changes --color=always {}'", universal_newlines=True, stdout=subprocess.PIPE)
+            "du -a ~/.config/* ~/cdx/* ~/main/* | awk '{print $2}' |fzf --preview 'bat --theme 'gruvbox-dark' --style numbers,changes --color=always {}'", universal_newlines=True, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
             fzf_file = os.path.abspath(stdout.rstrip('\n'))
@@ -47,7 +50,7 @@ class fzf_searchCurrent(Command):
         import subprocess
         import os.path
         fzf = self.fm.execute_command(
-            "du -a . | awk '{print $2}' |fzf --preview 'bat --style numbers,changes --color=always {}'", universal_newlines=True, stdout=subprocess.PIPE)
+            "du -a . | awk '{print $2}' |fzf --preview 'bat --theme 'gruvbox-dark' --style numbers,changes --color=always {}'", universal_newlines=True, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
             fzf_file = os.path.abspath(stdout.rstrip('\n'))

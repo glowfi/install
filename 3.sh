@@ -36,16 +36,15 @@ rm -rf yay-bin
 
 sudo pacman -S --noconfirm zip unzip unrar p7zip lzop
 
-sudo pacman -S --noconfirm dolphin kate konsole ark gwenview okular spectacle gimp
+sudo pacman -S --noconfirm dolphin kate ark gwenview okular spectacle gimp kitty
 
 yes | sudo pacman -S alsa-utils alsa-plugins pipewire pipewire-alsa pipewire-pulse pipewire-jack
 
-sudo pacman -S --noconfirm fish bpytop ttf-fira-code
+sudo pacman -S --noconfirm fish bpytop imagemagick ttf-fantasque-sans-mono
 
 sudo pacman -S --noconfirm postgresql redis python-pip
 
-# yay -S --noconfirm brave-bin vscodium-bin mongodb-bin gimp-plugin-registry timeshift zramd onlyoffice-bin dashbinsh nerd-fonts-fira-code
-yay -S --noconfirm brave-bin mongodb-bin gimp-plugin-registry timeshift zramd onlyoffice-bin dashbinsh nerd-fonts-fira-code
+yay -S --noconfirm brave-bin mongodb-bin gimp-plugin-registry timeshift zramd onlyoffice-bin dashbinsh
 
 # ENABLE ZRAM
 
@@ -79,6 +78,10 @@ cp -r ~/install/configs/config.fish ~/.config/fish/
 cp -r ~/install/configs/ranger ~/.config
 git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
 
+# COPY KITTY SETTINGS
+
+cp -r ~/install/configs/kitty ~/.config/
+
 # CHANGE DEFAULT SHELL
 
-sudo usermod --shell /bin/dash john
+sudo usermod --shell /bin/fish john

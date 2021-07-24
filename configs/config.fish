@@ -1,18 +1,32 @@
-## PATH
-set PATH ~/node-v16.5.0-linux-x64/bin/ $PATH                                    # sets NODEJS path
-set PATH ~/.local/bin/ $PATH                                                    # sets Universal path
+#    ▗▄▄▄▖ ▄▄▄  ▗▄▖ ▗▖ ▗▖       ▄▄  ▗▄▖ ▗▄ ▗▖▗▄▄▄▖ ▄▄▄   ▄▄
+#    ▐▛▀▀▘ ▀█▀ ▗▛▀▜ ▐▌ ▐▌      █▀▀▌ █▀█ ▐█ ▐▌▐▛▀▀▘ ▀█▀  █▀▀▌
+#    ▐▌     █  ▐▙   ▐▌ ▐▌     ▐▛   ▐▌ ▐▌▐▛▌▐▌▐▌     █  ▐▌
+#    ▐███   █   ▜█▙ ▐███▌     ▐▌   ▐▌ ▐▌▐▌█▐▌▐███   █  ▐▌▗▄▖
+#    ▐▌     █     ▜▌▐▌ ▐▌     ▐▙   ▐▌ ▐▌▐▌▐▟▌▐▌     █  ▐▌▝▜▌
+#    ▐▌    ▄█▄ ▐▄▄▟▘▐▌ ▐▌      █▄▄▌ █▄█ ▐▌ █▌▐▌    ▄█▄  █▄▟▌
+#    ▝▘    ▀▀▀  ▀▀▘ ▝▘ ▝▘       ▀▀  ▝▀▘ ▝▘ ▀▘▝▘    ▀▀▀   ▀▀
 
-### EXPORT
+# ===================================================================
+#                       General Settings
+# ===================================================================
+
+## Path
+set PATH ~/node-v16.5.0-linux-x64/bin/ $PATH      # Sets NodeJS path
+set PATH ~/.local/bin/ $PATH                      # Sets Universal path
+
+## Enhancements
 set fish_greeting                                 # Supresses fish's greeting message
 set TERM "xterm-256color"                         # Sets the terminal type
 
-### ALIASES
+# ===================================================================
+#                        Aliases
+# ===================================================================
 
 # Changing ls to exa
 alias ls='exa --icons -l --color=always --group-directories-first'
 
 # Changing cat to bat
-alias cat='bat'
+alias cat='bat --theme "gruvbox-dark"'
 
 # Changing grep to ripgrep
 alias grep='rg'
@@ -43,35 +57,11 @@ alias bs='browser-sync start --index $argv --server --files "./*.*"'
 # Postgres alias
 alias psql='psql -d delta'
 
-# Default Editor
-export EDITOR=nvim
+# Search Pacman
+alias spac="pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
 
-function searchIndexedFiles
-  du -a ~/.config/* ~/cdx/* ~/main/* | awk '{print $2}' |fzf --preview 'bat --style numbers,changes --color=always {}'|read -t args
-  if test -z "$args"
-    echo "Exited from searching indexed files!"
-  else
-    nvim $args
-  end
-end
-
-function searchContents
-  rg . | fzf | awk -F':' '{ print $1 }'|read -t args
-  if test -z "$args"
-    echo "Exited from searching file contents!"
-  else
-    nvim $args
-  end
-end
-
-function searchFilesCurrent
-  du -a . | awk '{print $2}' |fzf --preview 'bat --style numbers,changes --color=always {}'|read -t args
-  if test -z "$args"
-    echo "Exited from searching current working directory files!"
-  else
-    nvim $args
-  end
-end
+# Search AUR
+alias saur="yay -Slq | fzf -m --preview 'yay -Si {1}' | xargs -ro yay -S"
 
 # Find indexed file and open in editor
 alias si="searchIndexedFiles"
@@ -83,7 +73,9 @@ alias sg="searchContents"
 alias sc="searchFilesCurrent"
 
 
-### GIT FUNCTIONS
+# ===================================================================
+#                         Git Functions
+# ===================================================================
 
 
 function git_is_repo -d "Check if directory is a repository"
@@ -164,9 +156,56 @@ function git_untracked -d "Print list of untracked files"
   end
 end
 
-# OMF BANG-BANG FUNCTION
+# ===================================================================
+#                           Custom Functions
+# ===================================================================
+
+# Search Indexed Files
+function searchIndexedFiles
+  du -a ~/.config/* ~/cdx/* ~/main/* | awk '{print $2}' |fzf --preview 'bat --theme "gruvbox-dark" --style numbers,changes --color=always {}'|read -t args
+  if test -z "$args"
+    echo "Exited from searching indexed files!"
+  else
+    echo "1.Cd"
+    echo "2.Nvim"
+    read choice
+    if test $choice -eq 2
+        nvim $args
+    else
+        cd $args
+    end
+  end
+end
 
 
+# Search Inside Files
+function searchContents
+  rg . | awk -F':' '{ print $1,$2 }' | fzf --preview 'set loc {};set loc (string split " " {} -f1);bat --theme "gruvbox-dark" --style numbers,changes --color=always $loc'| awk -F' ' '{ print $1 }' | read -t args
+  if test -z "$args"
+    echo "Exited from searching current working directory files!"
+  else
+    nvim $args
+  end
+end
+
+# Search Files in current working directory
+function searchFilesCurrent
+  du -a . | awk '{print $2}' |fzf --preview 'bat --theme "gruvbox-dark" --style numbers,changes --color=always {}'|read -t args
+  if test -z "$args"
+    echo "Exited from searching current working directory files!"
+  else
+    echo "1.Cd"
+    echo "2.Nvim"
+    read choice
+    if test $choice -eq 2
+        nvim $args
+    else
+        cd $args
+    end
+  end
+end
+
+# Bang-Bang Function
 function __history_previous_command
   switch (commandline -t)
   case "!"
@@ -175,7 +214,6 @@ function __history_previous_command
     commandline -i !
   end
 end
-
 
 function __history_previous_command_arguments
   switch (commandline -t)
@@ -187,9 +225,7 @@ function __history_previous_command_arguments
   end
 end
 
-# BINDING BANG-BANG FUNCTION
-
-
+# Binding Bang-Bang Function
 bind ! __history_previous_command
 bind '$' __history_previous_command_arguments
 
@@ -199,7 +235,9 @@ if test "$fish_key_bindings" = 'fish_vi_key_bindings'
     bind --mode insert '$' __history_previous_command_arguments
 end
 
-## THEME
+# ===================================================================
+#                            Theme
+# ===================================================================
 
 
 function fish_prompt
@@ -218,7 +256,7 @@ function fish_prompt
     set_color red --bold
     printf "] "
     set_color ffc04d
-    printf "🠮 "
+    printf "➡️ "
 
     set -l normal_color (set_color normal)
     set -l branch_color (set_color yellow)
@@ -281,3 +319,42 @@ function fish_right_prompt
     end
     set_color normal
 end
+
+
+# ===================================================================
+#                   Syntax Highlighting Colors
+# ===================================================================
+
+ set -U fish_color_normal normal
+ set -U fish_color_command 99cc99
+ set -U fish_color_quote ffcc66
+ set -U fish_color_redirection d3d0c8
+ set -U fish_color_end cc99cc
+ set -U fish_color_error f2777a
+ set -U fish_color_param d3d0c8
+ set -U fish_color_comment ffcc66
+ set -U fish_color_match 6699cc
+ set -U fish_color_selection white --bold --background=brblack
+ set -U fish_color_search_match bryellow --background=brblack
+ set -U fish_color_history_current --bold
+ set -U fish_color_operator 6699cc
+ set -U fish_color_escape 66cccc
+ set -U fish_color_cwd_root red
+ set -U fish_color_cwd green
+ set -U fish_color_autosuggestion 747369
+ set -U fish_color_valid_path --underline
+ set -U fish_color_user brgreen
+ set -U fish_color_host normal
+ set -U fish_color_cancel -r
+ set -U fish_pager_color_completion normal
+ set -U fish_pager_color_description B3A06D yellow
+ set -U fish_pager_color_prefix normal --bold --underline
+ set -U fish_pager_color_progress brwhite --background=cyan
+
+
+# ===================================================================
+#                     Miscellaneous
+# ===================================================================
+
+# Default Editor
+export EDITOR=nvim

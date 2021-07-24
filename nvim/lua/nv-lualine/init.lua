@@ -95,10 +95,6 @@ ins_left {
       ['!'] = colors.red,
       t = colors.red
     }
-    vim.api.nvim_command(
-        'hi! LualineMode guifg=' .. mode_color[vim.fn.mode()] .. " guibg=" ..
-            colors.bg)
---     return ''
   end,
   color = "LualineMode",
   left_padding = 0
@@ -148,8 +144,9 @@ ins_left {
 -- for lualine it's any number greater then 2
 ins_left {function() return '%=' end}
 
+-- LSP STATUS
 ins_left {
-  -- Lsp server name .
+  -- Lsp server name
   function()
     local msg = 'No Active Lsp'
     local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
@@ -166,8 +163,61 @@ ins_left {
   icon = ' LSP:',
   color = {fg = '#ffffff', gui = 'bold'}
 }
+-- Python Virtual Env
+local function env_cleanup(venv)
+  if string.find(venv, "/") then
+    local final_venv = venv
+    for w in venv:gmatch "([^/]+)" do
+      final_venv = w
+    end
+    venv = final_venv
+  end
+  return venv
+end
+local PythonEnv = function()
+  if vim.bo.filetype == "python" then
+    local venv = os.getenv "CONDA_DEFAULT_ENV"
+    if venv ~= nil then
+      return "Venv ->  (" .. env_cleanup(venv) .. ")"
+    end
+    venv = os.getenv "VIRTUAL_ENV"
+    if venv ~= nil then
+      return "Venv ->  (" .. env_cleanup(venv) .. ")"
+    end
+    return ""
+  end
+  return ""
+end
+ins_left {
+    PythonEnv,
+    color = {fg = colors.orange, gui = 'bold'}
+}
+
+-- Python Version
+local PythonVer = function()
+    if vim.bo.filetype == "python" then
+        local handle = io.popen("python --version")
+        local var = handle:read("*a")
+        handle:close()
+        local s=var:sub(1, -2)
+        return s
+    end
+end
+ins_left {
+    PythonVer,
+    color = {fg = '#ffffff', gui = 'bold'}
+}
 
 -- Add components to right sections
+ins_right {
+function()
+      if next(vim.treesitter.highlighter.active) ~= nil then
+        return " (treesitter)"
+      end
+      return ""
+    end,
+    color = {fg = colors.green, gui = 'bold'}
+}
 ins_right {
   'o:encoding', -- option component same as &encoding in viml
   upper = true, -- I'm not sure why it's upper case either ;)

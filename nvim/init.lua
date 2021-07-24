@@ -15,6 +15,7 @@ require('nv-coderunner')
 require('nv-git-signs')
 require('nv-autocomments')
 require('nv-barbar')
+require('nv-visual-multi')
 
 -- Ricing Plugins
 require('nv-gruvbox')
@@ -36,3 +37,4 @@ require('nv-autoformat')
 require('nv-sig-help')
 
 -- Languages Plugins
+require('nv-autotags-autorename')
