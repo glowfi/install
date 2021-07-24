@@ -44,7 +44,7 @@ sudo pacman -S --noconfirm fish bpytop imagemagick ttf-fantasque-sans-mono
 
 sudo pacman -S --noconfirm postgresql redis python-pip
 
-yay -S --noconfirm brave-bin mongodb-bin gimp-plugin-registry timeshift zramd onlyoffice-bin dashbinsh
+yay -S --noconfirm brave-bin mongodb-bin gimp-plugin-registry timeshift zramd onlyoffice-bin dashbinsh nerd-fonts-fantasque-sans-mono
 
 # ENABLE ZRAM
 
