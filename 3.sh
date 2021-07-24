@@ -76,6 +76,8 @@ cp -r ~/install/configs/config.fish ~/.config/fish/
 # COPY RANGER FM SETTINGS
 
 cp -r ~/install/configs/ranger ~/.config
+cp -r ~/install/ranger.sh ~/
+chmod +x ~/ranger.sh
 git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
 
 # COPY KITTY SETTINGS
