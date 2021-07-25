@@ -29,7 +29,7 @@ Type=SIMPLE_ACTION_DATA
 ActionsCount=1
 
 [Data_1_10Actions0]
-CommandURL=konsole
+CommandURL=kitty
 Type=COMMAND_URL
 
 [Data_1_10Conditions]
@@ -75,7 +75,7 @@ Type=SIMPLE_ACTION_DATA
 ActionsCount=1
 
 [Data_1_2Actions0]
-CommandURL=konsole -e 'fish -c "ranger"'
+CommandURL=~/ranger.sh
 Type=COMMAND_URL
 
 [Data_1_2Conditions]
