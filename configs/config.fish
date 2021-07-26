@@ -184,11 +184,13 @@ end
 
 # Search Inside Files
 function searchContents
-  rg --line-number -g "!$node_loc_var" -g "!./.*" -g "!node_modules"  .  | awk '{ print $0 }' | fzf --preview 'set loc {};set loc1 (string split ":" {} -f2);set loc (string split ":" {} -f1);bat --theme "gruvbox-dark" --style numbers,changes --color=always --highlight-line $loc1 --line-range $loc1: $loc'| awk -F':' '{ print $1 }' | read -t args
-  if test -z "$args"
+  rg --line-number -g "!$node_loc_var" -g "!./.*" -g "!node_modules"  .  | awk '{ print $0 }' | fzf --preview 'set loc {};set loc1 (string split ":" {} -f2);set loc (string split ":" {} -f1);bat --theme "gruvbox-dark" --style numbers,changes --color=always --highlight-line $loc1 --line-range $loc1: $loc'| awk -F':' '{ print $1 " " $2}' | read -t args
+  set fl (string split " " $args -f1)
+  set ln (string split " " $args -f2)
+  if test -z "$fl"
     echo "Exited from searching current working directory files!"
   else
-    nvim $args
+    nvim -c ".+$ln" $fl
   end
 end
 
