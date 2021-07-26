@@ -160,9 +160,13 @@ end
 #                           Custom Functions
 # ===================================================================
 
+# Utility variable
+set node_loc_var (whereis node)
+set node_loc_var (echo $node_loc_var | cut -d '/' -f4 )
+
 # Search Indexed Files
 function searchIndexedFiles
-  du -a ~/.config/* ~/cdx/* ~/main/* | awk '{print $2}' |fzf --preview 'bat --theme "gruvbox-dark" --style numbers,changes --color=always {}'|read -t args
+  du -a --exclude "./.*" --exclude "./**/.git" --exclude "node_modules" ~/.config/* ~/cdx/* ~/main/* | awk '{print $2}' |fzf --preview 'bat --theme "gruvbox-dark" --style numbers,changes --color=always {}'|read -t args
   if test -z "$args"
     echo "Exited from searching indexed files!"
   else
@@ -180,7 +184,7 @@ end
 
 # Search Inside Files
 function searchContents
-  rg . | awk -F':' '{ print $1,$2 }' | fzf --preview 'set loc {};set loc (string split " " {} -f1);bat --theme "gruvbox-dark" --style numbers,changes --color=always $loc'| awk -F' ' '{ print $1 }' | read -t args
+  rg -g "!$node_loc_var" -g "!./.*" -g "!node_modules"  .  | awk -F':' '{ print $1,$2 }' | fzf --preview 'set loc {};set loc (string split " " {} -f1);bat --theme "gruvbox-dark" --style numbers,changes --color=always $loc'| awk -F' ' '{ print $1 }' | read -t args
   if test -z "$args"
     echo "Exited from searching current working directory files!"
   else
@@ -190,7 +194,7 @@ end
 
 # Search Files in current working directory
 function searchFilesCurrent
-  du -a . | awk '{print $2}' |fzf --preview 'bat --theme "gruvbox-dark" --style numbers,changes --color=always {}'|read -t args
+  du -a --exclude "$node_loc_var" --exclude "./.*" --exclude "./**/.git" --exclude "node_modules" . | awk '{print $2}' |fzf --preview 'bat --theme "gruvbox-dark" --style numbers,changes --color=always {}'|read -t args
   if test -z "$args"
     echo "Exited from searching current working directory files!"
   else

@@ -2,6 +2,14 @@
 #                      Python Functions
 # ===================================================================
 
+"""
+Utility Function
+"""
+import os
+stream = os.popen('whereis node')
+output = stream.read()
+output=str(output).split('/')[3]
+
 from ranger.api.commands import Command
 
 class fzf_searchFileIndexed(Command):
@@ -13,7 +21,7 @@ class fzf_searchFileIndexed(Command):
         import subprocess
         import os.path
         fzf = self.fm.execute_command(
-            "du -a ~/.config/* ~/cdx/* ~/main/* | awk '{print $2}' |fzf --preview 'bat --theme 'gruvbox-dark' --style numbers,changes --color=always {}'", universal_newlines=True, stdout=subprocess.PIPE)
+            "du -a --exclude %s --exclude './.*' --exclude './**/.git' --exclude 'node_modules' ~/.config/* ~/cdx/* ~/main/* | awk '{print $2}' |fzf --preview 'bat --theme 'gruvbox-dark' --style numbers,changes --color=always {}'" %output, universal_newlines=True, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
             fzf_file = os.path.abspath(stdout.rstrip('\n'))
@@ -32,7 +40,7 @@ class fzf_searchContent(Command):
         import subprocess
         import os.path
         fzf = self.fm.execute_command(
-            "rg . | fzf | awk -F':' '{ print $1 }'", universal_newlines=True, stdout=subprocess.PIPE)
+            "rg -g !%s -g '!./.*' -g '!node_modules'  .  | awk -F':' '{ print $1,$2 }' | fzf" %output, universal_newlines=True, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
             fzf_file = os.path.abspath(stdout.rstrip('\n'))
@@ -50,7 +58,7 @@ class fzf_searchCurrent(Command):
         import subprocess
         import os.path
         fzf = self.fm.execute_command(
-            "du -a . | awk '{print $2}' |fzf --preview 'bat --theme 'gruvbox-dark' --style numbers,changes --color=always {}'", universal_newlines=True, stdout=subprocess.PIPE)
+            "du -a --exclude %s --exclude './.*' --exclude './**/.git' --exclude 'node_modules' . | awk '{print $2}' |fzf --preview 'bat --theme 'gruvbox-dark' --style numbers,changes --color=always {}'" %output, universal_newlines=True, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
             fzf_file = os.path.abspath(stdout.rstrip('\n'))
