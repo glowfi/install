@@ -40,7 +40,7 @@ class fzf_searchContent(Command):
         import subprocess
         import os.path
         fzf = self.fm.execute_command(
-            "rg -g !%s -g '!./.*' -g '!node_modules'  .  | awk -F':' '{ print $1,$2 }' | fzf" %output, universal_newlines=True, stdout=subprocess.PIPE)
+            "rg --line-number -g !%s -g '!./.*' -g '!node_modules'  .  | awk -F':' '{ print $0 }' | fzf | awk -F ':' '{print $1}'" %output, universal_newlines=True, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
             fzf_file = os.path.abspath(stdout.rstrip('\n'))
