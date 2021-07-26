@@ -184,7 +184,7 @@ end
 
 # Search Inside Files
 function searchContents
-  rg -g "!$node_loc_var" -g "!./.*" -g "!node_modules"  .  | awk -F':' '{ print $1,$2 }' | fzf --preview 'set loc {};set loc (string split " " {} -f1);bat --theme "gruvbox-dark" --style numbers,changes --color=always $loc'| awk -F' ' '{ print $1 }' | read -t args
+  rg --line-number -g "!$node_loc_var" -g "!./.*" -g "!node_modules"  .  | awk '{ print $0 }' | fzf --preview 'set loc {};set loc (string split ":" {} -f1);bat --theme "gruvbox-dark" --style numbers,changes --color=always $loc'| awk -F' ' '{ print $1 }' | read -t args
   if test -z "$args"
     echo "Exited from searching current working directory files!"
   else
