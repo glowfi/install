@@ -26,7 +26,7 @@ local custom_header={
 }
 
 -- CUSTOM FOOTER
-local custom_footer= {'Welcome to Dragon Inn!'}
+local custom_footer= {''}
 
 -- SETTING CUSTOM HEADER AND FOOTER
 vim.g.dashboard_custom_header=custom_header
