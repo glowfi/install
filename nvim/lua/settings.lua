@@ -7,10 +7,10 @@ vim.cmd('filetype on')
 -- Enable plugins and load plugin for the detected file type.
 vim.cmd('filetype plugin on')
 
--- Enable Smart indent
+-- Indent Settings
 vim.bo.smartindent = true
-
--- Indentline settings
+vim.cmd('filetype plugin indent on')
+vim.cmd('set copyindent')
 vim.cmd('set colorcolumn=99999')
 
 -- Turn syntax highlighting on.
