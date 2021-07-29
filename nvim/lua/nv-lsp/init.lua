@@ -189,7 +189,7 @@ nvim_lsp.tsserver.setup {
         ts_utils.setup {
             debug = false,
             disable_commands = false,
-            enable_import_on_completion = false,
+            enable_import_on_completion = true,
             import_all_timeout = 5000, -- ms
 
             -- eslint
@@ -200,12 +200,13 @@ nvim_lsp.tsserver.setup {
             eslint_enable_diagnostics = false,
 
             -- formatting
-            enable_formatting = false,
+            enable_formatting = true,
             formatter = "prettier",
             formatter_config_fallback = nil,
 
             -- update imports on file move
-            update_imports_on_move = false,
+            import_all_scan_buffers = 100,
+            update_imports_on_move = true,
             require_confirmation_on_move = false,
             watch_dir = nil,
         }
