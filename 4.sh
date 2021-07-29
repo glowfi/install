@@ -3,7 +3,7 @@
 # PYTHON MODULES
 
 pip install jupyter pandas matplotlib numpy scikit-learn openpyxl xlrd
-pip install black virtualenv
+pip install virtualenv
 
 # JUPYTER SETUP
 
@@ -55,7 +55,7 @@ sudo su - postgres -c "(echo $USER;echo 'password';echo 'password';echo y;)|crea
 
 # DOWNLOAD NEOVIM
 
-pip install neovim pylint rope ueberzug ranger-fm
+pip install neovim ueberzug ranger-fm black
 npm i -g neovim typescript typescript-language-server pyright vscode-langservers-extracted emmet-ls prettier eslint diagnostic-languageserver graphql-language-service-cli browser-sync
 npx npm-check-updates -g
 sudo pacman -S --noconfirm cmake unzip ninja tree-sitter xclip
