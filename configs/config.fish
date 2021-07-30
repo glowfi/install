@@ -26,7 +26,7 @@ set TERM "xterm-256color"                         # Sets the terminal type
 alias ls='exa --icons -l --color=always --group-directories-first'
 
 # Changing cat to bat
-alias cat='bat --theme "gruvbox-dark"'
+alias cat='bat --theme=gruvbox-dark'
 
 # Changing grep to ripgrep
 alias grep='rg'
@@ -49,7 +49,7 @@ sudo pacman -Rns (pacman -Qtdq)  2> /dev/null
 yes | printf "Cleaned Orphans!"'
 
 # Fetchmaster alias
-alias fm="cd ~/.local/bin/fm;python ./fetchmaster.py;cd"
+alias fetchmaster="fetchmaster.py"
 
 # Browser-sync
 alias bs='browser-sync start --index $argv --server --files "./*.*"'
@@ -364,3 +364,5 @@ end
 
 # Default Editor
 export EDITOR=nvim
+# bat as manpager
+set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"

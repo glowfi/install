@@ -40,7 +40,7 @@ sudo pacman -S --noconfirm dolphin kate ark gwenview okular spectacle gimp kitty
 
 yes | sudo pacman -S alsa-utils alsa-plugins pipewire pipewire-alsa pipewire-pulse pipewire-jack
 
-sudo pacman -S --noconfirm fish bpytop imagemagick ttf-fantasque-sans-mono fortune-mod
+sudo pacman -S --noconfirm fish bpytop imagemagick ttf-fantasque-sans-mono fortune-mod man-db
 
 sudo pacman -S --noconfirm postgresql redis python-pip
 

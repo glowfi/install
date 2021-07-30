@@ -31,22 +31,8 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 pip install tcolorpy
 mkdir -p ~/.local/bin
-cp -r ~/install/fm ~/.local/bin/
-
-echo "Enter Your Cpu name in short: "
-read cpu_name
-echo "Enter Your Gpu name in short: "
-read gpu_name
-
-sudo chmod +x ~/.local/bin/fm/fetchmaster.sh
-
-echo "" >> ~/.local/bin/fm/fetchmaster.sh
-echo "#CPU NAME" >> ~/.local/bin/fm/fetchmaster.sh
-echo "echo '$cpu_name'" >> ~/.local/bin/fm/fetchmaster.sh
-
-echo "" >> ~/.local/bin/fm/fetchmaster.sh
-echo "#GPU NAME" >> ~/.local/bin/fm/fetchmaster.sh
-echo "echo '$gpu_name'" >> ~/.local/bin/fm/fetchmaster.sh
+cp -r ~/install/fetchmaster.py ~/.local/bin/
+chmod +x ~/.local/bin/fetchmaster.py
 
 # SETUP POSTGRES
 
