@@ -11,15 +11,18 @@ import re
 # INFO
 info = [None for _ in range(8)]
 
+# OSNAME
 os_name = subprocess.check_output(["cat", "/etc/os-release"]).decode("utf-8")
 os_name = os_name.split("\n")[0]
 matches = re.findall(r"\"(.+?)\"", os_name)
 os_name = "".join(matches)
 info[0] = os_name
 
+# KERNEL
 kernel = platform.release()
 info[1] = kernel
 
+# TOTAL PACKAGES
 packages = subprocess.Popen(
     "pacman -Q | wc -l",
     shell=True,
@@ -30,13 +33,15 @@ packages = subprocess.Popen(
 packages = int(packages.stdout.readlines(-1)[0])
 info[2] = str(packages)
 
+# DEFAULT USER SHELL
 shell = os.environ.get("SHELL").split("/")[2]
 info[3] = shell
 
+# DESKTOP ENVIRONMENT
 de_wm = os.environ.get("XDG_CURRENT_DESKTOP")
 info[4] = de_wm
 
-
+# UPTIME
 uptime = float(
     subprocess.check_output(["cat", "/proc/uptime"]).decode("utf-8").split()[0]
 )
@@ -63,6 +68,7 @@ def time_format(seconds: int):
 uptime = time_format(uptime)
 info[5] = uptime
 
+# CPU GPU
 cpu_gpu = (
     subprocess.check_output(["cat", "/proc/cpuinfo"])
     .decode("utf-8")
