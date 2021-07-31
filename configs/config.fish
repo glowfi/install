@@ -34,6 +34,9 @@ alias grep='rg'
 # Changing find to fd
 alias find='fd'
 
+# Changing top to bottom
+alias top='btm --color gruvbox'
+
 # Synchronize mirrorlist
 alias mirru='sudo rm -rf /var/lib/pacman/db.lck
 sudo reflector --verbose --country "Germany" -l 5 --sort rate --save /etc/pacman.d/mirrorlist
@@ -364,5 +367,3 @@ end
 
 # Default Editor
 export EDITOR=nvim
-# bat as manpager
-set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"

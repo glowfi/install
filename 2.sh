@@ -31,9 +31,9 @@ echo "john ALL=(ALL) ALL" >> /etc/sudoers.d/john
 
 pacman -S --noconfirm grub efibootmgr ntfs-3g networkmanager network-manager-applet wireless_tools wpa_supplicant dialog mtools dosfstools reflector wget rsync
 
-# RUST REPLACEMENTS OF SOME GNU COREUTILS (ls cat grep find)
+# RUST REPLACEMENTS OF SOME GNU COREUTILS (ls cat grep find top)
 
-pacman -S --noconfirm exa bat ripgrep fd
+pacman -S --noconfirm exa bat ripgrep fd bottom
 
 # GRUB
 

@@ -214,56 +214,17 @@ def dogbert(use_color=use_color):
 
 
 def alice(use_color=use_color):
-    print(
-        tcolor(
-            f"           ..-..             {ls[0]}", color=use_color, styles=["bold"]
-        )
-    )
-    print(
-        tcolor(
-            f"         (~     ~)           {ls[1]}", color=use_color, styles=["bold"]
-        )
-    )
-    print(
-        tcolor(
-            f"       (           )         {ls[2]}", color=use_color, styles=["bold"]
-        )
-    )
-    print(
-        tcolor(
-            f"     (    ~~~~~~~    )      ╭{ls[3]}", color=use_color, styles=["bold"]
-        )
-    )
-    print(
-        tcolor(
-            f"   (     |  . .  |     )    │{ls[4]}", color=use_color, styles=["bold"]
-        )
-    )
-    print(
-        tcolor(
-            f"  (      |  (_)  |      )   │{ls[5]}", color=use_color, styles=["bold"]
-        )
-    )
-    print(
-        tcolor(
-            f" (       |       |       )  ╯{ls[6]}", color=use_color, styles=["bold"]
-        )
-    )
-    print(
-        tcolor(
-            f"   (.,.,.|  ===  |.,.,.)     {ls[7]}", color=use_color, styles=["bold"]
-        )
-    )
-    print(
-        tcolor(
-            f"          '.___.'            {ls[8]}", color=use_color, styles=["bold"]
-        )
-    )
-    print(
-        tcolor(
-            f"           /   \             {ls[9]}", color=use_color, styles=["bold"]
-        )
-    )
+    print(tcolor(f"           ..-..             {ls[0]}", color=use_color, styles=["bold"]))
+    print(tcolor(f"         (~     ~)           {ls[1]}", color=use_color, styles=["bold"]))
+    print(tcolor(f"       (           )         {ls[2]}", color=use_color, styles=["bold"]))
+    print(tcolor(f"     (    ~~~~~~~    )      ╭{ls[3]}", color=use_color, styles=["bold"]))
+    print(tcolor(f"   (     |  . .  |     )    │{ls[4]}", color=use_color, styles=["bold"]))
+    print(tcolor(f"  (      |  (_)  |      )   │{ls[5]}", color=use_color, styles=["bold"]))
+    print(tcolor(f" (       |       |       )  ╯{ls[6]}", color=use_color, styles=["bold"]))
+    print(tcolor(f"   (.,.,.|  ===  |.,.,.)     {ls[7]}", color=use_color, styles=["bold"]))
+    print(tcolor(f"          '.___.'            {ls[8]}", color=use_color, styles=["bold"]))
+    print(tcolor(f"           /   \             {ls[9]}", color=use_color, styles=["bold"]))
+
 
 
 def pointy_haired_boss(use_color=use_color):

@@ -34,17 +34,20 @@ rm -rf yay-bin
 
 # PACKAGES
 
+### CORE
 sudo pacman -S --noconfirm zip unzip unrar p7zip lzop
-
-sudo pacman -S --noconfirm dolphin kate ark gwenview okular spectacle gimp kitty
-
+sudo pacman -S --noconfirm fish kitty imagemagick ttf-fantasque-sans-mono
 yes | sudo pacman -S alsa-utils alsa-plugins pipewire pipewire-alsa pipewire-pulse pipewire-jack
+yay -S --noconfirm zramd dashbinsh nerd-fonts-fantasque-sans-mono
 
-sudo pacman -S --noconfirm fish bpytop imagemagick ttf-fantasque-sans-mono fortune-mod man-db
-
+### CDX
 sudo pacman -S --noconfirm postgresql redis python-pip
+yay -S --noconfirm mongodb-bin
 
-yay -S --noconfirm brave-bin mongodb-bin gimp-plugin-registry timeshift zramd onlyoffice-bin dashbinsh nerd-fonts-fantasque-sans-mono
+### PACK
+sudo pacman -S --noconfirm dolphin kate ark gwenview okular spectacle gimp
+yay -S --noconfirm brave-bin gimp-plugin-registry onlyoffice-bin timeshift
+
 
 # ENABLE ZRAM
 
