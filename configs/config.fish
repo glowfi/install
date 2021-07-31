@@ -35,7 +35,7 @@ alias grep='rg'
 alias find='fd'
 
 # Changing top to bottom
-alias top='btm --color gruvbox'
+alias top='btm --mem_as_value --color gruvbox'
 
 # Synchronize mirrorlist
 alias mirru='sudo rm -rf /var/lib/pacman/db.lck
