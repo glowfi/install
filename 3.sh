@@ -71,6 +71,13 @@ sudo rm -rf /usr/share/dbus-1/services/org.kde.kwalletd5.service
 
 sudo systemctl enable sddm
 
+# SETUP APPARMOR
+
+sudo sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet lsm=landlock,lockdown,yama,apparmor,bpf"/' /etc/default/grub
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+sudo pacman -S --noconfirm apparmor
+sudo systemctl enable --now apparmor.service
+
 # COPY FISH SHELL SETTINGS
 
 fish -c "exit"
