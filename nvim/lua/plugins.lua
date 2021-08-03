@@ -136,7 +136,7 @@ return require('packer').startup(function(use)
     use {'hrsh7th/nvim-compe'}
 
     --   Snippet engine
-    use {'hrsh7th/vim-vsnip'}
+    use {'hrsh7th/vim-vsnip',event = "InsertCharPre"}
 
     --   Signature popup on typing
     use {"ray-x/lsp_signature.nvim"}
@@ -151,9 +151,9 @@ return require('packer').startup(function(use)
 -- Languages Plugins
 
     --   Snippets
-    use "rafamadriz/friendly-snippets"
-    use 'dsznajder/vscode-es7-javascript-react-snippets'
-    use 'wyattferguson/jinja2-kit-vscode'
+    use {"rafamadriz/friendly-snippets",event = "InsertCharPre"}
+    use {'dsznajder/vscode-es7-javascript-react-snippets',event = "InsertCharPre"}
+    use {'wyattferguson/jinja2-kit-vscode',event = "InsertCharPre"}
 
     --   Typescript
     use "jose-elias-alvarez/null-ls.nvim"
