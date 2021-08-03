@@ -41,7 +41,7 @@ yes | sudo pacman -S alsa-utils alsa-plugins pipewire pipewire-alsa pipewire-pul
 yay -S --noconfirm zramd dashbinsh nerd-fonts-fantasque-sans-mono
 
 ### CDX
-sudo pacman -S --noconfirm postgresql redis python-pip
+sudo pacman -S --noconfirm postgresql redis python-pip gitui
 yay -S --noconfirm mongodb-bin
 
 ### PACK
