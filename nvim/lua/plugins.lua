@@ -87,7 +87,6 @@ return require('packer').startup(function(use)
 
     -- Devicons
     use 'kyazdani42/nvim-web-devicons'
-    use 'ryanoasis/vim-devicons'
 
     -- Dashboard
     use 'glepnir/dashboard-nvim'
