@@ -1,10 +1,12 @@
+#!/usr/bin/python
+
 import requests
 import json
 import tempfile, os
 from subprocess import call
 
 
-class cur:
+class checkur:
     def __init__(self, method, url):
         self.method = method
         self.url = url
@@ -73,5 +75,5 @@ class cur:
 
 method = input("Which Method to use? ")
 url = input("Which URL to hit ? ")
-obj = cur(method, url)
+obj = checkur(method, url)
 obj.handler()

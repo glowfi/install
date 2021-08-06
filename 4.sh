@@ -23,6 +23,7 @@ rm -rf ~/node.tar.xz
 npm i -g npm@next
 npm i -g yarn
 
+
 # FZF TERMINAL INTEGRATION
 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -34,6 +35,11 @@ pip install tcolorpy
 mkdir -p ~/.local/bin
 cp -r ~/install/fetchmaster.py ~/.local/bin/
 chmod +x ~/.local/bin/fetchmaster.py
+
+# INSTALL CHECKUR
+
+cp -r ~/install/checkur.py ~/.local/bin/
+chmod +x ~/.local/bin/checkur.py
 
 # SETUP POSTGRES
 
