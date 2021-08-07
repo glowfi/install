@@ -54,6 +54,9 @@ yes | printf "Cleaned Orphans!"'
 # Fetchmaster alias
 alias fetchmaster="fetchmaster.py"
 
+# Check-ur-requests alias
+alias checkur="checkur.py"
+
 # Browser-sync
 alias bs='browser-sync start --index $argv --server --files "./*.*"'
 
