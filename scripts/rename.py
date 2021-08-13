@@ -1,6 +1,6 @@
 import os
 
-path = "~/main"
+path = ""
 os.chdir(os.path.expanduser(path))
 
 c = 1
