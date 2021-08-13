@@ -29,35 +29,51 @@ vim.cmd "autocmd BufWritePost plugins.lua PackerCompile"
 -- Plugins
 return require('packer').startup(function(use)
 
-    -- Packer Plugin Manager
+-- Packer Plugin Manager
     use 'wbthomason/packer.nvim'
 
 -- Utilities
 
     -- Ranger File Manager
-    use 'kevinhwang91/rnvimr'
+    use {'mcchrish/nnn.vim',
+         config = [[require('core.filemanager')]]
+        }
 
     -- Fuzzy search
-    use  'nvim-telescope/telescope.nvim'
-    use  'nvim-lua/popup.nvim'
-    use  'nvim-lua/plenary.nvim'
-    use  'nvim-telescope/telescope-fzy-native.nvim'
+    use {'nvim-telescope/telescope.nvim',
+         requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'},{'nvim-telescope/telescope-fzy-native.nvim'}},
+         config = [[require('core.telescope')]]
+        }
 
     -- Git Integration
-    use 'lewis6991/gitsigns.nvim'
+    use {'lewis6991/gitsigns.nvim',
+        requires = {'nvim-lua/plenary.nvim'},
+        config = [[require('core.gitsigns')]],
+        event = "BufRead"
+        }
 
     -- Code Runner
-    use 'sbdchd/vim-run'
+    use {'sbdchd/vim-run',
+         config = [[require('core.coderunner')]]
+        }
 
     -- Multi Cursor
-    use {'mg979/vim-visual-multi', branch = 'master'}
+    use {'mg979/vim-visual-multi',
+         branch = 'master',
+         config = [[require('core.visualMulti')]]
+        }
 
     -- Auto Comments
-    use {"terrortylor/nvim-comment"}
+    use {"terrortylor/nvim-comment",
+         config = [[require('core.comments')]],
+         event = "BufRead"
+        }
 
     -- Tabs
     use {'romgrk/barbar.nvim',
+         requires = {'kyazdani42/nvim-web-devicons'},
          event = "BufRead",
+         config = [[require('core.bufferline')]],
          setup = function()
             vim.g.indent_blankline_filetype_exclude = {
             "help",
@@ -67,29 +83,40 @@ return require('packer').startup(function(use)
         end
         }
 
-    -- Cursorhold Fix
-    use 'antoinemadec/FixCursorHold.nvim'
-    vim.cmd "let g:cursorhold_updatetime = 100"
-
     -- Colorizer
-    use 'norcalli/nvim-colorizer.lua'
-    require 'colorizer'.setup()
+    use {'norcalli/nvim-colorizer.lua',
+    ft = { 'css', 'javascript', 'vim', 'html' },
+    config = [[require('colorizer').setup {'css', 'javascript', 'vim', 'html'}]],
+        }
+
+    -- Async Code Evaluation
+    use {'metakirby5/codi.vim'}
 
 
 
 -- Ricing
 
     -- Gruvbox theme
-    use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
+    use {"npxbr/gruvbox.nvim",
+         requires = {"rktjmp/lush.nvim"},
+         config = [[require('core.colorscheme')]]
+        }
 
     -- Status line
-    use 'hoob3rt/lualine.nvim'
+    use {'hoob3rt/lualine.nvim',
+         requires = {'kyazdani42/nvim-web-devicons'},
+         config = [[require('core.statusline')]],
+         event = "BufWinEnter"
+        }
 
     -- Devicons
-    use 'kyazdani42/nvim-web-devicons'
+    use {'kyazdani42/nvim-web-devicons'}
 
     -- Dashboard
-    use 'glepnir/dashboard-nvim'
+    use {'glepnir/dashboard-nvim',
+         event = "BufWinEnter",
+         config = [[require('core.dashboard')]]
+        }
 
     -- Indentline
     use {
@@ -111,40 +138,56 @@ return require('packer').startup(function(use)
     end,
     }
 
+
 -- Treesitter integrations
 
     -- Treesitter
-    use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
+    use {"nvim-treesitter/nvim-treesitter",
+         run = ":TSUpdate",
+         config = [[require('core.treesitter')]]
+        }
 
     -- Treesitter text-objects
-    use 'nvim-treesitter/nvim-treesitter-textobjects'
+    use {'nvim-treesitter/nvim-treesitter-textobjects'}
 
     -- Treesitter(integrated) Rainbow pairs
-    use 'p00f/nvim-ts-rainbow'
+    use {'p00f/nvim-ts-rainbow'}
 
     -- Bracket Matchup
-    use 'andymass/vim-matchup'
+    use {'andymass/vim-matchup'}
+
+    -- HTML Autotag and Autorename tags
+    use {'windwp/nvim-ts-autotag',
+         ft = {
+      "javascriptreact",
+      "javascript.jsx",
+      "typescriptreact",
+      "typescript.tsx",
+      "html",
+              }
+        }
 
 
 -- Native LSP (ENGINE)
 
     --   Nvim native LSP
-    use 'neovim/nvim-lspconfig'
+    use {'neovim/nvim-lspconfig'}
 
     --   Auto completion
-    use {'hrsh7th/nvim-compe'}
+    use { 'hrsh7th/nvim-compe', event = 'InsertEnter *', config = [[require('lsp.compe')]] }
 
     --   Snippet engine
-    use {'hrsh7th/vim-vsnip',event = "InsertCharPre"}
+    use {'hrsh7th/vim-vsnip',event = "InsertCharPre",config = [[require('lsp.vsnip')]]}
 
     --   Signature popup on typing
-    use {"ray-x/lsp_signature.nvim"}
-
-    --   Auto format document
-    use "mhartington/formatter.nvim"
+    use {"ray-x/lsp_signature.nvim",config = [[require('lsp.sigHelp')]]}
 
     --   Auto pairs
-    use {'windwp/nvim-autopairs'}
+    use {'windwp/nvim-autopairs',after = "nvim-compe",config = [[require('lsp.autopairs')]]}
+
+    --   Null-ls
+    use {"jose-elias-alvarez/null-ls.nvim"}
+
 
 
 -- Languages Plugins
@@ -155,12 +198,19 @@ return require('packer').startup(function(use)
     use {'wyattferguson/jinja2-kit-vscode',event = "InsertCharPre"}
 
     --   Typescript
-    use "jose-elias-alvarez/null-ls.nvim"
-    use "jose-elias-alvarez/nvim-lsp-ts-utils"
+    use {"jose-elias-alvarez/nvim-lsp-ts-utils",
+         ft = {
+      "javascript",
+      "javascriptreact",
+      "javascript.jsx",
+      "typescript",
+      "typescriptreact",
+      "typescript.tsx",
+              },}
 
     --   Graphql
-    use 'jparise/vim-graphql'
-
-    -- HTML Autotag and Autorename tags
-    use 'windwp/nvim-ts-autotag'
+    use {'jparise/vim-graphql',
+         ft = {"graphql"}
+        }
 end)
+

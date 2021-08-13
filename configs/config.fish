@@ -37,6 +37,9 @@ alias find='fd'
 # Changing top to bottom
 alias top='btm --mem_as_value --color gruvbox'
 
+# NNN alias
+alias nnn='nnn -d -D -e'
+
 # Synchronize mirrorlist
 alias mirru='sudo rm -rf /var/lib/pacman/db.lck
 sudo reflector --verbose --country "Germany" -l 5 --sort rate --save /etc/pacman.d/mirrorlist
@@ -370,3 +373,6 @@ end
 
 # Default Editor
 export EDITOR=nvim
+export NNN_PLUG='f:fzcd;o:fzopen;p:preview-tui;'
+export NNN_FCOLORS='c1e2272e006033f7c6d6abc4'
+export NNN_FIFO='/tmp/nnn.fifo'

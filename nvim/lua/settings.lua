@@ -112,9 +112,6 @@ vim.cmd('set inccommand=split')
 -- Faster completion
 vim.o.updatetime = 300
 
--- Timeoutlen
-vim.o.timeoutlen = 100
-
 -- Horizontal splits will automatically be below
 vim.o.splitbelow = true
 

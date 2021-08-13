@@ -33,12 +33,12 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 pip install tcolorpy
 mkdir -p ~/.local/bin
-cp -r ~/install/fetchmaster.py ~/.local/bin/
+cp -r ~/install/scripts/fetchmaster.py ~/.local/bin/
 chmod +x ~/.local/bin/fetchmaster.py
 
 # INSTALL CHECKUR
 
-cp -r ~/install/checkur.py ~/.local/bin/
+cp -r ~/install/scripts/checkur.py ~/.local/bin/
 chmod +x ~/.local/bin/checkur.py
 
 # SETUP POSTGRES
@@ -48,7 +48,7 @@ sudo su - postgres -c "(echo $USER;echo 'password';echo 'password';echo y;)|crea
 
 # DOWNLOAD NEOVIM
 
-pip install neovim ueberzug ranger-fm black
+pip install neovim ueberzug black
 npm i -g neovim typescript typescript-language-server pyright vscode-langservers-extracted emmet-ls prettier eslint diagnostic-languageserver graphql-language-service-cli browser-sync
 npx npm-check-updates -g
 sudo pacman -S --noconfirm cmake unzip ninja tree-sitter xclip fortune-mod
@@ -67,10 +67,6 @@ nvim -c "PackerSync"
 nvim -c "PackerSync"
 echo "done"
 
-# UNINSTALL NEOVIM
-
-# sudo rm /usr/local/bin/nvim
-# sudo rm -r /usr/local/share/nvim/
 
 # CONFIGURING GIT ALIASES
 

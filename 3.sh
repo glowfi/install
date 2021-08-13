@@ -83,10 +83,18 @@ sudo systemctl enable --now apparmor.service
 fish -c "exit"
 cp -r ~/install/configs/config.fish ~/.config/fish/
 
-# COPY RANGER FM SETTINGS
+# INSTALL AND COPY NNN FM SETTINGS
 
-cp -r ~/install/configs/ranger ~/.config
-git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
+git clone https://github.com/jarun/nnn
+cd nnn
+sudo make O_NERD=1 install
+cd ..
+rm -rf nnn
+
+mkdir -p .config/nnn/plugins
+cd .config/nnn/plugins/
+curl -Ls https://raw.githubusercontent.com/jarun/nnn/master/plugins/getplugs | sh
+sed -i 's/--paging=never --style="$BAT_STYLE" "$@" &/--theme=gruvbox-dark --paging=never --style="$BAT_STYLE" "$@" &/' ~/.config/nnn/plugins/preview-tui
 
 # COPY KITTY SETTINGS
 
