@@ -36,7 +36,7 @@ rm -rf yay-bin
 
 ### CORE
 sudo pacman -S --noconfirm zip unzip unrar p7zip lzop
-sudo pacman -S --noconfirm fish kitty imagemagick ttf-fantasque-sans-mono
+sudo pacman -S --noconfirm fish kitty imagemagick ttf-fantasque-sans-mono man-db
 yes | sudo pacman -S alsa-utils alsa-plugins pipewire pipewire-alsa pipewire-pulse pipewire-jack
 yay -S --noconfirm zramd dashbinsh nerd-fonts-fantasque-sans-mono
 
@@ -99,6 +99,16 @@ sed -i 's/--paging=never --style="$BAT_STYLE" "$@" &/--theme=gruvbox-dark --pagi
 # COPY KITTY SETTINGS
 
 cp -r ~/install/configs/kitty ~/.config/
+
+# SETUP SXHKD
+
+sudo pacman -S sxhkd xorg-xev
+
+mkdir -p ~/.config/systemd/user
+cp -r ~/install/configs/sxhkd ~/.config
+cd ~/.config/sxhkd
+mv ./sxhkd.service ~/.config/systemd/user/sxhkd.service
+systemctl --user enable sxhkd.service
 
 # CHANGE DEFAULT SHELL
 
