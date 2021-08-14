@@ -384,3 +384,17 @@ set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 export NNN_PLUG='f:fzcd;o:fzopen;p:preview-tui;'
 export NNN_FCOLORS='c1e2272e006033f7c6d6abc4'
 export NNN_FIFO='/tmp/nnn.fifo'
+
+# Pywal
+if test -e ~/.cache/wal/wal
+    head -202 ~/.config/plasma-org.kde.plasma.desktop-appletsrc | tail -1 | awk -F':' '{print $2}' |awk 'sub(/^.{3}/,"")'| awk -F'/' '{print $4}'| read -t wloc
+    awk -F'/' '{print $5}' ~/.cache/wal/wal |read -t wloc1
+    if test "$wloc" = "$wloc1"
+        dash -c "(cat ~/.cache/wal/sequences &);clear"
+    else
+        wal -e -n -q -i ~/wall/$wloc
+    end
+else
+    head -202 ~/.config/plasma-org.kde.plasma.desktop-appletsrc | tail -1 | awk -F':' '{print $2}' |awk 'sub(/^.{3}/,"")'| awk -F'/' '{print $4}'| read -t wloc
+    wal -e -n -q -i ~/wall/$wloc
+end
