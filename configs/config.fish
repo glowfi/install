@@ -40,6 +40,9 @@ alias top='btm --mem_as_value --color gruvbox'
 # NNN alias
 alias nnn='nnn -d -D -e'
 
+# Reload dxhd
+alias dxrel='systemctl --user reload dxhd.service'
+
 # Synchronize mirrorlist
 alias mirru='sudo rm -rf /var/lib/pacman/db.lck
 sudo reflector --verbose --country "Germany" -l 5 --sort rate --save /etc/pacman.d/mirrorlist

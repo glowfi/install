@@ -100,6 +100,13 @@ sed -i 's/--paging=never --style="$BAT_STYLE" "$@" &/--theme=gruvbox-dark --pagi
 
 cp -r ~/install/configs/kitty ~/.config/
 
+# SETUP DXHD
+
+yay -S --noconfirm dxhd-bin
+mkdir -p ~/.config/systemd/user
+cp -r ~/install/configs/dxhd/dxhd.sh ~/.config/systemd/user
+systemctl --user enable dxhd.service
+
 # CHANGE DEFAULT SHELL
 
 sudo usermod --shell /bin/fish john
