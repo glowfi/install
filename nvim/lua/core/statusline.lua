@@ -117,6 +117,22 @@ ins_left {
     color = {fg = colors.green, gui = 'bold'}
 }
 
+-- Python Version
+local PythonVer = function()
+  if vim.bo.filetype == "python" then
+    local handle = io.popen("python --version")
+    local var = handle:read("*a")
+    handle:close()
+    local s=var:sub(1, -2)
+    return s
+  end
+end
+
+ins_left {
+    PythonVer,
+    color = {fg = '#ffffff', gui = 'bold'}
+}
+
 -- Diagnostics
 ins_left {
   'diagnostics',
