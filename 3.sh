@@ -104,7 +104,7 @@ cp -r ~/install/configs/kitty ~/.config/
 
 yay -S --noconfirm dxhd-bin
 mkdir -p ~/.config/systemd/user
-cp -r ~/install/configs/dxhd/dxhd.sh ~/.config/systemd/user
+cp -r ~/install/configs/dxhd/dxhd.service ~/.config/systemd/user
 systemctl --user enable dxhd.service
 
 # CHANGE DEFAULT SHELL

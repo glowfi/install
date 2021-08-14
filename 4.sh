@@ -14,7 +14,7 @@ pyppeteer-install
 
 # DOWNLOAD NODEJS
 
-wget https://nodejs.org/dist/v16.5.0/node-v16.5.0-linux-x64.tar.xz -O ~/node.tar.xz
+wget https://nodejs.org/dist/v16.6.2/node-v16.6.2-linux-x64.tar.xz -O ~/node.tar.xz
 tar -xf ~/node.tar.xz -C ~
 rm -rf ~/node.tar.xz
 
@@ -44,6 +44,7 @@ chmod +x ~/.local/bin/checkur.py
 # SETUP POSTGRES
 
 sudo su - postgres -c "initdb --locale en_US.UTF-8 -D /var/lib/postgres/data;exit"
+sudo systemctl start postgresql
 sudo su - postgres -c "(echo $USER;echo 'password';echo 'password';echo y;)|createuser --interactive -P;createdb -O $USER delta;exit"
 
 # DOWNLOAD NEOVIM
