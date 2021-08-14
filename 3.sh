@@ -100,16 +100,6 @@ sed -i 's/--paging=never --style="$BAT_STYLE" "$@" &/--theme=gruvbox-dark --pagi
 
 cp -r ~/install/configs/kitty ~/.config/
 
-# SETUP SXHKD
-
-sudo pacman -S sxhkd xorg-xev
-
-mkdir -p ~/.config/systemd/user
-cp -r ~/install/configs/sxhkd ~/.config
-cd ~/.config/sxhkd
-mv ./sxhkd.service ~/.config/systemd/user/sxhkd.service
-systemctl --user enable sxhkd.service
-
 # CHANGE DEFAULT SHELL
 
 sudo usermod --shell /bin/fish john
