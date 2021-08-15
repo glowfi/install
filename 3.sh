@@ -103,6 +103,8 @@ cp -r ~/install/configs/kitty ~/.config/
 # SETUP DXHD
 
 yay -S --noconfirm dxhd-bin
+mkdir -p ~/.config/dxhd
+cp -r ~/install/configs/dxhd/dxhd.sh ~/.config/dxhd
 mkdir -p ~/.config/systemd/user
 cp -r ~/install/configs/dxhd/dxhd.service ~/.config/systemd/user
 systemctl --user enable dxhd.service

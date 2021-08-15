@@ -43,6 +43,11 @@ alias nnn='nnn -d -D -e'
 # Reload dxhd
 alias dxrel='systemctl --user reload dxhd.service'
 
+# Git aliases
+alias gtc='git config --global credential.helper cache'
+alias gtcc='git config --global --unset credential.helper'
+alias gt='gitui'
+
 # Synchronize mirrorlist
 alias mirru='sudo rm -rf /var/lib/pacman/db.lck
 sudo reflector --verbose --country "Germany" -l 5 --sort rate --save /etc/pacman.d/mirrorlist
@@ -387,7 +392,7 @@ export NNN_FIFO='/tmp/nnn.fifo'
 
 # Pywal
 if test -e ~/.cache/wal/wal
-    head -202 ~/.config/plasma-org.kde.plasma.desktop-appletsrc | tail -1 | awk -F':' '{print $2}' |awk 'sub(/^.{3}/,"")'| awk -F'/' '{print $4}'| read -t wloc
+    head -31 ~/.config/plasma-org.kde.plasma.desktop-appletsrc | tail -1 | awk -F':' '{print $2}' |awk 'sub(/^.{3}/,"")'| awk -F'/' '{print $4}'| read -t wloc
     awk -F'/' '{print $5}' ~/.cache/wal/wal |read -t wloc1
     if test "$wloc" = "$wloc1"
         dash -c "(cat ~/.cache/wal/sequences &);clear"
@@ -395,6 +400,6 @@ if test -e ~/.cache/wal/wal
         wal -e -n -q -i ~/wall/$wloc
     end
 else
-    head -202 ~/.config/plasma-org.kde.plasma.desktop-appletsrc | tail -1 | awk -F':' '{print $2}' |awk 'sub(/^.{3}/,"")'| awk -F'/' '{print $4}'| read -t wloc
+    head -31 ~/.config/plasma-org.kde.plasma.desktop-appletsrc | tail -1 | awk -F':' '{print $2}' |awk 'sub(/^.{3}/,"")'| awk -F'/' '{print $4}'| read -t wloc
     wal -e -n -q -i ~/wall/$wloc
 end
