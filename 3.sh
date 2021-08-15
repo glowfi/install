@@ -100,6 +100,11 @@ sed -i 's/--paging=never --style="$BAT_STYLE" "$@" &/--theme=gruvbox-dark --pagi
 
 cp -r ~/install/configs/kitty ~/.config/
 
+# REGISTER KITTY IN DOLPHIN
+
+mkdir -p ~/.local/share/kservices5
+cp -r ~/install/configs/kittyhere.desktop ~/.local/share/kservices5
+
 # SETUP DXHD
 
 yay -S --noconfirm dxhd-bin
