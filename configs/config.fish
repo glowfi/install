@@ -44,8 +44,6 @@ alias nnn='nnn -d -D -e'
 alias dxrel='systemctl --user reload dxhd.service'
 
 # Git aliases
-alias gtc='git config --global credential.helper cache'
-alias gtcc='git config --global --unset credential.helper'
 alias gt='gitui'
 
 # Synchronize mirrorlist
