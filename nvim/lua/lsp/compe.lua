@@ -53,31 +53,44 @@ local check_back_space = function()
     return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
 end
 
+  local is_emmet_active = function()
+    local clients = vim.lsp.buf_get_clients()
+
+    for _, client in pairs(clients) do
+      if client.name == "emmet_ls" then
+        return true
+      end
+    end
+    return false
+  end
+
 --  Use shift to move next and shift-tab to move prev
 --- move to prev/next item in completion menuone
 --- jump to prev/next snippet's placeholder
 
-_G.tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-n>"
-  elseif vim.fn['vsnip#available'](1) == 1 then
-    return t "<Plug>(vsnip-expand-or-jump)"
-  elseif check_back_space() then
-    return t "<Tab>"
-  else
-    return vim.fn['compe#complete']()
+  _G.tab_complete = function()
+    if vim.fn.pumvisible() == 1 then
+      return t "<C-n>"
+    elseif vim.fn.call("vsnip#jumpable", { 1 }) == 1 then
+      return t "<Plug>(vsnip-jump-next)"
+    elseif check_back_space() then
+      return t "<Tab>"
+    elseif is_emmet_active() then
+      return vim.fn["compe#complete"]()
+    else
+      return t "<Tab>"
+    end
   end
-end
 
-_G.s_tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-p>"
-  elseif vim.fn['vsnip#jumpable'](-1) == 1 then
-    return t "<Plug>(vsnip-jump-prev)"
-  else
-    return t "<S-Tab>"
+  _G.s_tab_complete = function()
+    if vim.fn.pumvisible() == 1 then
+      return t "<C-p>"
+    elseif vim.fn.call("vsnip#jumpable", { -1 }) == 1 then
+      return t "<Plug>(vsnip-jump-prev)"
+    else
+      return t "<S-Tab>"
+    end
   end
-end
 
 -- Keymappings
 vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
