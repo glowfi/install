@@ -40,14 +40,14 @@ alias top='btm --mem_as_value --color gruvbox'
 # NNN alias
 alias n='nnn -d -D -e'
 
-# Neovim aliases
-alias v='nvim'
-
 # Reload dxhd
 alias dxrel='systemctl --user reload dxhd.service'
 
 # Git aliases
 alias gt='gitui'
+
+# Neovim aliases
+alias v='nvim'
 
 # Synchronize mirrorlist
 alias mirru='sudo rm -rf /var/lib/pacman/db.lck
