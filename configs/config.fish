@@ -38,7 +38,10 @@ alias find='fd'
 alias top='btm --mem_as_value --color gruvbox'
 
 # NNN alias
-alias nnn='nnn -d -D -e'
+alias n='nnn -d -D -e'
+
+# Neovim aliases
+alias v='nvim'
 
 # Reload dxhd
 alias dxrel='systemctl --user reload dxhd.service'
@@ -389,15 +392,17 @@ export NNN_FCOLORS='c1e2272e006033f7c6d6abc4'
 export NNN_FIFO='/tmp/nnn.fifo'
 
 # Pywal
-if test -e ~/.cache/wal/wal
-    head -31 ~/.config/plasma-org.kde.plasma.desktop-appletsrc | tail -1 | awk -F':' '{print $2}' |awk 'sub(/^.{3}/,"")'| awk -F'/' '{print $4}'| read -t wloc
-    awk -F'/' '{print $5}' ~/.cache/wal/wal |read -t wloc1
-    if test "$wloc" = "$wloc1"
-        dash -c "(cat ~/.cache/wal/sequences &);clear"
+if type -q wal
+    if test -e ~/.cache/wal/wal
+        head -31 ~/.config/plasma-org.kde.plasma.desktop-appletsrc | tail -1 | awk -F':' '{print $2}' |awk 'sub(/^.{3}/,"")'| awk -F'/' '{print $4}'| read -t wloc
+        awk -F'/' '{print $5}' ~/.cache/wal/wal |read -t wloc1
+        if test "$wloc" = "$wloc1"
+            dash -c "(cat ~/.cache/wal/sequences &);clear"
+        else
+            wal -e -n -q -i ~/wall/$wloc
+        end
     else
+        head -31 ~/.config/plasma-org.kde.plasma.desktop-appletsrc | tail -1 | awk -F':' '{print $2}' |awk 'sub(/^.{3}/,"")'| awk -F'/' '{print $4}'| read -t wloc
         wal -e -n -q -i ~/wall/$wloc
     end
-else
-    head -31 ~/.config/plasma-org.kde.plasma.desktop-appletsrc | tail -1 | awk -F':' '{print $2}' |awk 'sub(/^.{3}/,"")'| awk -F'/' '{print $4}'| read -t wloc
-    wal -e -n -q -i ~/wall/$wloc
 end
