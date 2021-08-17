@@ -37,3 +37,18 @@ kwriteconfig5 --file kwinrc --group Plugins --key forceblurEnabled true
 kwriteconfig5 --file kwinrc --group Script-forceblur --key patterns kitty
 kwriteconfig5 --file kwinrc --group Effect-Blur --key BlurStrength 10
 qdbus org.kde.KWin /KWin reconfigure
+
+# INSTALL DEPENDENCIES
+sudo pacman -S --noconfirm gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
+
+# LOCKSCREEN THEME
+mkdir -p ~/.local/share/plasma/wallpapers/
+git clone https://github.com/halverneus/org.kde.video
+mv org.kde.video ~/.local/share/plasma/wallpapers/
+git clone https://github.com/3ximus/aerial-sddm-theme
+cp -r aerial-sddm-theme/playlists ~
+rm -rf aerial-sddm-theme
+
+# for (var k = 0; k < Math.ceil(Math.random() * 10) ; k++) {
+#     playlist.shuffle()
+# }
