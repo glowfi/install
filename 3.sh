@@ -10,7 +10,7 @@ sudo pacman -Syy
 
 # DISPLAY
 
-sudo pacman -S --noconfirm sddm xorg-server xf86-video-amdgpu
+sudo pacman -S --noconfirm xorg-server xf86-video-amdgpu
 
 
 # DE
@@ -19,9 +19,9 @@ sudo pacman -S --noconfirm plasma-desktop plasma-workspace plasma-nm plasma-pa
 
 sudo pacman -S --noconfirm breeze breeze-gtk kde-gtk-config kdecoration
 
-sudo pacman -S --noconfirm powerdevil sddm-kcm xdg-desktop-portal-kde
+sudo pacman -S --noconfirm powerdevil xdg-desktop-portal-kde
 
-sudo pacman -S --noconfirm kwrited kwin kgamma5 khotkeys kinfocenter kscreen systemsettings
+sudo pacman -S --noconfirm kwrited kwin kgamma5 khotkeys kinfocenter kscreen systemsettings sddm sddm-kcm
 
 
 # AUR HELPER

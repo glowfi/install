@@ -22,7 +22,18 @@ kwriteconfig5 --file breezerc --group "Windeco Exception 0" --key ExceptionType 
 kwriteconfig5 --file breezerc --group "Windeco Exception 0" --key HideTitleBar true
 kwriteconfig5 --file breezerc --group "Windeco Exception 0" --key Mask 16
 
-# Move Tiling script
+# Install Forceblur
+cp -r ~/install/configs/forceblur-0.5.kwinscript ~
+plasmapkg2 -i ~/forceblur-0.5.kwinscript || plasmapkg2 -u ~/forceblur-0.5.kwinscript
+rm -rf ~/forceblur-0.5.kwinscript
 
-cp -r ~/install/scripts/toggle.sh ~
-chmod +x ~/toggle.sh
+# Copy forceblur.desktop
+mkdir -p ~/.local/share/kservices5/
+cp ~/.local/share/kwin/scripts/forceblur/metadata.desktop ~/.local/share/kservices5/forceblur.desktop
+
+# Update kwinrc
+kwriteconfig5 --file kwinrc --group Plugins --key blurEnabled true
+kwriteconfig5 --file kwinrc --group Plugins --key forceblurEnabled true
+kwriteconfig5 --file kwinrc --group Script-forceblur --key patterns kitty
+kwriteconfig5 --file kwinrc --group Effect-Blur --key BlurStrength 10
+qdbus org.kde.KWin /KWin reconfigure
