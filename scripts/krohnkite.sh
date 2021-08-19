@@ -41,7 +41,9 @@ qdbus org.kde.KWin /KWin reconfigure
 # INSTALL DEPENDENCIES
 sudo pacman -S --noconfirm gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
 
-# LOCKSCREEN THEME
+# SDDM AND LOCKSCREEN THEME
+git clone https://github.com/3ximus/abstractdark-sddm-theme
+sudo mv abstractdark-sddm-theme /usr/share/sddm/themes
 mkdir -p ~/.local/share/plasma/wallpapers/
 git clone https://github.com/halverneus/org.kde.video
 mv org.kde.video ~/.local/share/plasma/wallpapers/
