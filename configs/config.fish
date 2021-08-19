@@ -81,14 +81,14 @@ alias spac="pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -ro sudo pac
 # Search AUR
 alias saur="yay -Slq | fzf -m --preview 'yay -Si {1}' | xargs -ro yay -S"
 
-# Find indexed file and open in editor
-alias si="searchIndexedFiles"
+# Find files in current location and open in editor
+alias sf="searchFilesCurrent"
+
+# Find directories in current location and cd into it
+alias sd="searchDirCurrent"
 
 # Find contents inside of the file and open in the editor
 alias sg="searchContents"
-
-# Find files in current location and open in editor
-alias sc="searchFilesCurrent"
 
 
 # ===================================================================
@@ -182,20 +182,24 @@ end
 set node_loc_var (whereis node)
 set node_loc_var (echo $node_loc_var | cut -d '/' -f4 )
 
-# Search Indexed Files
-function searchIndexedFiles
-  du -a --exclude "./.*" --exclude "./**/.git" --exclude "node_modules" ~/.config/* ~/cdx/* | awk '{print $2}' |fzf --preview 'bat --theme "gruvbox-dark" --style numbers,changes --color=always {}'|read -t args
+# Search Files in current working directory
+function searchFilesCurrent
+  fd --exclude "$node_loc_var" --type f . | fzf | read -t args
   if test -z "$args"
-    echo "Exited from searching indexed files!"
+    echo "Exited from searching current files in current working directory!"
   else
-    echo "1.Cd"
-    echo "2.Nvim"
-    read choice
-    if test $choice -eq 2
-        nvim $args
-    else
-        cd $args
-    end
+    nvim $args
+  end
+end
+
+
+# Search Directories in current working directory
+function searchDirCurrent
+  fd --exclude "$node_loc_var" --type d . | fzf | read -t args
+  if test -z "$args"
+    echo "Exited from searching directories in current working directory!"
+  else
+    cd $args
   end
 end
 
@@ -212,22 +216,6 @@ function searchContents
   end
 end
 
-# Search Files in current working directory
-function searchFilesCurrent
-  du -a --exclude "$node_loc_var" --exclude "./.*" --exclude "./**/.git" --exclude "node_modules" . | awk '{print $2}' |fzf --preview 'bat --theme "gruvbox-dark" --style numbers,changes --color=always {}'|read -t args
-  if test -z "$args"
-    echo "Exited from searching current working directory files!"
-  else
-    echo "1.Cd"
-    echo "2.Nvim"
-    read choice
-    if test $choice -eq 2
-        nvim $args
-    else
-        cd $args
-    end
-  end
-end
 
 # Bang-Bang Function
 function __history_previous_command

@@ -12,7 +12,7 @@
   max_height = 12,
   max_width = 120,
   handler_opts = {
-    border = "shadow"
+    border = "none"
   },
   extra_trigger_chars = {"(", ","},
   zindex = 200,
