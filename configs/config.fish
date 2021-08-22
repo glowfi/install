@@ -382,7 +382,7 @@ export NNN_FIFO='/tmp/nnn.fifo'
 # Pywal
 if type -q wal
     if test -e ~/.cache/wal/wal
-        head -31 ~/.config/plasma-org.kde.plasma.desktop-appletsrc | tail -1 | awk -F':' '{print $2}' |awk 'sub(/^.{3}/,"")'| awk -F'/' '{print $4}'| read -t wloc
+        rg "Image" ~/.config/plasma-org.kde.plasma.desktop-appletsrc | tail -1 | awk -F':' '{print $2}' |awk 'sub(/^.{3}/,"")'| awk -F'/' '{print $4}'| read -t wloc
         awk -F'/' '{print $5}' ~/.cache/wal/wal |read -t wloc1
         if test "$wloc" = "$wloc1"
             dash -c "(cat ~/.cache/wal/sequences &);clear"
@@ -390,7 +390,7 @@ if type -q wal
             wal -e -n -q -i ~/wall/$wloc
         end
     else
-        head -31 ~/.config/plasma-org.kde.plasma.desktop-appletsrc | tail -1 | awk -F':' '{print $2}' |awk 'sub(/^.{3}/,"")'| awk -F'/' '{print $4}'| read -t wloc
+        rg "Image" ~/.config/plasma-org.kde.plasma.desktop-appletsrc | tail -1 | awk -F':' '{print $2}' |awk 'sub(/^.{3}/,"")'| awk -F'/' '{print $4}'| read -t wloc
         wal -e -n -q -i ~/wall/$wloc
     end
 end
