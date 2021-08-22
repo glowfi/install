@@ -6,10 +6,6 @@
 #super + f
     dolphin
 
-## Editor
-#super + k
-    kate
-
 ## System Settings
 #super + u
     systemsettings5
@@ -42,6 +38,10 @@
     fi
     qdbus org.kde.KWin /KWin reconfigure
 
+## Logout/Restart/Shutdown
+#super+x 
+    qdbus org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1
+
 ### Global bindings
 
 ## Terminal
@@ -59,3 +59,7 @@
 ## Code Editor
 #super + n
     kitty -e "nvim"
+
+## Dmenu
+#super + w
+    dmenu_run

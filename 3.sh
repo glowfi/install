@@ -45,7 +45,7 @@ sudo pacman -S --noconfirm postgresql redis python-pip gitui
 yay -S --noconfirm mongodb-bin
 
 ### PACK
-sudo pacman -S --noconfirm dolphin kate ark gwenview okular spectacle gimp
+sudo pacman -S --noconfirm dolphin ark gwenview okular spectacle gimp
 yay -S --noconfirm brave-bin gimp-plugin-registry onlyoffice-bin timeshift
 
 
@@ -77,6 +77,14 @@ sudo sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"/GRUB_CMDLINE_LINUX_
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 sudo pacman -S --noconfirm apparmor
 sudo systemctl enable --now apparmor.service
+
+# SETUP DMENU
+
+git clone https://git.suckless.org/dmenu
+cd dmenu
+sudo make install 
+cd ..
+rm -rf dmenu
 
 # COPY FISH SHELL SETTINGS
 
