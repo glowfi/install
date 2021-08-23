@@ -85,6 +85,9 @@ alias spac="pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -ro sudo pac
 # Search AUR
 alias saur="yay -Slq | fzf -m --preview 'yay -Si {1}' | xargs -ro yay -S"
 
+# Uninstall Packages
+alias pacu="pacman -Q | cut -f 1 -d ' ' | fzf -m --preview 'yay -Si {1}' | xargs -ro sudo pacman -Rns"
+
 # Find files in current location and open in editor
 alias sf="searchFilesCurrent"
 
