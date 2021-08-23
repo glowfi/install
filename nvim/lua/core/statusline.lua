@@ -128,8 +128,24 @@ local PythonVer = function()
   end
 end
 
+-- Node Version
+local NodeVer = function()
+  if vim.bo.filetype == "javascript" or vim.bo.filetype == "typescript" or vim.bo.filetype == "javascriptreact" or vim.bo.filetype == "typescriptreact" then
+    local handle = io.popen("node --version")
+    local var = handle:read("*a")
+    handle:close()
+    local s=var:sub(1, -2)
+    return "node " .. s
+  end
+end
+
 ins_left {
     PythonVer,
+    color = {fg = '#ffffff', gui = 'bold'}
+}
+
+ins_left {
+    NodeVer,
     color = {fg = '#ffffff', gui = 'bold'}
 }
 
