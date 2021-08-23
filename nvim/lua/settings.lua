@@ -109,9 +109,6 @@ vim.opt.shortmess:append("c")
 -- Make substitution work in realtime
 vim.cmd('set inccommand=split')
 
--- Faster completion
-vim.o.updatetime = 300
-
 -- Horizontal splits will automatically be below
 vim.o.splitbelow = true
 
