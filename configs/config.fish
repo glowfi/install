@@ -322,8 +322,8 @@ end
 
 function fish_right_prompt
 
-    set -l S (math $CMD_DURATION/1000)
-    set -l M (math $S/60)
+    set -l S (math --scale 2 $CMD_DURATION/1000)
+    set -l M (math --scale 2 $S/60)
 
     echo -n -s " "
     if test $M -gt 1
