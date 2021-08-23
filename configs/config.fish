@@ -75,6 +75,10 @@ alias bs='browser-sync start --index $argv --server --files "./*.*"'
 # Postgres alias
 alias psql='psql -d delta'
 
+# Mongo alias
+alias mst='sudo systemctl enable mongodb;sudo systemctl start mongodb'
+alias msp='sudo systemctl disable mongodb;sudo systemctl stop mongodb'
+
 # Search Pacman
 alias spac="pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
 
@@ -184,7 +188,7 @@ set node_loc_var (echo $node_loc_var | cut -d '/' -f4 )
 
 # Search Files in current working directory
 function searchFilesCurrent
-  fd --exclude "$node_loc_var" --type f . | fzf | read -t args
+  fd --exclude "$node_loc_var" --type f . | fzf --reverse --height 10 | read -t args
   if test -z "$args"
     echo "Exited from searching current files in current working directory!"
   else
@@ -195,7 +199,7 @@ end
 
 # Search Directories in current working directory
 function searchDirCurrent
-  fd --exclude "$node_loc_var" --type d . | fzf | read -t args
+  fd --exclude "$node_loc_var" --type d . | fzf --reverse --height 10 | read -t args
   if test -z "$args"
     echo "Exited from searching directories in current working directory!"
   else
