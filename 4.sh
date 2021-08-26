@@ -50,7 +50,7 @@ sudo su - postgres -c "(echo $USER;echo 'password';echo 'password';echo y;)|crea
 # DOWNLOAD NEOVIM
 
 pip install neovim ueberzug black
-npm i -g neovim typescript typescript-language-server pyright vscode-langservers-extracted emmet-ls prettier eslint diagnostic-languageserver graphql-language-service-cli browser-sync
+npm i -g neovim typescript typescript-language-server pyright vscode-langservers-extracted emmet-ls prettier @fsouza/prettierd eslint diagnostic-languageserver graphql-language-service-cli browser-sync
 npx npm-check-updates -g
 sudo pacman -S --noconfirm cmake unzip ninja tree-sitter xclip fortune-mod
 git clone https://github.com/neovim/neovim --depth 1

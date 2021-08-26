@@ -156,6 +156,10 @@ return require('packer').startup(function(use)
     -- Bracket Matchup
     use {'andymass/vim-matchup'}
 
+    -- Smart Commenting for complex filetypes
+    use {'JoosepAlviste/nvim-ts-context-commentstring'}
+
+
     -- HTML Autotag and Autorename tags
     use {'windwp/nvim-ts-autotag',
          ft = {

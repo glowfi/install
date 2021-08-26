@@ -220,7 +220,7 @@ nvim_lsp.tsserver.setup {
 
             -- formatting
             enable_formatting = true,
-            formatter = "prettier",
+            formatter = "prettierd",
             formatter_config_fallback = nil,
 
             -- update imports on file move

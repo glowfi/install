@@ -48,6 +48,12 @@ require'nvim-treesitter.configs'.setup {
       autotag = {
         enable = true,
   },
+
+    -- Smart Commenting
+    context_commentstring = {
+    enable = true,
+    enable_autocmd = false,
+  }
 }
 
 -- Matchup

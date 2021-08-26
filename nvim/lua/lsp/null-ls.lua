@@ -2,8 +2,10 @@
 local null_ls = require("null-ls")
 local b = null_ls.builtins
 
+vim.env.PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath "config" .. "/.prettierrc"
+
 local sources = {
-        b.formatting.prettier.with {
+        b.formatting.prettierd.with {
         filetypes = {
           "typescriptreact",
           "typescript",
