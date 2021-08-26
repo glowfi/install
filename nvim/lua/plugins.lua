@@ -92,6 +92,9 @@ return require('packer').startup(function(use)
     -- Async Code Evaluation
     use {'metakirby5/codi.vim'}
 
+    -- Emmet
+    use{'mattn/emmet-vim',ft={'javascript','javascriptreact','typescript','typescriptreact'}}
+
 
 
 -- Ricing
