@@ -163,11 +163,13 @@ return require('packer').startup(function(use)
     -- HTML Autotag and Autorename tags
     use {'windwp/nvim-ts-autotag',
          ft = {
-      "javascriptreact",
-      "javascript.jsx",
-      "typescriptreact",
-      "typescript.tsx",
       "html",
+      "javascript",
+      "typescript",
+      "javascriptreact",
+      "typescriptreact",
+      "javascript.jsx",
+      "typescript.tsx",
               }
         }
 
@@ -205,10 +207,10 @@ return require('packer').startup(function(use)
     use {"jose-elias-alvarez/nvim-lsp-ts-utils",
          ft = {
       "javascript",
-      "javascriptreact",
-      "javascript.jsx",
       "typescript",
+      "javascriptreact",
       "typescriptreact",
+      "javascript.jsx",
       "typescript.tsx",
               },}
 

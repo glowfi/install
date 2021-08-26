@@ -47,6 +47,7 @@ require'nvim-treesitter.configs'.setup {
     -- Autotag/Auto Rename HTML Tags
       autotag = {
         enable = true,
+        filetypes = {'html', 'javascript', 'typescript','javascriptreact', 'typescriptreact'}
   },
 
     -- Smart Commenting
