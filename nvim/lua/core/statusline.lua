@@ -114,7 +114,7 @@ end
 
 ins_left {
     PythonEnv,
-    color = {fg = colors.green, gui = 'bold'}
+    color = {fg = colors.orange, gui = 'bold'}
 }
 
 -- Python Version
