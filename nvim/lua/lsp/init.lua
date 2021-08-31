@@ -28,8 +28,8 @@ vim.cmd "nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>"
 vim.cmd "nnoremap <silent> ga <cmd>lua vim.lsp.buf.declaration()<CR>"
 vim.cmd "nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>"
 vim.cmd "nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>"
-vim.cmd "nnoremap <S-p>  :lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = 'none'}})<CR>"
-vim.cmd "nnoremap <S-n>  :lua vim.lsp.diagnostic.goto_next({popup_opts = {border = 'none'}})<CR>"
+vim.cmd "nnoremap <S-p>  :lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = 'single'}})<CR>"
+vim.cmd "nnoremap <S-n>  :lua vim.lsp.diagnostic.goto_next({popup_opts = {border = 'single'}})<CR>"
 vim.cmd 'command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()'
 
 
@@ -47,11 +47,11 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = "none"
+  border = "single"
 })
 
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  border = "none"
+  border = "single"
 })
 
 
