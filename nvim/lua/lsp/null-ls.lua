@@ -13,6 +13,7 @@ local sources = {
           "javascript",
           "css",
           "html",
+          "json"
         },
       },
          b.formatting.black.with {

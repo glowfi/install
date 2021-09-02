@@ -114,6 +114,7 @@ class checkur:
 
         print("")
         print("#### STATUS CODE ####")
+        print("")
         console.print(f"Response Code: {res_code}", style="bold magenta")
         console.print(
             f"Response Status: {self.get_codes(res_code)}", style="bold green"
