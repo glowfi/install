@@ -38,6 +38,7 @@ chmod +x ~/.local/bin/fetchmaster.py
 
 # INSTALL CHECKUR
 
+pip install rich
 cp -r ~/install/scripts/checkur.py ~/.local/bin/
 chmod +x ~/.local/bin/checkur.py
 
