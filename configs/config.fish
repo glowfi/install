@@ -50,17 +50,17 @@ alias gt='gitui'
 alias v='nvim'
 
 # Synchronize mirrorlist
-alias mirru='sudo rm -rf /var/lib/pacman/db.lck
-sudo reflector --verbose --country "Germany" -l 5 --sort rate --save /etc/pacman.d/mirrorlist
+alias mirru='sudo rm -rf /var/lib/pacman/db.lck;
+sudo reflector --verbose --country "Germany" -l 5 --sort rate --save /etc/pacman.d/mirrorlist;
 sudo pacman -Syyy'
 
 # Cleanup
-alias cleanup='yes | sudo pacman -Sc
-yes | yay -Sc
-printf "Cleaned Unused Pacakges!\n"
-rm -rf ~/.cache/*
-printf "Cleaned Cache!\n"
-sudo pacman -Rns (pacman -Qtdq)  2> /dev/null
+alias cleanup='yes | sudo pacman -Sc;
+yes | yay -Sc;
+printf "Cleaned Unused Pacakges!\n";
+rm -rf ~/.cache/*;
+printf "Cleaned Cache!\n";
+sudo pacman -Rns (pacman -Qtdq)  2> /dev/null;
 yes | printf "Cleaned Orphans!"'
 
 # Fetchmaster alias
@@ -73,6 +73,8 @@ alias checkur="checkur.py"
 alias bs='browser-sync start --index $argv --server --files "./*.*"'
 
 # Postgres alias
+alias pst='sudo systemctl start postgresql'
+alias psp='sudo systemctl stop postgresql'
 alias psql='psql -d delta'
 
 # Mongo alias
