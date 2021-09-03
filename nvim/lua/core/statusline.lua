@@ -206,9 +206,9 @@ ins_right {'location',
           }
 
 -- Progress
-ins_right {'progress',
-           color = {fg = '#ffffff', gui = 'bold'}
-          }
+-- ins_right {'progress',
+--            color = {fg = '#ffffff', gui = 'bold'}
+--           }
 
 
 -- Spaces_and_Tabs
@@ -231,27 +231,27 @@ ins_right {
     }
 
 -- File size
-local fsize=  function()
-    local function format_file_size(file)
-      local size = vim.fn.getfsize(file)
-      if size <= 0 then return '' end
-      local sufixes = {'b', 'k', 'm', 'g'}
-      local i = 1
-      while size > 1024 do
-        size = size / 1024
-        i = i + 1
-      end
-      return string.format('%.1f%s', size, sufixes[i])
-    end
-    local file = vim.fn.expand('%:p')
-    if string.len(file) == 0 then return '' end
-    return format_file_size(file)
-  end
+-- local fsize=  function()
+--     local function format_file_size(file)
+--       local size = vim.fn.getfsize(file)
+--       if size <= 0 then return '' end
+--       local sufixes = {'b', 'k', 'm', 'g'}
+--       local i = 1
+--       while size > 1024 do
+--         size = size / 1024
+--         i = i + 1
+--       end
+--       return string.format('%.1f%s', size, sufixes[i])
+--     end
+--     local file = vim.fn.expand('%:p')
+--     if string.len(file) == 0 then return '' end
+--     return format_file_size(file)
+--   end
 
-ins_right {
-    fsize,
-    color = {fg = '#ffffff', gui = 'bold'}
-    }
+-- ins_right {
+--     fsize,
+--     color = {fg = '#ffffff', gui = 'bold'}
+--     }
 
 -- Encoding
 ins_right {
