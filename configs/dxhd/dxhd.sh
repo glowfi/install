@@ -62,4 +62,4 @@
 
 ## Dmenu
 #super + w
-    dmenu_run
+    dmenu_run -l 3 -fn "Fantasque Sans Mono Bold"

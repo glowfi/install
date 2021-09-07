@@ -63,9 +63,6 @@ printf "Cleaned Cache!\n";
 sudo pacman -Rns (pacman -Qtdq)  2> /dev/null;
 yes | printf "Cleaned Orphans!"'
 
-# Fetchmaster alias
-alias fetchmaster="fetchmaster.py"
-
 # Check-ur-requests alias
 alias checkur="checkur.py"
 

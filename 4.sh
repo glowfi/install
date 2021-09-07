@@ -29,13 +29,6 @@ npm i -g yarn
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
-# INSTALL FETCHMASTER
-
-pip install tcolorpy
-mkdir -p ~/.local/bin
-cp -r ~/install/scripts/fetchmaster.py ~/.local/bin/
-chmod +x ~/.local/bin/fetchmaster.py
-
 # INSTALL CHECKUR
 
 pip install rich
