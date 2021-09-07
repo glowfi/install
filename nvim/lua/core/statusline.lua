@@ -101,11 +101,11 @@ local PythonEnv = function()
   if vim.bo.filetype == "python" then
     local venv = os.getenv "CONDA_DEFAULT_ENV"
     if venv ~= nil then
-      return "Venv ->  (" .. env_cleanup(venv) .. ")"
+      return "env ->  (" .. env_cleanup(venv) .. ")"
     end
     venv = os.getenv "VIRTUAL_ENV"
     if venv ~= nil then
-      return "Venv ->  (" .. env_cleanup(venv) .. ")"
+      return "env ->  (" .. env_cleanup(venv) .. ")"
     end
     return ""
   end
@@ -165,7 +165,7 @@ ins_left {
 -- Treesitter
 local treesitter=function()
       if next(vim.treesitter.highlighter.active) ~= nil then
-        return " (treesitter)"
+        return " Treesitter"
       end
       return ""
     end
@@ -180,7 +180,7 @@ local get_attached_provider_name=function()
       if vim.bo.filetype == "dashboard" then
           return ""
       else
-        local msg = 'No Active Lsp'
+        local msg = 'LSP Inactive'
         local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
         local clients = vim.lsp.get_active_clients()
         if next(clients) == nil then return msg end
@@ -196,7 +196,7 @@ local get_attached_provider_name=function()
 
 ins_right {
     get_attached_provider_name,
-    icon = '',
+    icon = '',
     color = {fg = '#ffffff', gui = 'bold'}
 }
 

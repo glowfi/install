@@ -34,7 +34,7 @@ return require('packer').startup(function(use)
 
 -- Utilities
 
-    -- Ranger File Manager
+    -- NNN File Manager
     use {'mcchrish/nnn.vim',
          config = [[require('core.filemanager')]]
         }
@@ -54,7 +54,12 @@ return require('packer').startup(function(use)
 
     -- Code Runner
     use {'sbdchd/vim-run',
-         config = [[require('core.coderunner')]]
+         config = [[require('core.coderunner')]],
+         ft= {
+          "javascript",
+          "typescript",
+          "python",
+        }
         }
 
     -- Multi Cursor
@@ -88,9 +93,6 @@ return require('packer').startup(function(use)
     ft = { 'css', 'javascript', 'vim', 'html' },
     config = [[require('colorizer').setup {'css', 'javascript', 'vim', 'html'}]],
         }
-
-    -- Async Code Evaluation
-    use {'metakirby5/codi.vim'}
 
     -- Emmet
     use{'mattn/emmet-vim',ft={'javascript','javascriptreact','typescript','typescriptreact'}}
@@ -195,16 +197,20 @@ return require('packer').startup(function(use)
     use {'neovim/nvim-lspconfig'}
 
     --   Auto completion
-    use { 'hrsh7th/nvim-compe', event = 'InsertEnter *', config = [[require('lsp.compe')]] }
+    use {'hrsh7th/nvim-cmp',after = 'nvim-lspconfig',event = 'InsertEnter *',config = [[require('lsp.cmp')]]}
+    use {'hrsh7th/cmp-nvim-lsp',after = 'nvim-cmp',config = function() require('cmp_nvim_lsp').setup {} end}
+    use {'hrsh7th/cmp-path',after = 'nvim-cmp'}
+    use {'hrsh7th/cmp-buffer',after = 'nvim-cmp'}
 
     --   Snippet engine
-    use {'hrsh7th/vim-vsnip',event = "InsertCharPre",config = [[require('lsp.vsnip')]]}
+    use {'hrsh7th/vim-vsnip',after = 'nvim-cmp',event = "InsertCharPre",config = [[require('lsp.vsnip')]]}
+    use {'hrsh7th/cmp-vsnip',after = 'nvim-cmp'}
 
     --   Signature popup on typing
     use {"ray-x/lsp_signature.nvim",config = [[require('lsp.sigHelp')]]}
 
     --   Auto pairs
-    use {'windwp/nvim-autopairs',after = "nvim-compe",config = [[require('lsp.autopairs')]]}
+    use {'windwp/nvim-autopairs',after = "nvim-cmp",config = [[require('lsp.autopairs')]]}
 
     --   Null-ls
     use {"jose-elias-alvarez/null-ls.nvim"}

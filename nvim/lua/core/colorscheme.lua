@@ -37,6 +37,6 @@ vim.cmd "hi! LspDiagnosticsSignHint  ctermbg=none guibg=none guifg=#8ec07c"
 vim.cmd "hi! LspDiagnosticsSignInformation  ctermbg=none guibg=none guifg=#83a598"
 
 -- Gitsigns
-vim.cmd"hi! GitSignsAdd     ctermbg=none guibg=none guifg=green"
-vim.cmd"hi! GitSignsChange  ctermbg=none guibg=none guifg=blue"
-vim.cmd"hi! GitSignsDelete  ctermbg=none guibg=none guifg=red"
+vim.cmd"hi! GitSignsAdd     ctermbg=none guibg=none guifg=#b8bb26"
+vim.cmd"hi! GitSignsChange  ctermbg=none guibg=none guifg=#83a598"
+vim.cmd"hi! GitSignsDelete  ctermbg=none guibg=none guifg=#fb4934"

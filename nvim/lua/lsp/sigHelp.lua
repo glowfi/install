@@ -2,25 +2,25 @@
  cfg = {
   bind = true,
   doc_lines = 2,
+  floating_window_above_first = true,
   floating_window = true,
   fix_pos = false,
   hint_enable = true,
   hint_prefix = "",
   hint_scheme = "String",
-  use_lspsaga = false,
   hi_parameter = "Search",
-  max_height = 12,
-  max_width = 120,
+  max_height = 10,
+  max_width = 30,
+  transpancy = 10,
   handler_opts = {
   border = "single"
   },
   extra_trigger_chars = {"(", ","},
-  zindex = 200,
+  zindex = 50,
   debug = false,
   log_path = "debug_log_file_path",
   padding = '',
-  shadow_blend = 36,
-  shadow_guibg = 'Black'
+  timer_interval = 200
 }
 
 require'lsp_signature'.setup(cfg)
