@@ -11,7 +11,7 @@
 # ===================================================================
 
 ## Path
-set PATH ~/node-v16.6.2-linux-x64/bin/ $PATH      # Sets NodeJS path
+set PATH ~/node-v16.9.0-linux-x64/bin/ $PATH      # Sets NodeJS path
 set PATH ~/.local/bin/ $PATH                      # Sets Universal path
 
 ## Enhancements
