@@ -6,7 +6,7 @@ vim.cmd("imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'    
 vim.cmd("smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'")
 
 -- Settings
--- Enable Snippets
+-- Enable Snippets in other files
 vim.cmd("let g:vsnip_filetypes = {}")
 
 vim.cmd("let g:vsnip_filetypes.javascriptreact = ['javascript']")

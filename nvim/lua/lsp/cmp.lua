@@ -1,5 +1,5 @@
 -- Settings
-vim.o.completeopt = "menuone,noselect"
+vim.o.completeopt = "menuone,noselect,noinsert"
 vim.cmd "let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']"
 
 local cmp = require'cmp'
@@ -31,28 +31,6 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-
-  ['<Tab>'] = function(fallback)
-    if vim.fn.pumvisible() == 1 then
-      vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n')
-    elseif check_back_space() then
-      vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Tab>', true, true, true), 'n')
-    elseif vim.fn['vsnip#available']() == 1 then
-      vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>(vsnip-expand-or-jump)', true, true, true), '')
-    else
-      fallback()
-    end
-  end,
-
-    ['<S-Tab>'] = function()
-    if vim.fn.pumvisible() == 1 then
-      return t "<C-p>"
-    elseif vim.fn.call("vsnip#jumpable", { -1 }) == 1 then
-      return t "<Plug>(vsnip-jump-prev)"
-    else
-      return t "<S-Tab>"
-    end
-  end
   },
 
   documentation = {

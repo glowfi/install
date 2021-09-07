@@ -135,15 +135,26 @@ local format_ = function(client, bufnr)
     end
 end
 
+-- CMP SUPPORT
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits',
+  }
+}
+capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+
 
 -- Python LSP
-require'lspconfig'.pyright.setup{}
+require'lspconfig'.pyright.setup{
+capabilities = capabilities,
+}
 
 
 -- HTML CSS
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
 require'lspconfig'.html.setup {
   capabilities = capabilities,
 }
@@ -155,9 +166,6 @@ require'lspconfig'.cssls.setup {
 -- Emmet
 local lspconfig = require'lspconfig'
 local configs = require'lspconfig/configs'
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 if not lspconfig.emmet_ls then
   configs.emmet_ls = {
@@ -171,7 +179,7 @@ if not lspconfig.emmet_ls then
     };
   }
 end
-lspconfig.emmet_ls.setup{ capabilities = capabilities; }
+lspconfig.emmet_ls.setup{ capabilities = capabilities, }
 
 -- JSON
 require'lspconfig'.jsonls.setup {}
@@ -188,6 +196,7 @@ require'lspconfig'.jsonls.setup {}
 -- TS TSX JS JSX
 local nvim_lsp = require("lspconfig")
 nvim_lsp.tsserver.setup {
+    capabilities = capabilities,
     on_attach = function(client, bufnr)
         client.resolved_capabilities.document_formatting = false
 

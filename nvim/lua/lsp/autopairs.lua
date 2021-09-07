@@ -2,7 +2,7 @@
 local npairs = require('nvim-autopairs')
 local Rule = require('nvim-autopairs.rule')
 
--- cmp basd autopairs
+-- cmp based autopairs
 require("nvim-autopairs.completion.cmp").setup({
   map_cr = true,
   map_complete = true

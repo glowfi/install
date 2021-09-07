@@ -198,7 +198,7 @@ return require('packer').startup(function(use)
 
     --   Auto completion
     use {'hrsh7th/nvim-cmp',after = 'nvim-lspconfig',event = 'InsertEnter *',config = [[require('lsp.cmp')]]}
-    use {'hrsh7th/cmp-nvim-lsp',after = 'nvim-cmp',config = function() require('cmp_nvim_lsp').setup {} end}
+    use {'hrsh7th/cmp-nvim-lsp',config = function() require('cmp_nvim_lsp').setup {} end}
     use {'hrsh7th/cmp-path',after = 'nvim-cmp'}
     use {'hrsh7th/cmp-buffer',after = 'nvim-cmp'}
 

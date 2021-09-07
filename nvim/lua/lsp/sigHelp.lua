@@ -2,7 +2,7 @@
  cfg = {
   bind = true,
   doc_lines = 2,
-  floating_window_above_first = true,
+  floating_window_above_cur_line = true,
   floating_window = true,
   fix_pos = false,
   hint_enable = true,
