@@ -150,7 +150,7 @@ capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 -- Python LSP
 require'lspconfig'.pyright.setup{
-capabilities = capabilities,
+  capabilities = capabilities,
 }
 
 
@@ -182,7 +182,12 @@ end
 lspconfig.emmet_ls.setup{ capabilities = capabilities, }
 
 -- JSON
-require'lspconfig'.jsonls.setup {}
+require'lspconfig'.jsonls.setup {
+    capabilities = capabilities,
+    on_attach = function(client, bufnr)
+        client.resolved_capabilities.document_formatting = false
+    end
+}
 
 
 -- GraphQL

@@ -16,7 +16,7 @@ local sources = {
           "json"
         },
       },
-         b.formatting.black.with {
+        b.formatting.black.with {
         filetypes = {"python"},
     }
 }
