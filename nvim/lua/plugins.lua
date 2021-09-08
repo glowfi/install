@@ -102,7 +102,7 @@ return require('packer').startup(function(use)
 -- Ricing
 
     -- Gruvbox theme
-    use {"npxbr/gruvbox.nvim",
+    use {"ellisonleao/gruvbox.nvim",
          requires = {"rktjmp/lush.nvim"},
          config = [[require('core.colorscheme')]]
         }
