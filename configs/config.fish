@@ -339,6 +339,12 @@ function fish_right_prompt
 end
 
 
+# Fish Title 
+function fish_title
+    echo "fish"
+end
+
+
 # ===================================================================
 #                   Syntax Highlighting Colors
 # ===================================================================
