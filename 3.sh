@@ -4,7 +4,7 @@
 
 sudo timedatectl set-ntp true
 sudo hwclock --systohc
-sudo reflector --verbose --country "Germany" -l 5 --sort rate --save /etc/pacman.d/mirrorlist
+sudo reflector --verbose --country Germany -l 10 --protocol https,http --sort rate --save /etc/pacman.d/mirrorlist
 sudo pacman -Syy
 
 
