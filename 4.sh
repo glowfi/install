@@ -3,7 +3,7 @@
 # PYTHON MODULES
 
 pip install jupyter pandas matplotlib numpy scikit-learn openpyxl xlrd
-pip install virtualenv pywal colorz
+pip install virtualenv
 
 # JUPYTER SETUP
 
