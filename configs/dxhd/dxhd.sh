@@ -54,7 +54,7 @@
 
 ## File Manager
 #alt + f
-    kitty -e "nnn" -e "-d" -e "-D" -e "-e"
+    kitty -e "nnn" -e "-d" -e "-e"
 
 ## Code Editor
 #super + n
