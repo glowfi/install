@@ -38,7 +38,7 @@ alias find='fd'
 alias top='btm --mem_as_value --color gruvbox'
 
 # NNN alias
-alias n='nnn -d -D -e'
+alias n='nnn -d -e'
 
 # Reload dxhd
 alias dxrel='systemctl --user reload dxhd.service'
@@ -388,5 +388,5 @@ set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
 # NNN File Manager
 export NNN_PLUG='f:fzcd;o:fzopen;p:preview-tui;'
-export NNN_FCOLORS='c1e2272e006033f7c6d6abc4'
+export NNN_FCOLORS='c1e20406006033f7c6d6abc4'
 export NNN_FIFO='/tmp/nnn.fifo'
