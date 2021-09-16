@@ -175,7 +175,9 @@ ins_right {
     color = {fg = colors.green, gui = 'bold'}
 }
 
--- LSP STATUS
+
+
+-- GET ATTACHED CLIENTS,FORMATTERS
 local get_attached_provider_name=function()
       if vim.bo.filetype == "dashboard" then
           return ""
@@ -187,76 +189,78 @@ local get_attached_provider_name=function()
         for _, client in ipairs(clients) do
           local filetypes = client.config.filetypes
           if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-            return client.name
+              if client.name ~= "null-ls" then 
+                return client.name
+              end
           end
         end
         return msg
       end
     end
 
+local null_ls = require "null-ls"
+local function available_LSP_Formatter_Linter()
+  filetype=vim.bo.filetype
+  local a = ""
+  local client=get_attached_provider_name()
+
+  if client == 'LSP Inactive' or client == ''  then
+    return client
+
+  else
+    a=a..client..','
+
+    if vim.bo.filetype == "javascript" or vim.bo.filetype == "typescript" or vim.bo.filetype == "javascriptreact" or vim.bo.filetype == "typescriptreact" or vim.bo.filetype == "css" or vim.bo.filetype == "html" or vim.bo.filetype == "json" then
+        a=a.."prettierd"
+
+    else
+        for _, provider in pairs(null_ls.builtins.formatting) do
+            if vim.tbl_contains(provider.filetypes or {}, filetype) then
+                if vim.fn.executable(provider.name) == 1 then
+                    a=a..provider.name
+                end
+            end
+        end
+    end
+
+    for _, provider in pairs(null_ls.builtins.diagnostics) do
+        if vim.tbl_contains(provider.filetypes or {}, filetype) then
+            if vim.fn.executable(provider.name) == 1 then
+                a=a..','..provider.name
+                break
+            end
+        end
+    end
+
+    return a
+  end
+end
+
+-- LSP STATUS
+local get_attached_provider_name=function()
+      return available_LSP_Formatter_Linter()
+end
+
 ins_right {
-    get_attached_provider_name,
+    available_LSP_Formatter_Linter,
     icon = '',
     color = {fg = '#ffffff', gui = 'bold'}
 }
-
--- Location
-ins_right {'location',
-           color = {fg = '#ffffff', gui = 'bold'}
-          }
-
--- Progress
--- ins_right {'progress',
---            color = {fg = '#ffffff', gui = 'bold'}
---           }
-
-
--- Spaces_and_Tabs
-local get_space_tabs=function()
-      local label = "Spaces: "
-      if not vim.api.nvim_buf_get_option(0, "expandtab") then
-        label = "Tab size: "
-      end
-      return label .. vim.api.nvim_buf_get_option(0, "shiftwidth") .. " "
-    end
-
-ins_right {
-    get_space_tabs,
-    color = {fg = '#ffffff', gui = 'bold'}
-    }
 
 ins_right {
     'filetype',
     color = {fg = '#ffffff', gui = 'bold'}
     }
 
--- File size
--- local fsize=  function()
---     local function format_file_size(file)
---       local size = vim.fn.getfsize(file)
---       if size <= 0 then return '' end
---       local sufixes = {'b', 'k', 'm', 'g'}
---       local i = 1
---       while size > 1024 do
---         size = size / 1024
---         i = i + 1
---       end
---       return string.format('%.1f%s', size, sufixes[i])
---     end
---     local file = vim.fn.expand('%:p')
---     if string.len(file) == 0 then return '' end
---     return format_file_size(file)
---   end
+local name=function()
+      if vim.bo.filetype == "dashboard" then
+          return "NVIM"
+      end
+end
 
--- ins_right {
---     fsize,
---     color = {fg = '#ffffff', gui = 'bold'}
---     }
-
--- Encoding
 ins_right {
-    'encoding',
-    color = {fg = '#ffffff', gui = 'bold'}
+  name,
+  color = {bg = '#517b52',fg = '#ffffff', gui = 'bold'}
 }
 
 -- Initialize lualine

@@ -18,6 +18,9 @@ local sources = {
       },
         b.formatting.black.with {
         filetypes = {"python"},
+    },
+        b.diagnostics.flake8.with {
+        filetypes = {"python"},
     }
 }
 

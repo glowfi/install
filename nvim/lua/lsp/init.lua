@@ -28,8 +28,8 @@ vim.cmd "nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>"
 vim.cmd "nnoremap <silent> ga <cmd>lua vim.lsp.buf.declaration()<CR>"
 vim.cmd "nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>"
 vim.cmd "nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>"
-vim.cmd "nnoremap <S-p>  :lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = 'single'}})<CR>"
-vim.cmd "nnoremap <S-n>  :lua vim.lsp.diagnostic.goto_next({popup_opts = {border = 'single'}})<CR>"
+vim.cmd "nnoremap <S-p>  :lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = 'rounded',max_width = 65,min_width = 35,max_height = math.floor(vim.o.lines * 0.3),min_height = 1}})<CR>"
+vim.cmd "nnoremap <S-n>  :lua vim.lsp.diagnostic.goto_next({popup_opts = {border = 'rounded',max_width = 65,min_width = 35,max_height = math.floor(vim.o.lines * 0.3),min_height = 1}})<CR>"
 vim.cmd 'command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()'
 
 
@@ -48,11 +48,20 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = "single"
+  border = "rounded",
+  max_width = 55,
+  min_width = 55,
+  max_height = math.floor(vim.o.lines * 0.3),
+  min_height = 1,
+
 })
 
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  border = "single"
+  border = "rounded",
+  max_width = 55,
+  min_width = 35,
+  max_height = math.floor(vim.o.lines * 0.3),
+  min_height = 1,
 })
 
 
@@ -167,19 +176,18 @@ require'lspconfig'.cssls.setup {
 local lspconfig = require'lspconfig'
 local configs = require'lspconfig/configs'
 
-if not lspconfig.emmet_ls then
-  configs.emmet_ls = {
-    default_config = {
-      cmd = {'emmet-ls', '--stdio'};
-      filetypes = { "html", "css"},
-      root_dir = function(fname)
-        return vim.loop.cwd()
+configs.ls_emmet = {
+  default_config = {
+    cmd = {'ls_emmet', '--stdio'};
+    filetypes = {'html', 'css'};
+    root_dir = function(fname)
+      return vim.loop.cwd()
       end;
-      settings = {};
-    };
-  }
-end
-lspconfig.emmet_ls.setup{ capabilities = capabilities, }
+    settings = {};
+  };
+}
+
+lspconfig.ls_emmet.setup{ capabilities = capabilities }
 
 -- JSON
 require'lspconfig'.jsonls.setup {
@@ -188,15 +196,6 @@ require'lspconfig'.jsonls.setup {
         client.resolved_capabilities.document_formatting = false
     end
 }
-
-
--- GraphQL
- require("lspconfig").graphql.setup {
-     on_attach = common_on_attach,
-     cmd = { "graphql-lsp", "server", "-m", "stream" },
-     filetypes = { "graphql" },
-     root_dir = require("lspconfig/util").root_pattern('.git', '.graphqlrc',"**/*.{graphql,js,ts,jsx,tsx}")}
-
 
 -- TS TSX JS JSX
 local nvim_lsp = require("lspconfig")

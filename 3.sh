@@ -45,7 +45,7 @@ sudo pacman -S --noconfirm postgresql redis python-pip gitui
 yay -S --noconfirm mongodb-bin
 
 ### PACK
-sudo pacman -S --noconfirm dolphin ark gwenview okular spectacle kate gimp
+sudo pacman -S --noconfirm dolphin ark gwenview okular spectacle gimp
 yay -S --noconfirm brave-bin gimp-plugin-registry onlyoffice-bin timeshift
 
 

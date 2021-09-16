@@ -14,7 +14,7 @@ pyppeteer-install
 
 # DOWNLOAD NODEJS
 
-wget https://nodejs.org/dist/v16.9.0/node-v16.9.0-linux-x64.tar.xz -O ~/node.tar.xz
+wget https://nodejs.org/dist/v16.9.1/node-v16.9.1-linux-x64.tar.xz -O ~/node.tar.xz
 tar -xf ~/node.tar.xz -C ~
 rm -rf ~/node.tar.xz
 
@@ -43,8 +43,8 @@ sudo su - postgres -c "(echo $USER;echo 'password';echo 'password';echo y;)|crea
 
 # DOWNLOAD NEOVIM
 
-pip install neovim ueberzug black
-npm i -g neovim typescript typescript-language-server pyright vscode-langservers-extracted emmet-ls prettier @fsouza/prettierd eslint eslint_d diagnostic-languageserver graphql-language-service-cli browser-sync
+pip install neovim ueberzug black flake8
+npm i -g neovim typescript typescript-language-server pyright vscode-langservers-extracted ls_emmet @fsouza/prettierd eslint_d diagnostic-languageserver browser-sync
 npx npm-check-updates -g
 sudo pacman -S --noconfirm cmake unzip ninja tree-sitter xclip fortune-mod
 git clone https://github.com/neovim/neovim --depth 1

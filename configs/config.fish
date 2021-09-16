@@ -11,7 +11,7 @@
 # ===================================================================
 
 ## Path
-set PATH ~/node-v16.9.0-linux-x64/bin/ $PATH      # Sets NodeJS path
+set PATH ~/node-v16.9.1-linux-x64/bin/ $PATH      # Sets NodeJS path
 set PATH ~/.local/bin/ $PATH                      # Sets Universal path
 
 ## Enhancements
@@ -274,7 +274,7 @@ function fish_prompt
     set_color red --bold
     printf "] "
     set_color ffc04d
-    printf "~> "
+    printf "➡️ "
 
     set -l normal_color (set_color normal)
     set -l branch_color (set_color yellow)
