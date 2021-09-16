@@ -9,9 +9,11 @@ from rich.syntax import Syntax
 
 
 class checkur:
-    def __init__(self, method, url):
+    def __init__(self, method, url, cookies, headers):
         self.method = method
         self.url = url
+        self.cookies = cookies
+        self.headers = headers
 
     def get_codes(self, code):
         codes = {
@@ -108,10 +110,6 @@ class checkur:
     def display(self, res_code, data):
         console = Console()
         print("")
-        print("===================================================================")
-        print("                          Response                                 ")
-        print("===================================================================")
-
         print("")
         print("#### STATUS CODE ####")
         print("")
@@ -134,38 +132,40 @@ class checkur:
         console.print(syntax_response)
 
     def get_(self, url):
-        r = requests.get(url)
+        r = requests.get(url, headers=self.headers, cookies=self.cookies)
         try:
             self.display(r.status_code, r.json())
-        except:
+        except Exception as e:
             self.display(r.status_code, r.text)
 
     def post_(self, url, params):
-        r = requests.post(url, json=params)
+        r = requests.post(url, json=params, headers=self.headers, cookies=self.cookies)
         try:
             self.display(r.status_code, r.json())
-        except:
+        except Exception as e:
             self.display(r.status_code, r.text)
 
     def put_(self, url, params):
-        r = requests.put(url, json=params)
+        r = requests.put(url, json=params, headers=self.headers, cookies=self.cookies)
         try:
             self.display(r.status_code, r.json())
-        except:
+        except Exception as e:
             self.display(r.status_code, r.text)
 
     def delete_(self, url):
         r = requests.delete(url)
         try:
-            self.display(r.status_code, r.json())
-        except:
+            self.display(
+                r.status_code, r.json(), headers=self.headers, cookies=self.cookies
+            )
+        except Exception as e:
             self.display(r.status_code, r.text)
 
     def patch_(self, url, params):
-        r = requests.patch(url, json=params)
+        r = requests.patch(url, json=params, headers=self.headers, cookies=self.cookies)
         try:
             self.display(r.status_code, r.json())
-        except:
+        except Exception as e:
             self.display(r.status_code, r.text)
 
     def handler(self):
@@ -194,5 +194,44 @@ class checkur:
 
 method = input("Which Method to use? ")
 url = input("Which URL to hit ? ")
-obj = checkur(method, url)
+ask_cookies = input("Want to send any cookies? ")
+ask_headers = input("Want to send any headers? ")
+
+if ask_cookies == "y":
+    cookies_key = input("Enter the cookie keys seperated by comma: ").split(",")
+    cookies_value = input(
+        "Enter the corresponding cookie values seperated by comma: "
+    ).split(",")
+    cookies = {}
+    try:
+        for ind, val in enumerate(cookies_key):
+            cookies[val] = cookies_value[ind]
+
+    except Exception as e:
+        raise e
+    else:
+        pass
+
+if ask_headers == "y":
+    headers_key = input("Enter the headers keys seperated by comma: ").split(",")
+    headers_value = input(
+        "Enter the corresponding headers values seperated by comma: "
+    ).split(",")
+    headers = {}
+    try:
+        for ind, val in enumerate(headers_key):
+            headers[val] = headers_value[ind]
+
+    except Exception as e:
+        raise e
+    else:
+        pass
+
+if ask_cookies == "n":
+    cookies = None
+
+if ask_headers == "n":
+    headers = None
+
+obj = checkur(method, url, cookies, headers)
 obj.handler()
