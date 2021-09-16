@@ -51,7 +51,7 @@ alias v='nvim'
 
 # Synchronize mirrorlist
 alias mirru='sudo rm -rf /var/lib/pacman/db.lck;
-sudo reflector --verbose --country Germany -l 10 --protocol https,http --sort rate --save /etc/pacman.d/mirrorlist;
+sudo reflector --verbose --country Germany -l 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist;
 sudo pacman -Syyy'
 
 # Cleanup

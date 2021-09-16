@@ -4,7 +4,7 @@
 
 timedatectl set-ntp true
 pacman -Syyy
-reflector --verbose --country Germany -l 10 --protocol https,http --sort rate --save /etc/pacman.d/mirrorlist
+reflector --verbose --country Germany -l 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
 # PARTITION
 
