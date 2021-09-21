@@ -182,7 +182,7 @@ local get_attached_provider_name=function()
       if vim.bo.filetype == "dashboard" then
           return ""
       else
-        local msg = 'LSP Inactive'
+        local msg = 'LS Inactive'
         local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
         local clients = vim.lsp.get_active_clients()
         if next(clients) == nil then return msg end

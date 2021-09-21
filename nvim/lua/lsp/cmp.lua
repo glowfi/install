@@ -72,7 +72,7 @@ cmp.setup {
 
     vim_item.kind = comp_kind[vim_item.kind]
     vim_item.menu = ({
-      nvim_lsp =  "[LSP]",
+      nvim_lsp =  "[LS]",
       vsnip =  "[VSNIP]",
       path = "[Path]",
       buffer =  "[Buffer]"
