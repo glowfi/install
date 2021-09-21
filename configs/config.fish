@@ -274,7 +274,7 @@ function fish_prompt
     set_color red --bold
     printf "] "
     set_color ffc04d
-    printf "➡️ "
+    printf '%s' '--> '
 
     set -l normal_color (set_color normal)
     set -l branch_color (set_color yellow)

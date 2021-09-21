@@ -2,6 +2,11 @@
 vim.o.background = "dark"
 vim.cmd([[colorscheme gruvbox]])
 
+-- Line Number Highlight
+vim.cmd "set cursorline"
+vim.cmd "highlight clear CursorLine"
+vim.cmd "highlight CursorLineNR guifg=white guibg=none ctermbg=none ctermfg=none"
+
 -- Transparency
 vim.cmd "hi! Normal ctermbg=NONE guibg=NONE"
 vim.cmd "hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE"
