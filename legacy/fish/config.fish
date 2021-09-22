@@ -261,10 +261,20 @@ end
 function fish_prompt
     set -l last_command_status $status
 
+    set_color red --bold
+    printf "["
+    set_color blue
+    printf "%s" "$USER"
+    set_color green
+    printf "@"
+    set_color yellow
+    printf "%s" "$hostname "
     set_color C7ECEC
     printf (pwd | sed "s|^$HOME|~|")
+    set_color red --bold
+    printf "] "
     set_color ffc04d
-    printf '%s' ' --> '
+    printf '%s' '--> '
 
     set -l normal_color (set_color normal)
     set -l branch_color (set_color yellow)
@@ -380,3 +390,22 @@ set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 export NNN_PLUG='f:fzcd;o:fzopen;p:preview-tui;'
 export NNN_FCOLORS='c1e20406006033f7c6d6abc4'
 export NNN_FIFO='/tmp/nnn.fifo'
+
+# INSTALL
+# pip install pywal colorz
+
+# Pywal
+if type -q wal
+    if test -e ~/.cache/wal/wal
+        rg "Image" ~/.config/plasma-org.kde.plasma.desktop-appletsrc | tail -1 | awk -F':' '{print $2}' |awk 'sub(/^.{3}/,"")'| awk -F'/' '{print $4}'| read -t wloc
+        awk -F'/' '{print $5}' ~/.cache/wal/wal |read -t wloc1
+        if test "$wloc" = "$wloc1"
+            dash -c "(cat ~/.cache/wal/sequences &);clear"
+        else
+            wal -e -n -q --backend colorz -i ~/wall/$wloc
+        end
+    else
+        rg "Image" ~/.config/plasma-org.kde.plasma.desktop-appletsrc | tail -1 | awk -F':' '{print $2}' |awk 'sub(/^.{3}/,"")'| awk -F'/' '{print $4}'| read -t wloc
+        wal -e -n -q --backend colorz -i ~/wall/$wloc
+    end
+end
