@@ -208,7 +208,7 @@ local function available_LSP_Formatter_Linter()
     return client
 
   else
-    a=a..client..','
+    a=a..client..' '
 
     if vim.bo.filetype == "javascript" or vim.bo.filetype == "typescript" or vim.bo.filetype == "javascriptreact" or vim.bo.filetype == "typescriptreact" or vim.bo.filetype == "css" or vim.bo.filetype == "html" or vim.bo.filetype == "json" then
         a=a.."prettierd"
@@ -226,7 +226,7 @@ local function available_LSP_Formatter_Linter()
     for _, provider in pairs(null_ls.builtins.diagnostics) do
         if vim.tbl_contains(provider.filetypes or {}, filetype) then
             if vim.fn.executable(provider.name) == 1 then
-                a=a..','..provider.name
+                a=a..' '..provider.name
                 break
             end
         end
