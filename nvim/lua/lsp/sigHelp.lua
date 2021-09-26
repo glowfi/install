@@ -6,7 +6,7 @@
   floating_window = true,
   fix_pos = false,
   hint_enable = true,
-  hint_prefix = "🐻 ",
+  hint_prefix = "",
   hint_scheme = "String",
   hi_parameter = "Search",
   max_height = 10,
