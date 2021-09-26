@@ -5,20 +5,20 @@ local null_ls = require("lsp.null-ls")
 
 -- Lsp Diagnostic signs
 vim.fn.sign_define(
-  "LspDiagnosticsSignError",
-  { texthl = "LspDiagnosticsSignError", text = "", numhl = "LspDiagnosticsSignError" }
+  "DiagnosticSignError",
+  { texthl = "DiagnosticSignError", text = "", numhl = "" }
 )
 vim.fn.sign_define(
-  "LspDiagnosticsSignWarning",
-  { texthl = "LspDiagnosticsSignWarning", text = "", numhl = "LspDiagnosticsSignWarning" }
+  "DiagnosticSignWarn",
+  { texthl = "DiagnosticSignWarn", text = "", numhl = "" }
 )
 vim.fn.sign_define(
-  "LspDiagnosticsSignHint",
-  { texthl = "LspDiagnosticsSignHint", text = "", numhl = "LspDiagnosticsSignHint" }
+  "DiagnosticSignHint",
+  { texthl = "DiagnosticSignHint", text = "", numhl = "" }
 )
 vim.fn.sign_define(
-  "LspDiagnosticsSignInformation",
-  { texthl = "LspDiagnosticsSignInformation", text = "", numhl = "LspDiagnosticsSignInformation" }
+  "DiagnosticSignInfo",
+  { texthl = "DiagnosticSignInfo", text = "", numhl = "" }
 )
 
 -- Keymappings
