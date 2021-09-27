@@ -239,5 +239,17 @@ return require('packer').startup(function(use)
     use {'jparise/vim-graphql',
          ft = {"graphql"}
         }
+
+    --   Markdown 
+    use {'iamcco/markdown-preview.nvim',
+      run = 'cd app && yarn install',
+      config = [[require('core.mkdp')]],
+      setup = function()
+        vim.g.mkdp_filetypes = {'markdown'}
+      end,
+      cmd = 'MarkdownPreview', ft = {'markdown'}
+        }
+    
+
 end)
 
