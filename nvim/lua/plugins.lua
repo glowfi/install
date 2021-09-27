@@ -242,13 +242,11 @@ return require('packer').startup(function(use)
 
     --   Markdown 
     use {'iamcco/markdown-preview.nvim',
-      run = 'cd app && yarn install',
-      config = [[require('core.mkdp')]],
-      setup = function()
-        vim.g.mkdp_filetypes = {'markdown'}
-      end,
-      cmd = 'MarkdownPreview', ft = {'markdown'}
-        }
+          run = 'cd app && yarn install',
+          ft = {'markdown'},
+          config = [[require('core.mkdp')]],
+          cmd = 'MarkdownPreview'        
+         }
     
 
 end)
