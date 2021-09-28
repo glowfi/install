@@ -35,6 +35,13 @@ pip install rich
 cp -r ~/install/scripts/checkur.py ~/.local/bin/
 chmod +x ~/.local/bin/checkur.py
 
+# INSTALL xhibit
+
+pip install tcolorpy
+mkdir -p ~/.local/bin
+cp -r ~/install/scripts/xhibit.py ~/.local/bin/
+chmod +x ~/.local/bin/xhibit.py
+
 # SETUP POSTGRES
 
 sudo su - postgres -c "initdb --locale en_US.UTF-8 -D /var/lib/postgres/data;exit"

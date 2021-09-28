@@ -66,6 +66,9 @@ yes | printf "Cleaned Orphans!"'
 # Check-ur-requests alias
 alias checkur="checkur.py"
 
+# xhibit alias
+alias xbt="xhibit.py"
+
 # Browser-sync
 alias bs='browser-sync start --index $argv --server --files "./*.*"'
 
