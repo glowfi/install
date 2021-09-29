@@ -185,6 +185,34 @@ def egyptian():
     print("")
 
 
-characters_names = ["dragon", "monalisa", "casper", "egyptian"]
+def fairy():
+    print("")
+    print(tcolor(f"       .--.   _,                                  ",color=field_colors[3],styles=["bold"]))
+    print(tcolor(f"   .--;    \ /(_                                  ",color=field_colors[4],styles=["bold"]))
+    print(tcolor(f"  /    '.   |   '-._    . ' .                     ",color=field_colors[6],styles=["bold"]))
+    print(tcolor(f" |       \  \    ,-.)  -= * =-    |{info[2]}      ",color=field_colors[2],styles=["bold"]))
+    print(tcolor(f"  \ /\_   '. \((` .(    '/. '     |{info[0]}      ",color=field_colors[0],styles=["bold"]))
+    print(tcolor(f"   )\ /     \ )\  _/   _/         |{info[1]}      ",color=field_colors[1],styles=["bold"]))
+    print(tcolor(f"  /  \ \   .-'   '--. /_\         |{info[3]}      ",color=field_colors[3],styles=["bold"]))
+    print(tcolor(f" |    \ \_.' ,       \/||         |{info[4]}      ",color=field_colors[4],styles=["bold"]))
+    print(tcolor(f" \     \_.-';,_) _)'\ \||         |{info[5]}      ",color=field_colors[5],styles=["bold"]))
+    print(tcolor(f"  '.       /`\   (   '._/         |{info[6]}      ",color=field_colors[6],styles=["bold"]))
+    print(tcolor(f"    `\   .;  |  . '.              |{info[7]}      ",color=field_colors[7],styles=["bold"]))
+    print(tcolor(f"      ).'  )/|      \                             ",color=field_colors[7],styles=["bold"]))
+    print(tcolor(f"      `    ` |  \|   |                            ",color=field_colors[3],styles=["bold"]))
+    print(tcolor(f"              \  |   |                            ",color=field_colors[2],styles=["bold"]))
+    print(tcolor(f"               '.|   |                            ",color=field_colors[0],styles=["bold"]))
+    print(tcolor(f"                  \  '\__                         ",color=field_colors[6],styles=["bold"]))
+    print(tcolor(f"                   `-._  '. _                     ",color=field_colors[3],styles=["bold"]))
+    print(tcolor(f"                      \`;-.` `._                  ",color=field_colors[2],styles=["bold"]))
+    print(tcolor(f"                       \ \ `'-._\                 ",color=field_colors[4],styles=["bold"]))
+    print(tcolor(f"                        \ |                       ",color=field_colors[5],styles=["bold"]))
+    print(tcolor(f"                         \ )                      ",color=field_colors[7],styles=["bold"]))
+    print(tcolor(f"                          \_\                     ",color=field_colors[6],styles=["bold"]))
+    print("")
+
+
+
+characters_names = ["dragon", "monalisa", "casper", "egyptian","fairy"]
 charac = random.choice(characters_names)
 eval(charac + "()")
