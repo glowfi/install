@@ -6,6 +6,7 @@ import subprocess
 import platform
 import os
 import re
+import random
 
 # INFO
 info = ["" for _ in range(8)]
@@ -93,19 +94,97 @@ field_colors = [
     "#d79921",
 ]
 
-print("")
-print(tcolor(f"           /           /                     ",color=field_colors[0],styles=["bold"]))
-print(tcolor(f"          /' .,,,,  ./                       ",color=field_colors[1],styles=["bold"]))
-print(tcolor(f"         /';'     ,/         | {info[0]}     ",color=field_colors[0],styles=["bold"]))
-print(tcolor(f"        / /   ,,//,`'`       | {info[1]}     ",color=field_colors[1],styles=["bold"]))
-print(tcolor(f"       ( ,, '_,  ,,,' ``     | {info[2]}     ",color=field_colors[2],styles=["bold"]))
-print(tcolor(f"       |    /@  ,,, ;'' `    | {info[3]}     ",color=field_colors[3],styles=["bold"]))
-print(tcolor(f"      /    .   ,''/' `,``    | {info[4]}     ",color=field_colors[4],styles=["bold"]))
-print(tcolor(f"     /   .     ./, `,, ` ;   | {info[5]}     ",color=field_colors[5],styles=["bold"]))
-print(tcolor(f"  ,./  .   ,-,',` ,,/''\,'   | {info[6]}     ",color=field_colors[6],styles=["bold"]))
-print(tcolor(f" |   /; ./,,'`,,'' |   |     | {info[7]}     ",color=field_colors[7],styles=["bold"]))
-print(tcolor(f" |     /   ','    /    |                     ",color=field_colors[7],styles=["bold"]))
-print(tcolor(f"  \___/'   '     |     |                     ",color=field_colors[6],styles=["bold"]))
-print(tcolor(f"    `,,'  |      /     `\                    ",color=field_colors[0],styles=["bold"]))
-print(tcolor(f"         /      |        \                   ",color=field_colors[1],styles=["bold"]))
-print("")
+
+def dragon():
+    print("")
+    print(tcolor(f"           /           /                     ",color=field_colors[0],styles=["bold"]))
+    print(tcolor(f"          /' .,,,,  ./                       ",color=field_colors[1],styles=["bold"]))
+    print(tcolor(f"         /';'     ,/         | {info[0]}     ",color=field_colors[0],styles=["bold"]))
+    print(tcolor(f"        / /   ,,//,`'`       | {info[1]}     ",color=field_colors[1],styles=["bold"]))
+    print(tcolor(f"       ( ,, '_,  ,,,' ``     | {info[2]}     ",color=field_colors[2],styles=["bold"]))
+    print(tcolor(f"       |    /@  ,,, ;'' `    | {info[3]}     ",color=field_colors[3],styles=["bold"]))
+    print(tcolor(f"      /    .   ,''/' `,``    | {info[4]}     ",color=field_colors[4],styles=["bold"]))
+    print(tcolor(f"     /   .     ./, `,, ` ;   | {info[5]}     ",color=field_colors[5],styles=["bold"]))
+    print(tcolor(f"  ,./  .   ,-,',` ,,/''\,'   | {info[6]}     ",color=field_colors[6],styles=["bold"]))
+    print(tcolor(f" |   /; ./,,'`,,'' |   |     | {info[7]}     ",color=field_colors[7],styles=["bold"]))
+    print(tcolor(f" |     /   ','    /    |                     ",color=field_colors[7],styles=["bold"]))
+    print(tcolor(f"  \___/'   '     |     |                     ",color=field_colors[6],styles=["bold"]))
+    print(tcolor(f"    `,,'  |      /     `\                    ",color=field_colors[0],styles=["bold"]))
+    print(tcolor(f"         /      |        \                   ",color=field_colors[1],styles=["bold"]))
+    print("")
+
+
+def monalisa():
+    print("")
+    print(tcolor(f"           ____                              ",color=field_colors[0],styles=["bold"]))
+    print(tcolor(f"         o8%8888,                            ",color=field_colors[4],styles=["bold"]))
+    print(tcolor(f"       o88%8888888.                          ",color=field_colors[6],styles=["bold"]))
+    print(tcolor(f"      8'-    -:8888b                         ",color=field_colors[1],styles=["bold"]))
+    print(tcolor(f"     8'         8888                         ",color=field_colors[2],styles=["bold"]))
+    print(tcolor(f"    d8.-=. ,==-.:888b                        ",color=field_colors[6],styles=["bold"]))
+    print(tcolor(f"    >8 `~` :`~' d8888        | {info[0]}     ",color=field_colors[0],styles=["bold"]))
+    print(tcolor(f"    88         ,88888        | {info[1]}     ",color=field_colors[1],styles=["bold"]))
+    print(tcolor(f"    88b. `-~  ':88888        | {info[2]}     ",color=field_colors[2],styles=["bold"]))
+    print(tcolor(f"    888b ~==~ .:88888        | {info[3]}     ",color=field_colors[3],styles=["bold"]))
+    print(tcolor(f"    88888o--:':::8888        | {info[4]}     ",color=field_colors[4],styles=["bold"]))
+    print(tcolor(f"    `88888| :::' 8888b       | {info[5]}     ",color=field_colors[5],styles=["bold"]))
+    print(tcolor(f"    8888^^'       8888b      | {info[6]}     ",color=field_colors[6],styles=["bold"]))
+    print(tcolor(f"   d888           ,%888b.    | {info[7]}     ",color=field_colors[7],styles=["bold"]))
+    print(tcolor(f"  d88%            %%%8--'-.                  ",color=field_colors[3],styles=["bold"]))
+    print(tcolor(f" /88:.__ ,       _%-' ---  -                 ",color=field_colors[2],styles=["bold"]))
+    print(tcolor(f"     '''::===..-'   =  --.  `                ",color=field_colors[0],styles=["bold"]))
+    print("")
+
+
+def casper():
+    print("")
+    print(tcolor(f"     .-''''-.                                ",color=field_colors[5],styles=["bold"]))
+    print(tcolor(f"    / -   -  \                               ",color=field_colors[7],styles=["bold"]))
+    print(tcolor(f"   |  .-. .- |           | {info[0]}         ",color=field_colors[0],styles=["bold"]))
+    print(tcolor(f"   |  \o| |o (           | {info[1]}         ",color=field_colors[1],styles=["bold"]))
+    print(tcolor(f"   \     ^    \          | {info[2]}         ",color=field_colors[2],styles=["bold"]))
+    print(tcolor(f"   |'.  )--'  /|         | {info[3]}         ",color=field_colors[3],styles=["bold"]))
+    print(tcolor(f"  / / '-. .-'`\ \        | {info[4]}         ",color=field_colors[4],styles=["bold"]))
+    print(tcolor(f" / /'---` `---'\ \       | {info[5]}         ",color=field_colors[5],styles=["bold"]))
+    print(tcolor(f" '.__.       .__.'       | {info[6]}         ",color=field_colors[6],styles=["bold"]))
+    print(tcolor(f"     `|     |`           | {info[7]}         ",color=field_colors[7],styles=["bold"]))
+    print(tcolor(f"      |     \                                ",color=field_colors[3],styles=["bold"]))
+    print(tcolor(f"      \      '--.                            ",color=field_colors[1],styles=["bold"]))
+    print(tcolor(f"       '.        `\                          ",color=field_colors[2],styles=["bold"]))
+    print(tcolor(f"         `'---.   |                          ",color=field_colors[6],styles=["bold"]))
+    print(tcolor(f"            ,__) /                           ",color=field_colors[0],styles=["bold"]))
+    print(tcolor(f"             `..'                            ",color=field_colors[1],styles=["bold"]))
+    print("")
+
+
+
+def egyptian():
+    print("")
+    print(tcolor(f"                 ?                                                      ",color=field_colors[6],styles=["bold"]))
+    print(tcolor(f"             ____'_                   |   |                             ",color=field_colors[2],styles=["bold"]))
+    print(tcolor(f"            /'  _)))                  |\_/|______,                      ",color=field_colors[1],styles=["bold"]))
+    print(tcolor(f"           /===| _\                  /::| Q  ____)         |{info[0]}   ",color=field_colors[0],styles=["bold"]))
+    print(tcolor(f"          ('___|   >   ,_           /:::|   /    ,_        |{info[1]}   ",color=field_colors[1],styles=["bold"]))
+    print(tcolor(f"             o  _=    / _///       /::::|_ /    / _///     |{info[2]}   ",color=field_colors[2],styles=["bold"]))
+    print(tcolor(f"       _______| |____/ |         _|:::::| |:___/ |         |{info[3]}   ",color=field_colors[3],styles=["bold"]))
+    print(tcolor(f"      |  __)  \_/ /____|        | '----'\_/  /___|         |{info[4]}   ",color=field_colors[4],styles=["bold"]))
+    print(tcolor(f"     _| / \    ) )             _| /  \   :  /              |{info[5]}   ",color=field_colors[5],styles=["bold"]))
+    print(tcolor(f"    \__/   \    /             \__/    \    /               |{info[6]}   ",color=field_colors[6],styles=["bold"]))
+    print(tcolor(f"           /   (                      /===(                |{info[7]}   ",color=field_colors[7],styles=["bold"]))
+    print(tcolor(f"          / \   \                    /     \                            ",color=field_colors[3],styles=["bold"]))
+    print(tcolor(f"         /   \   \                  /       \                           ",color=field_colors[2],styles=["bold"]))
+    print(tcolor(f"         |    \   \                 |        \                          ",color=field_colors[1],styles=["bold"]))
+    print(tcolor(f"         |     \   \                |         \                         ",color=field_colors[4],styles=["bold"]))
+    print(tcolor(f"         |      \   \               |,_________\                        ",color=field_colors[2],styles=["bold"]))
+    print(tcolor(f"         |       \   \               /  )  / )                          ",color=field_colors[1],styles=["bold"]))
+    print(tcolor(f"         |,_______\___\             /  /  (  |                          ",color=field_colors[0],styles=["bold"]))
+    print(tcolor(f"           | /   \ |                | /    \ |                          ",color=field_colors[7],styles=["bold"]))
+    print(tcolor(f"           |/     \|                |/      \|                          ",color=field_colors[6],styles=["bold"]))
+    print(tcolor(f"           S__     S__              S__      S__                        ",color=field_colors[5],styles=["bold"]))
+    print(tcolor(f"          /___\   /___\            /___\    /___\                       ",color=field_colors[4],styles=["bold"]))
+    print("")
+
+
+characters_names = ["dragon", "monalisa", "casper", "egyptian"]
+charac = random.choice(characters_names)
+eval(charac + "()")
