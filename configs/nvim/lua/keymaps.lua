@@ -47,3 +47,12 @@ vim.api.nvim_set_keymap('n', '<Leader>y', ':%y+<cr>', {noremap = true, silent = 
 
 -- Select all
 vim.api.nvim_set_keymap('n', '<c-a>', 'ggVG', {noremap = true, silent = true})
+
+-- Insert special characters
+vim.cmd("inoremap <c-a> ä") 
+vim.cmd("inoremap <m-a> Ä") 
+vim.cmd("inoremap <c-o> ö") 
+vim.cmd("inoremap <m-o> Ö") 
+vim.cmd("inoremap <c-u> ü") 
+vim.cmd("inoremap <m-u> Ü") 
+vim.cmd("inoremap <c-b> ß")
