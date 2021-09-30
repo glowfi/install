@@ -63,6 +63,9 @@ printf "Cleaned Cache!\n";
 sudo pacman -Rns (pacman -Qtdq)  2> /dev/null;
 yes | printf "Cleaned Orphans!"'
 
+# Upgrade
+alias upgrade='mirru;sudo pacman -Syyyu --noconfirm;yay -Syyyu --noconfirm'
+
 # Check-ur-requests alias
 alias checkur="checkur.py"
 
