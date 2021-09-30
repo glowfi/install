@@ -63,11 +63,10 @@ sudo rm -r neovim
 
 # COPY NEOVIM SETTINGS
 
-cp -r ~/install/nvim ~/.config
+cp -r ~/install/configs/nvim ~/.config
 nvim -c "PackerSync"
 nvim -c "PackerSync"
 nvim -c "PackerSync"
-echo "done"
 
 
 # CONFIGURING GIT ALIASES
