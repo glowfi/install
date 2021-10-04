@@ -38,16 +38,19 @@ rm -rf yay-bin
 sudo pacman -S --noconfirm zip unzip unrar p7zip lzop
 sudo pacman -S --noconfirm fish kitty imagemagick ttf-fantasque-sans-mono man-db noto-fonts-emoji
 yes | sudo pacman -S alsa-utils alsa-plugins pipewire pipewire-alsa pipewire-pulse pipewire-jack
-yay -S --noconfirm zramd dashbinsh nerd-fonts-fantasque-sans-mono
+yay -S --noconfirm zramd nerd-fonts-fantasque-sans-mono
 
 ### CDX
 sudo pacman -S --noconfirm postgresql redis python-pip gitui
 yay -S --noconfirm mongodb-bin
 
 ### PACK
-sudo pacman -S --noconfirm dolphin ark gwenview okular spectacle gimp
-yay -S --noconfirm brave-bin gimp-plugin-registry onlyoffice-bin timeshift
+sudo pacman -S --noconfirm dolphin ark gwenview okular spectacle 
+yay -S --noconfirm brave-bin onlyoffice-bin
 
+### OPTIONAL
+# sudo pacman -S --noconfirm gimp
+# yay -S --noconfirm gimp-plugin-registry timeshift dashbinsh
 
 # ENABLE ZRAM
 
