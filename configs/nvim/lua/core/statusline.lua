@@ -182,7 +182,7 @@ local get_attached_provider_name=function()
       if vim.bo.filetype == "dashboard" then
           return ""
       else
-        local msg = 'LS Inactive'
+        local msg = 'inactive'
         local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
         local clients = vim.lsp.get_active_clients()
         if next(clients) == nil then return msg end
@@ -204,20 +204,20 @@ local function available_LSP_Formatter_Linter()
   local a = ""
   local client=get_attached_provider_name()
 
-  if client == 'LSP Inactive' or client == ''  then
-    return client
+  if client == 'inactive' or client == ''  then
+    return 'LS:'..client
 
   else
-    a=a..client..' '
+    a='LS:'..a..client..' '
 
     if vim.bo.filetype == "javascript" or vim.bo.filetype == "typescript" or vim.bo.filetype == "javascriptreact" or vim.bo.filetype == "typescriptreact" or vim.bo.filetype == "css" or vim.bo.filetype == "html" or vim.bo.filetype == "json" then
-        a=a.."prettierd"
+        a=a.."F:prettierd"
 
     else
         for _, provider in pairs(null_ls.builtins.formatting) do
             if vim.tbl_contains(provider.filetypes or {}, filetype) then
                 if vim.fn.executable(provider.name) == 1 then
-                    a=a..provider.name
+                    a=a.."F:"..provider.name
                 end
             end
         end
@@ -226,7 +226,7 @@ local function available_LSP_Formatter_Linter()
     for _, provider in pairs(null_ls.builtins.diagnostics) do
         if vim.tbl_contains(provider.filetypes or {}, filetype) then
             if vim.fn.executable(provider.name) == 1 then
-                a=a..' '..provider.name
+                a=a..' '..'D:'..provider.name
                 break
             end
         end
