@@ -177,44 +177,43 @@ ins_right {
 
 
 
--- GET ATTACHED CLIENTS,FORMATTERS
+-- GET ATTACHED LANGUAGE SERVER,FORMATTERS,LINTERS
 local get_attached_provider_name=function()
-      if vim.bo.filetype == "dashboard" then
-          return "d"
-      else
-        local msg = 'inactive'
-        local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-        local clients = vim.lsp.get_active_clients()
-        if next(clients) == nil then return msg end
-        for _, client in ipairs(clients) do
-          local filetypes = client.config.filetypes
-          if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-              if client.name ~= "null-ls" then 
-                return client.name
-              end
+    local msg = 'inactive'
+    local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+    local clients = vim.lsp.get_active_clients()
+    if next(clients) == nil then return msg end
+    for _, client in ipairs(clients) do
+      local filetypes = client.config.filetypes
+      if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+          if client.name ~= "null-ls" then 
+            return client.name
           end
-        end
-        return msg
       end
     end
+    return msg
+end
 
 local null_ls = require "null-ls"
-local function available_LSP_Formatter_Linter()
+local function available_LS_Formatter_Linter()
   filetype=vim.bo.filetype
   local a = ""
+
+  -- Get attached language server
   local client=get_attached_provider_name()
 
-  if client == 'inactive' or client =='' then
+  if filetype == "dashboard" then
+    return ""
+  
+  elseif client == 'inactive' or client =='' then
     a=a..'LS:'..client..' '
   
-  elseif client == 'd'  then
-    return ""
-
   else
     a='LS:'..a..client..' '
   end
 
-  if vim.bo.filetype == "javascript" or vim.bo.filetype == "typescript" or vim.bo.filetype == "javascriptreact" or vim.bo.filetype == "typescriptreact" or vim.bo.filetype == "css" or vim.bo.filetype == "html" or vim.bo.filetype == "json" then
+  -- Get configured formatter
+  if filetype == "javascript" or filetype == "typescript" or filetype == "javascriptreact" or filetype == "typescriptreact" or filetype == "css" or filetype == "html" or filetype == "json" or filetype =="markdown" then
       a=a.."F:prettierd"
   
   else
@@ -227,10 +226,11 @@ local function available_LSP_Formatter_Linter()
       end
   end
 
+    -- Get configured linter
   for _, provider in pairs(null_ls.builtins.diagnostics) do
       if vim.tbl_contains(provider.filetypes or {}, filetype) then
           if vim.fn.executable(provider.name) == 1 then
-              a=a..' '..'D:'..provider.name
+              a=a..' '..'L:'..provider.name
               break
           end
       end
@@ -240,11 +240,11 @@ end
 
 -- LSP STATUS
 local get_attached_provider_name=function()
-      return available_LSP_Formatter_Linter()
+      return available_LS_Formatter_Linter()
 end
 
 ins_right {
-    available_LSP_Formatter_Linter,
+    available_LS_Formatter_Linter,
     icon = '',
     color = {fg = '#ffffff', gui = 'bold'}
 }
