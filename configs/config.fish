@@ -11,12 +11,12 @@
 # ===================================================================
 
 ## Path
-set PATH ~/node-v16.9.1-linux-x64/bin/ $PATH      # Sets NodeJS path
-set PATH ~/.local/bin/ $PATH                      # Sets Universal path
+set PATH ~/node-v16.9.1-linux-x64/bin/ $PATH # Sets NodeJS path
+set PATH ~/.local/bin/ $PATH # Sets Universal path
 
 ## Enhancements
-set fish_greeting                                 # Supresses fish's greeting message
-set TERM "xterm-256color"                         # Sets the terminal type
+set fish_greeting # Supresses fish's greeting message
+set TERM xterm-256color # Sets the terminal type
 
 # ===================================================================
 #                        Aliases
@@ -109,81 +109,81 @@ alias sg="searchContents"
 
 
 function git_is_repo -d "Check if directory is a repository"
-  test -d .git
-  or begin
-    set -l info (command git rev-parse --git-dir --is-bare-repository 2>/dev/null)
-    and test $info[2] = false
-  end
+    test -d .git
+    or begin
+        set -l info (command git rev-parse --git-dir --is-bare-repository 2>/dev/null)
+        and test $info[2] = false
+    end
 end
 
 
 function git_ahead -a ahead behind diverged none
-  not git_is_repo; and return
+    not git_is_repo; and return
 
-  set -l commit_count (command git rev-list --count --left-right "@{upstream}...HEAD" 2> /dev/null)
+    set -l commit_count (command git rev-list --count --left-right "@{upstream}...HEAD" 2> /dev/null)
 
-  switch "$commit_count"
-  case ""
-    # no upstream
-  case "0"\t"0"
-    test -n "$none"; and echo "$none"; or echo ""
-  case "*"\t"0"
-    test -n "$behind"; and echo "$behind"; or echo "-"
-  case "0"\t"*"
-    test -n "$ahead"; and echo "$ahead"; or echo "+"
-  case "*"
-    test -n "$diverged"; and echo "$diverged"; or echo "±"
-  end
+    switch "$commit_count"
+        case ""
+            # no upstream
+        case "0"\t"0"
+            test -n "$none"; and echo "$none"; or echo ""
+        case "*"\t"0"
+            test -n "$behind"; and echo "$behind"; or echo -
+        case "0"\t"*"
+            test -n "$ahead"; and echo "$ahead"; or echo "+"
+        case "*"
+            test -n "$diverged"; and echo "$diverged"; or echo "±"
+    end
 end
 
 
 function git_branch_name -d "Get current branch name"
-  git_is_repo; and begin
-    command git symbolic-ref --short HEAD 2> /dev/null;
-      or command git show-ref --head -s --abbrev | head -n1 2> /dev/null
-  end
+    git_is_repo; and begin
+        command git symbolic-ref --short HEAD 2>/dev/null
+        or command git show-ref --head -s --abbrev | head -n1 2>/dev/null
+    end
 end
 
 
 function git_is_dirty -d "Check if there are changes to tracked files"
-  git_is_worktree; and not command git diff --no-ext-diff --quiet --exit-code
+    git_is_worktree; and not command git diff --no-ext-diff --quiet --exit-code
 end
 
 
 function git_is_staged -d "Check if repo has staged changes"
-  git_is_repo; and begin
-    not command git diff --cached --no-ext-diff --quiet --exit-code
-  end
+    git_is_repo; and begin
+        not command git diff --cached --no-ext-diff --quiet --exit-code
+    end
 end
 
 
 function git_is_stashed -d "Check if repo has stashed contents"
-  git_is_repo; and begin
-    command git rev-parse --verify --quiet refs/stash >/dev/null
-  end
+    git_is_repo; and begin
+        command git rev-parse --verify --quiet refs/stash >/dev/null
+    end
 end
 
 
 function git_is_touched -d "Check if repo has any changes"
-  git_is_worktree; and begin
-    # The first checks for staged changes, the second for unstaged ones.
-    # We put them in this order because checking staged changes is *fast*.
-    not command git diff-index --cached --quiet HEAD -- >/dev/null 2>&1
-    or not command git diff --no-ext-diff --quiet --exit-code >/dev/null 2>&1
-  end
+    git_is_worktree; and begin
+        # The first checks for staged changes, the second for unstaged ones.
+        # We put them in this order because checking staged changes is *fast*.
+        not command git diff-index --cached --quiet HEAD -- >/dev/null 2>&1
+        or not command git diff --no-ext-diff --quiet --exit-code >/dev/null 2>&1
+    end
 end
 
 
 function git_is_worktree -d "Check if directory is inside the worktree of a repository"
-  git_is_repo
-  and test (command git rev-parse --is-inside-git-dir) = false
+    git_is_repo
+    and test (command git rev-parse --is-inside-git-dir) = false
 end
 
 
 function git_untracked -d "Print list of untracked files"
-  git_is_worktree; and begin
-    command git ls-files --other --exclude-standard
-  end
+    git_is_worktree; and begin
+        command git ls-files --other --exclude-standard
+    end
 end
 
 # ===================================================================
@@ -196,57 +196,58 @@ set node_loc_var (echo $node_loc_var | cut -d '/' -f4 )
 
 # Search Files in current working directory
 function searchFilesCurrent
-  fd --exclude "$node_loc_var" --type f . | fzf --reverse --height 10 | read -t args
-  if test -z "$args"
-    echo "Exited from searching current files in current working directory!"
-  else
-    nvim $args
-  end
+    fd --exclude "$node_loc_var" --type f . | fzf --reverse --height 10 | read -t args
+    if test -z "$args"
+        echo "Exited from searching current files in current working directory!"
+    else
+        nvim $args
+    end
 end
 
 
 # Search Directories in current working directory
 function searchDirCurrent
-  fd --exclude "$node_loc_var" --type d . | fzf --reverse --height 10 | read -t args
-  if test -z "$args"
-    echo "Exited from searching directories in current working directory!"
-  else
-    cd $args
-  end
+    fd --exclude "$node_loc_var" --type d . | fzf --reverse --height 10 | read -t args
+    if test -z "$args"
+        echo "Exited from searching directories in current working directory!"
+    else
+        cd $args
+    end
 end
 
 
 # Search Inside Files
 function searchContents
-  rg --line-number -g "!$node_loc_var" -g "!./.*" -g "!node_modules"  .  | awk '{ print $0 }' | fzf --preview 'set loc {};set loc1 (string split ":" {} -f2);set loc (string split ":" {} -f1);bat --theme "gruvbox-dark" --style numbers,changes --color=always --highlight-line $loc1 --line-range $loc1: $loc'| awk -F':' '{ print $1 " " $2}' | read -t args
-  set fl (string split " " $args -f1)
-  set ln (string split " " $args -f2)
-  if test -z "$fl"
-    echo "Exited from searching contents of current working directory files!"
-  else
-    nvim -c ".+$ln" $fl
-  end
+    rg --line-number -g "!$node_loc_var" -g "!./.*" -g "!node_modules" . | awk '{ print $0 }' | fzf --preview 'set loc {};set loc1 (string split ":" {} -f2);set loc (string split ":" {} -f1);bat --theme "gruvbox-dark" --style numbers,changes --color=always --highlight-line $loc1 --line-range $loc1: $loc' | awk -F':' '{ print $1 " " $2}' | read -t args
+    set fl (string split " " $args -f1)
+    set ln (string split " " $args -f2)
+    if test -z "$fl"
+        echo "Exited from searching contents of current working directory files!"
+    else
+        nvim -c ".+$ln" $fl
+    end
 end
 
 
 # Bang-Bang Function
 function __history_previous_command
-  switch (commandline -t)
-  case "!"
-    commandline -t $history[1]; commandline -f repaint
-  case "*"
-    commandline -i !
-  end
+    switch (commandline -t)
+        case "!"
+            commandline -t $history[1]
+            commandline -f repaint
+        case "*"
+            commandline -i !
+    end
 end
 
 function __history_previous_command_arguments
-  switch (commandline -t)
-  case "!"
-    commandline -t ""
-    commandline -f history-token-search-backward
-  case "*"
-    commandline -i '$'
-  end
+    switch (commandline -t)
+        case "!"
+            commandline -t ""
+            commandline -f history-token-search-backward
+        case "*"
+            commandline -i '$'
+    end
 end
 
 # Binding Bang-Bang Function
@@ -254,7 +255,7 @@ bind ! __history_previous_command
 bind '$' __history_previous_command_arguments
 
 # set up the same key bindings for insert mode if using fish_vi_key_bindings
-if test "$fish_key_bindings" = 'fish_vi_key_bindings'
+if test "$fish_key_bindings" = fish_vi_key_bindings
     bind --mode insert ! __history_previous_command
     bind --mode insert '$' __history_previous_command_arguments
 end
@@ -337,7 +338,7 @@ end
 
 # Fish Title 
 function fish_title
-    echo "fish"
+    echo fish
 end
 
 
@@ -345,31 +346,31 @@ end
 #                   Syntax Highlighting Colors
 # ===================================================================
 
- set -U fish_color_normal normal
- set -U fish_color_command 99cc99
- set -U fish_color_quote ffcc66
- set -U fish_color_redirection d3d0c8
- set -U fish_color_end cc99cc
- set -U fish_color_error f2777a
- set -U fish_color_param d3d0c8
- set -U fish_color_comment ffcc66
- set -U fish_color_match 6699cc
- set -U fish_color_selection white --bold --background=brblack
- set -U fish_color_search_match bryellow --background=brblack
- set -U fish_color_history_current --bold
- set -U fish_color_operator 6699cc
- set -U fish_color_escape 66cccc
- set -U fish_color_cwd_root red
- set -U fish_color_cwd green
- set -U fish_color_autosuggestion 747369
- set -U fish_color_valid_path --underline
- set -U fish_color_user brgreen
- set -U fish_color_host normal
- set -U fish_color_cancel -r
- set -U fish_pager_color_completion normal
- set -U fish_pager_color_description B3A06D yellow
- set -U fish_pager_color_prefix normal --bold --underline
- set -U fish_pager_color_progress brwhite --background=cyan
+set -U fish_color_normal normal
+set -U fish_color_command 99cc99
+set -U fish_color_quote ffcc66
+set -U fish_color_redirection d3d0c8
+set -U fish_color_end cc99cc
+set -U fish_color_error f2777a
+set -U fish_color_param d3d0c8
+set -U fish_color_comment ffcc66
+set -U fish_color_match 6699cc
+set -U fish_color_selection white --bold --background=brblack
+set -U fish_color_search_match bryellow --background=brblack
+set -U fish_color_history_current --bold
+set -U fish_color_operator 6699cc
+set -U fish_color_escape 66cccc
+set -U fish_color_cwd_root red
+set -U fish_color_cwd green
+set -U fish_color_autosuggestion 747369
+set -U fish_color_valid_path --underline
+set -U fish_color_user brgreen
+set -U fish_color_host normal
+set -U fish_color_cancel -r
+set -U fish_pager_color_completion normal
+set -U fish_pager_color_description B3A06D yellow
+set -U fish_pager_color_prefix normal --bold --underline
+set -U fish_pager_color_progress brwhite --background=cyan
 
 
 # ===================================================================

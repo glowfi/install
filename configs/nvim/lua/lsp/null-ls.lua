@@ -17,12 +17,16 @@ local sources = {
           "markdown"
         },
       },
+        b.formatting.fish_indent.with {
+        filetypes = {"fish"},
+    },
         b.formatting.black.with {
         filetypes = {"python"},
     },
         b.diagnostics.flake8.with {
         filetypes = {"python"},
-    }
+    },
+       
 }
 
 local M = {}

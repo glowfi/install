@@ -206,7 +206,7 @@ local function available_LS_Formatter_Linter()
     return ""
   
   elseif client == 'inactive' or client =='' then
-    a=a..'LS:'..client..' '
+    a=''
   
   else
     a='LS:'..a..client..' '
