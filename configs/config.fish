@@ -268,10 +268,20 @@ end
 function fish_prompt
     set -l last_command_status $status
 
+    set_color red --bold
+    printf "["
+    set_color blue
+    printf "%s" "$USER"
+    set_color green
+    printf "@"
+    set_color yellow
+    printf "%s" "$hostname "
     set_color C7ECEC
     printf (pwd | sed "s|^$HOME|~|")
+    set_color red --bold
+    printf "] "
     set_color ffc04d
-    printf '%s' ' --> '
+    printf '%s' '-> '
 
     set -l normal_color (set_color normal)
     set -l branch_color (set_color yellow)

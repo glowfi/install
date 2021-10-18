@@ -31,8 +31,8 @@ cmp.setup {
       select = true,
     },
     ["<Tab>"] = cmp.mapping(function()
-        if vim.fn.pumvisible() == 1 then
-          vim.fn.feedkeys(T "<down>", "n")
+        if cmp.visible() then
+          cmp.select_next_item()
         elseif vim.fn['vsnip#jumpable(1)'] then
           vim.fn.feedkeys(T "<Plug>(vsnip-jump-next)", "")
         elseif check_backspace() then
@@ -45,8 +45,8 @@ cmp.setup {
         "s",
       }),
     ["<S-Tab>"] = cmp.mapping(function(fallback)
-        if vim.fn.pumvisible() == 1 then
-          vim.fn.feedkeys(T "<up>", "n")
+        if cmp.visible() then
+          cmp.select_prev_item()
         elseif vim.fn['vsnip#jumpable(-1)'] then
           vim.fn.feedkeys(T "<Plug>(vsnip-jump-prev)", "")
         else
