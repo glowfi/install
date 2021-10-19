@@ -44,11 +44,7 @@
     "editor.fontLigatures": true,
     "editor.fontSize": 15,
     "workbench.colorTheme": "Gruvbox Minor Dark Medium",
-    "bracket-pair-colorizer-2.colors": [
-        "Gold",
-        "Orchid",
-        "LightSkyBlue"
-    ],
+    "bracket-pair-colorizer-2.colors": ["Gold", "Orchid", "LightSkyBlue"],
     "indentRainbow.colors": [
         "rgba(250, 189, 47, 0.05)",
         "rgba(142, 192, 124, 0.05)",
@@ -56,5 +52,5 @@
         "rgba(211, 134, 155, 0.05)",
         "rgba(254, 128, 25, 0.05)"
     ],
-    "indentRainbow.errorColor": "rgba(251, 73, 52, 0.2)",
+    "indentRainbow.errorColor": "rgba(251, 73, 52, 0.2)"
 }
