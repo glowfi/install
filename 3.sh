@@ -96,6 +96,7 @@ cp -r ~/install/configs/config.fish ~/.config/fish/
 
 # INSTALL AND COPY NNN FM SETTINGS
 
+sudo pacman -S --noconfirm trash-cli
 git clone https://github.com/jarun/nnn
 cd nnn
 sudo make O_NERD=1 install
