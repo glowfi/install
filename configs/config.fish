@@ -48,6 +48,19 @@ alias gt='gitui'
 
 # Neovim aliases
 alias v='nvim'
+alias upgv='sudo rm /usr/local/bin/nvim;
+sudo rm -r /usr/local/share/nvim;
+rm -rf ~/.config/nvim;
+rm -rf ~/.local/share/nvim;
+git clone https://github.com/neovim/neovim --depth 1;
+cd neovim;
+sudo make CMAKE_BUILD_TYPE=Release install;
+cd ..;
+sudo rm -r neovim;
+cp -r ~/install/configs/nvim ~/.config;
+nvim -c "PackerSync";
+nvim -c "PackerSync";
+nvim -c "PackerSync"'
 
 # Synchronize mirrorlist
 alias mirru='sudo rm -rf /var/lib/pacman/db.lck;
