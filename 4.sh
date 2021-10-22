@@ -31,15 +31,23 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 # INSTALL CHECKUR
 
+mkdir -p ~/.local/bin
 pip install rich
-cp -r ~/install/scripts/checkur.py ~/.local/bin/
+git clone https://github.com/glowfi/check-ur-requests
+cd check-ur-requests
+cp -r ./checkur.py ~/.local/bin/
+cd ..
+rm -rf check-ur-requests
 chmod +x ~/.local/bin/checkur.py
 
 # INSTALL xhibit
 
 pip install tcolorpy
-mkdir -p ~/.local/bin
-cp -r ~/install/scripts/xhibit.py ~/.local/bin/
+git clone https://github.com/glowfi/xhibit
+cd xhibit
+cp -r ./xhibit.py ~/.local/bin/
+cd ..
+rm -rf xhibit
 chmod +x ~/.local/bin/xhibit.py
 
 # SETUP POSTGRES
