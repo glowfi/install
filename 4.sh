@@ -14,7 +14,7 @@ pyppeteer-install
 
 # DOWNLOAD NODEJS
 
-wget https://nodejs.org/dist/v16.9.1/node-v16.9.1-linux-x64.tar.xz -O ~/node.tar.xz
+wget https://nodejs.org/dist/v17.0.1/node-v17.0.1-linux-x64.tar.xz -O ~/node.tar.xz
 tar -xf ~/node.tar.xz -C ~
 rm -rf ~/node.tar.xz
 
