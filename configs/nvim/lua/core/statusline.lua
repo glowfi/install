@@ -126,6 +126,7 @@ local PythonVer = function()
     local s=var:sub(1, -2)
     return s
   end
+    return ""
 end
 
 -- Node Version
@@ -137,6 +138,7 @@ local NodeVer = function()
     local s=var:sub(1, -2)
     return "node " .. s
   end
+    return ""
 end
 
 ins_left {
@@ -258,6 +260,7 @@ local name=function()
       if vim.bo.filetype == "dashboard" then
           return "NVIM"
       end
+      return ""
 end
 
 ins_right {
