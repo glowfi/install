@@ -6,7 +6,6 @@ vim.cmd([[colorscheme gruvbox]])
 vim.cmd "set cursorline"
 vim.cmd "highlight clear CursorLine"
 vim.cmd "highlight CursorLineNR guifg=#fabd2f guibg=none ctermbg=none ctermfg=none"
-vim.cmd "highlight LineNR guifg=#fabd2f guibg=none ctermbg=none ctermfg=none"
 
 -- Transparency
 vim.cmd "hi! Normal ctermbg=NONE guibg=NONE"
