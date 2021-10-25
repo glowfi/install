@@ -404,7 +404,7 @@ set -U fish_pager_color_progress brwhite --background=cyan
 export EDITOR=nvim
 
 # Bar as Manpager
-set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
+set -x MANPAGER "sh -c 'col -bx | bat --theme=gruvbox-dark -l man -p'"
 
 # NNN File Manager
 export NNN_PLUG='f:fzcd;o:fzopen;p:preview-tui;'
