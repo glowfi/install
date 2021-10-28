@@ -1,7 +1,4 @@
 -- Settings
-vim.o.completeopt = "menu,menuone,noselect"
-vim.cmd "let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']"
-
 local check_backspace = function()
   local col = vim.fn.col "." - 1
   return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
@@ -28,7 +25,7 @@ cmp.setup {
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
+      select = false,
     },
     ["<Tab>"] = cmp.mapping(function()
         if cmp.visible() then
@@ -73,6 +70,15 @@ cmp.setup {
     { name = 'buffer' },
     { name = 'vsnip' }
   },
+
+  completion = {
+      completeopt = "menu,menuone,noinsert",
+      keyword_length = 1,
+    },
+    experimental = {
+      ghost_text = true,
+      native_menu = false,
+    },
 
   formatting = {
   format = function(entry, vim_item)
