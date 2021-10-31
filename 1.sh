@@ -3,6 +3,7 @@
 # SYNCHRONIZE
 
 timedatectl set-ntp true
+sed -i 's/^#Para/Para/' /etc/pacman.conf
 pacman -Syyy
 reflector --verbose --country Germany -l 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
