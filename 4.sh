@@ -7,7 +7,7 @@ pip install virtualenv
 
 # JUPYTER SETUP
 
-pip install notebook-as-pdf  jupyter_contrib_nbextensions jupyter_nbextensions_configurator
+pip install notebook-as-pdf  jupyter_contrib_nbextensions jupyter_nbextensions_configurator nbconvert
 jupyter contrib nbextension install --user
 jupyter nbextensions_configurator enable --user
 pyppeteer-install
