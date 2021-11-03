@@ -49,7 +49,7 @@ sudo pacman -S --noconfirm dolphin ark gwenview okular spectacle
 yay -S --noconfirm brave-bin onlyoffice-bin
 
 ### OPTIONAL
-# sudo pacman -S --noconfirm gimp kdenlive ffmpeg ffmpegthumbs youtube-dl simplescreenrecorder
+# sudo pacman -S --noconfirm gimp kdenlive ffmpeg ffmpegthumbs youtube-dl simplescreenrecorder mpv
 # yay -S --noconfirm gimp-plugin-registry timeshift dashbinsh
 
 # ENABLE ZRAM
