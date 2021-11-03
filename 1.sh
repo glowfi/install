@@ -3,7 +3,8 @@
 # SYNCHRONIZE
 
 timedatectl set-ntp true
-sed -i 's/^#Para/Para/' /etc/pacman.conf
+sed -i 's/#Color/Color\nILoveCandy/' /etc/pacman.conf
+sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 5/' /etc/pacman.conf
 pacman -Syyy
 reflector --verbose --country Germany -l 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 

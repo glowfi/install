@@ -7,6 +7,11 @@ sudo hwclock --systohc
 sudo reflector --verbose --country Germany -l 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 sudo pacman -Syy
 
+# ADD FEATURES TO pacman.conf
+
+sudo sed -i 's/#Color/Color\nILoveCandy/' /etc/pacman.conf
+sudo sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 5/' /etc/pacman.conf
+sudo pacman -Syy
 
 # DISPLAY
 
@@ -56,11 +61,6 @@ yay -S --noconfirm brave-bin onlyoffice-bin
 
 sudo sed -i '8s/.*/MAX_SIZE=724/' /etc/default/zramd
 sudo systemctl enable --now zramd
-
-# ADD FEATURES TO pacman.conf
-
-sudo sed -i 's/#Color/Color\nILoveCandy/' /etc/pacman.conf
-sudo sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 5/' /etc/pacman.conf
 
 # ADD FEATURES TO sudoers
 
