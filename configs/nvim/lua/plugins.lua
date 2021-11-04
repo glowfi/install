@@ -79,13 +79,6 @@ return require('packer').startup(function(use)
          requires = {'kyazdani42/nvim-web-devicons'},
          event = "BufRead",
          config = [[require('core.bufferline')]],
-         setup = function()
-            vim.g.indent_blankline_filetype_exclude = {
-            "help",
-            "terminal",
-            "dashboard",
-            }
-        end
         }
 
     -- Colorizer
@@ -135,6 +128,7 @@ return require('packer').startup(function(use)
     "help",
     "terminal",
     "dashboard",
+    "packer",
     }
     vim.g.indent_blankline_buftype_exclude = { "terminal" }
 
