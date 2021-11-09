@@ -46,11 +46,11 @@ yes | sudo pacman -S alsa-utils alsa-plugins pipewire pipewire-alsa pipewire-pul
 yay -S --noconfirm zramd nerd-fonts-fantasque-sans-mono
 
 ### CDX
-sudo pacman -S --noconfirm postgresql redis python-pip gitui
+sudo pacman -S --noconfirm postgresql redis python-pip gitui github-cli
 yay -S --noconfirm mongodb-bin
 
 ### PACK
-sudo pacman -S --noconfirm dolphin ark gwenview okular spectacle 
+sudo pacman -S --noconfirm dolphin ark gwenview okular flameshot 
 yay -S --noconfirm brave-bin onlyoffice-bin
 
 ### OPTIONAL

@@ -12,7 +12,7 @@
 
 ## Toggle Panel
 #alt + p
-    qdbus org.kde.plasmashell /PlasmaShell evaluateScript "p = panelById(panelIds[0]); p.height = p.height === >=25?-1:25;"
+    qdbus org.kde.plasmashell /PlasmaShell evaluateScript "p = panelById(panelIds[0]); p.height = p.height>=25?-1:25;"
 
 ## Toggle Tiling/Floating mode
 #alt + t
@@ -55,6 +55,10 @@
 ## Code Editor
 #super + n
     kitty -e "nvim"
+
+## Screenshot
+#alt + s
+    flameshot gui
 
 ## Dmenu
 #super + w
