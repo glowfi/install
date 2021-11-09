@@ -10,13 +10,9 @@
 #super + u
     systemsettings5
 
-## Show Panel
-#alt + s
-    qdbus org.kde.plasmashell /PlasmaShell evaluateScript "p = panelById(panelIds[0]); p.height = 25;"
-
-## Hide Panel
-#alt + h
-    qdbus org.kde.plasmashell /PlasmaShell evaluateScript "p = panelById(panelIds[0]); p.height = -1;"
+## Toggle Panel
+#alt + p
+    qdbus org.kde.plasmashell /PlasmaShell evaluateScript "p = panelById(panelIds[0]); p.height = p.height === >=25?-1:25;"
 
 ## Toggle Tiling/Floating mode
 #alt + t
