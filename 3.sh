@@ -20,7 +20,7 @@ sudo pacman -S --noconfirm xorg-server xf86-video-amdgpu
 
 # DE
 
-sudo pacman -S --noconfirm plasma-desktop plasma-workspace plasma-nm plasma-pa
+sudo pacman -S --noconfirm plasma-desktop plasma-workspace plasma-nm plasma-pa qt5-tools
 
 sudo pacman -S --noconfirm breeze breeze-gtk kde-gtk-config kdecoration
 
