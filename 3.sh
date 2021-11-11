@@ -53,6 +53,13 @@ yay -S --noconfirm mongodb-bin
 sudo pacman -S --noconfirm dolphin ark gwenview okular flameshot 
 yay -S --noconfirm brave-bin onlyoffice-bin
 
+### TERMINAL
+sudo pacman -S --noconfirm fortune-mod figlet lolcat cmatrix asciiquarium cowsay
+yay -S --noconfirm toilet toilet-fonts
+git clone https://github.com/xero/figlet-fonts
+sudo cp -r figlet-fonts/* /usr/share/figlet/fonts
+rm -rf figlet-fonts
+
 ### OPTIONAL
 # sudo pacman -S --noconfirm gimp kdenlive ffmpeg ffmpegthumbs youtube-dl simplescreenrecorder mpv
 # yay -S --noconfirm gimp-plugin-registry timeshift dashbinsh

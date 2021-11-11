@@ -61,7 +61,7 @@ sudo su - postgres -c "(echo $USER;echo 'password';echo 'password';echo y;)|crea
 pip install neovim ueberzug black flake8
 npm i -g neovim typescript typescript-language-server pyright vscode-langservers-extracted ls_emmet @fsouza/prettierd eslint_d diagnostic-languageserver browser-sync
 npx npm-check-updates -g
-sudo pacman -S --noconfirm cmake unzip ninja tree-sitter xclip fortune-mod
+sudo pacman -S --noconfirm cmake unzip ninja tree-sitter xclip
 git clone https://github.com/neovim/neovim --depth 1
 cd neovim
 sudo make CMAKE_BUILD_TYPE=Release install
