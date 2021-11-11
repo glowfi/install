@@ -54,7 +54,7 @@ sudo pacman -S --noconfirm dolphin ark gwenview okular flameshot
 yay -S --noconfirm brave-bin onlyoffice-bin
 
 ### TERMINAL TOMFOOLERY
-sudo pacman -S --noconfirm fortune-mod figlet lolcat cmatrix asciiquarium cowsay
+sudo pacman -S --noconfirm fortune-mod figlet lolcat cmatrix asciiquarium cowsay ponysay
 yay -S --noconfirm toilet toilet-fonts
 git clone https://github.com/xero/figlet-fonts
 sudo cp -r figlet-fonts/* /usr/share/figlet/fonts
