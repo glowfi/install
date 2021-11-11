@@ -55,8 +55,7 @@ yay -S --noconfirm brave-bin onlyoffice-bin
 
 ### TERMINAL TOMFOOLERY
 sudo pacman -S --noconfirm fortune-mod figlet lolcat cmatrix asciiquarium cowsay
-sudo pacman -S --noconfirm xorg-font-util xorg-fonts-100dpi xorg-fonts-75dpi xorg-fonts-alias-100dpi xorg-fonts-alias-75dpi xorg-fonts-encodings xorg-fonts-misc xorg-fonts-type1 xorg-mkfontscale python-aafigure aalib
-yay -S --noconfirm toilet toilet-fonts bb
+yay -S --noconfirm toilet toilet-fonts
 git clone https://github.com/xero/figlet-fonts
 sudo cp -r figlet-fonts/* /usr/share/figlet/fonts
 rm -rf figlet-fonts
