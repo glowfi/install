@@ -53,12 +53,18 @@ yay -S --noconfirm mongodb-bin
 sudo pacman -S --noconfirm dolphin ark gwenview okular flameshot 
 yay -S --noconfirm brave-bin onlyoffice-bin
 
-### TERMINAL
+### TERMINAL TOMFOOLERY
 sudo pacman -S --noconfirm fortune-mod figlet lolcat cmatrix asciiquarium cowsay
-yay -S --noconfirm toilet toilet-fonts
+sudo pacman -S --noconfirm xorg-font-util xorg-fonts-100dpi xorg-fonts-75dpi xorg-fonts-alias-100dpi xorg-fonts-alias-75dpi xorg-fonts-encodings xorg-fonts-misc xorg-fonts-type1 xorg-mkfontscale python-aafigure aalib
+yay -S --noconfirm toilet toilet-fonts bb
 git clone https://github.com/xero/figlet-fonts
 sudo cp -r figlet-fonts/* /usr/share/figlet/fonts
 rm -rf figlet-fonts
+git clone https://github.com/xorg62/tty-clock
+cd tty-clock
+sudo make clean install
+cd ..
+rm -rf tty-clock
 
 ### OPTIONAL
 # sudo pacman -S --noconfirm gimp kdenlive ffmpeg ffmpegthumbs youtube-dl simplescreenrecorder mpv
