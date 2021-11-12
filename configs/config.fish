@@ -11,7 +11,7 @@
 # ===================================================================
 
 ## Path
-set PATH ~/node-v17.1.0-linux-x64/bin/ $PATH # Sets NodeJS path
+set PATH ~/node-v17.0.1-linux-x64/bin/ $PATH # Sets NodeJS path
 set PATH ~/.local/bin/ $PATH # Sets Universal path
 
 ## Enhancements
@@ -325,10 +325,10 @@ function fish_prompt
             set -l behind (echo $commit_count | cut -f 1)
             set -l ahead (echo $commit_count | cut -f 2)
             if test $behind -gt 0
-                set git_meta "$purple🠋"
+                set git_meta "$purple↑"
             end
             if test $ahead -gt 0
-                set git_meta "$purple🠉"
+                set git_meta "$purple↓"
             end
         end
         if test $git_meta
