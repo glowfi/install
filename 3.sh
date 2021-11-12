@@ -18,17 +18,6 @@ sudo pacman -Syy
 sudo pacman -S --noconfirm xorg-server xf86-video-amdgpu
 
 
-# DE
-
-sudo pacman -S --noconfirm plasma-desktop plasma-workspace plasma-nm plasma-pa qt5-tools
-
-sudo pacman -S --noconfirm breeze breeze-gtk kde-gtk-config kdecoration
-
-sudo pacman -S --noconfirm powerdevil xdg-desktop-portal-kde
-
-sudo pacman -S --noconfirm kwrited kwin kgamma5 khotkeys kinfocenter kscreen systemsettings sddm sddm-kcm
-
-
 # AUR HELPER
 
 git clone https://aur.archlinux.org/yay-bin.git
@@ -50,7 +39,8 @@ sudo pacman -S --noconfirm postgresql redis python-pip gitui github-cli
 yay -S --noconfirm mongodb-bin
 
 ### PACK
-sudo pacman -S --noconfirm dolphin ark gwenview okular flameshot 
+# sudo pacman -S --noconfirm dolphin ark gwenview okular flameshot 
+sudo pacman -S --noconfirm pacmanfm ark gwenview okular flameshot 
 yay -S --noconfirm brave-bin onlyoffice-bin
 
 ### TERMINAL TOMFOOLERY
@@ -77,14 +67,6 @@ sudo systemctl enable --now zramd
 # ADD FEATURES TO sudoers
 
 sudo sed -i '71s/.*/Defaults insults/' /etc/sudoers
-
-# REMOVE KWALLET
-
-sudo rm -rf /usr/share/dbus-1/services/org.kde.kwalletd5.service
-
-# ENABLE SDDM
-
-sudo systemctl enable sddm
 
 # SETUP APPARMOR
 
@@ -124,20 +106,6 @@ sed -i '182d' ~/.config/nnn/plugins/preview-tui
 # COPY KITTY SETTINGS
 
 cp -r ~/install/configs/kitty ~/.config/
-
-# REGISTER KITTY IN DOLPHIN
-
-mkdir -p ~/.local/share/kservices5
-cp -r ~/install/configs/kittyhere.desktop ~/.local/share/kservices5
-
-# SETUP DXHD
-
-yay -S --noconfirm dxhd-bin
-mkdir -p ~/.config/dxhd
-cp -r ~/install/configs/dxhd/dxhd.sh ~/.config/dxhd
-mkdir -p ~/.config/systemd/user
-cp -r ~/install/configs/dxhd/dxhd.service ~/.config/systemd/user
-systemctl --user enable dxhd.service
 
 # CHANGE DEFAULT SHELL
 
