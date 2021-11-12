@@ -11,7 +11,7 @@
 # ===================================================================
 
 ## Path
-set PATH ~/node-v17.0.1-linux-x64/bin/ $PATH # Sets NodeJS path
+set PATH ~/node-v17.1.0-linux-x64/bin/ $PATH # Sets NodeJS path
 set PATH ~/.local/bin/ $PATH # Sets Universal path
 
 ## Enhancements
@@ -41,7 +41,7 @@ alias top='btm --mem_as_value --color gruvbox'
 alias n='nnn -d -e'
 
 # Reload dxhd
-alias dxrel='systemctl --user reload dxhd.service'
+alias dxrel='dxhd -r'
 
 # Git aliases
 alias gt='gitui'
@@ -105,6 +105,10 @@ alias saur="yay -Slq | fzf -m --preview 'yay -Si {1}' | xargs -ro yay -S"
 
 # Uninstall Packages
 alias pacu="pacman -Q | cut -f 1 -d ' ' | fzf -m --preview 'yay -Si {1}' | xargs -ro sudo pacman -Rns"
+
+# Brightness up 
+alias bu="brightnessctl s 30+"
+alias bd="brightnessctl s 30-"
 
 # Find files in current location and open in editor
 alias sf="searchFilesCurrent"
