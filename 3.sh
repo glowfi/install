@@ -56,7 +56,7 @@ cd ..
 rm -rf tty-clock
 
 ### OPTIONAL
-# sudo pacman -S --noconfirm gimp kdenlive ffmpeg ffmpegthumbs youtube-dl simplescreenrecorder mpv
+# sudo pacman -S --noconfirm gimp kdenlive ffmpeg ffmpegthumbnailer youtube-dl simplescreenrecorder mpv
 # yay -S --noconfirm gimp-plugin-registry timeshift dashbinsh
 
 # ENABLE ZRAM
