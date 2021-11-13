@@ -6,11 +6,9 @@
 
 ## Logout/Restart/Shutdown
 #super+x 
-    chosen=$(echo -e "[Cancel]\nLogout\nShutdown\nReboot\nLock" | dmenu -i)
+    chosen=$(echo -e "[Cancel]\nShutdown\nReboot\nLock" | dmenu -i)
 
-    if [[ $chosen = "Logout" ]]; then
-        killall dwm
-    elif [[ $chosen = "Shutdown" ]]; then
+    if [[ $chosen = "Shutdown" ]]; then
         systemctl poweroff
     elif [[ $chosen = "Reboot" ]]; then
         systemctl reboot
