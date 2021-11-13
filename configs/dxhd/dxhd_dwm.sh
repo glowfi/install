@@ -6,7 +6,19 @@
 
 ## Logout/Restart/Shutdown
 #super+x 
-    qdbus org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1
+    chosen=$(echo -e "[Cancel]\nLogout\nShutdown\nReboot\nLock" | dmenu -i)
+
+    if [[ $chosen = "Logout" ]]; then
+        killall dwm
+    elif [[ $chosen = "Shutdown" ]]; then
+        systemctl poweroff
+    elif [[ $chosen = "Reboot" ]]; then
+        systemctl reboot
+    elif [[ $chosen = "Lock" ]]; then
+        slock
+    elif [[ $chosen = "[Cancel]" ]]; then
+        notify-send -t 1000 "Program terminated!" 
+    fi
 
 ### Global bindings
 
@@ -33,3 +45,7 @@
 ## Dmenu
 #super + w
     dmenu_run -l 3 -fn "Fantasque Sans Mono Bold"
+
+## Random Wallpaper
+#super + z
+    find $HOME/wall -type f -name *.jpg -o -name *.png | shuf -n 1 | xargs -I {} feh --bg-fill {}

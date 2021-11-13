@@ -2,14 +2,14 @@
 
 # CORE PACAKAGES
 sudo pacman -S --noconfirm xorg-server xorg-xinit xorg-xrandr xorg-xsetroot 
-sudo pacman -S --noconfirm pulsemixer
+sudo pacman -S --noconfirm pulsemixer pamixer
 sudo pacman -S --noconfirm lxrandr brightnessctl picom feh xdg-user-dirs xdg-utils  
 sudo pacman -S --noconfirm mtpfs gvfs-mtp
 yay -S --noconfirm jmtpfs 
 
 # APPEARANCE
-sudo pacman -S --noconfirm lxappearance breeze-icons breeze-gtk ttf-joypixels
-yay -S --noconfirm libxft-bgra
+sudo pacman -S --noconfirm lxappearance breeze-icons breeze-gtk breeze ttf-joypixels
+yes | yay -S libxft-bgra
 
 # SETUP DXHD
 
