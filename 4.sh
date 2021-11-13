@@ -43,6 +43,7 @@ chmod +x ~/.local/bin/checkur.py
 # INSTALL xhibit
 
 pip install tcolorpy
+sudo pacman -S --noconfirm wmctrl
 git clone https://github.com/glowfi/xhibit
 cd xhibit
 cp -r ./xhibit.py ~/.local/bin/
