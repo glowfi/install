@@ -81,6 +81,15 @@ cd ~/install/configs/dmenu
 sudo make clean install
 cd ..
 
+# INSTALL SLOCK
+cd ~/install/configs/slock
+vim ~/install/configs/slock/config.def.h
+sudo mv ~/install/configs/slock/slock@.service /etc/systemd/system/slock@.service
+sudo cp config.def.h config.h
+sudo make clean install
+sudo systemctl enable slock@john.service
+cd ..
+
 # INSTALL TOPBAR
 cp -r ~/install/configs/dwm-bar ~
 cd
