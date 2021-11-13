@@ -31,7 +31,7 @@ rm -rf yay-bin
 ### CORE
 sudo pacman -S --noconfirm zip unzip unrar p7zip lzop
 sudo pacman -S --noconfirm fish kitty imagemagick ttf-fantasque-sans-mono man-db noto-fonts-emoji
-yes | sudo pacman -S alsa-utils alsa-plugins pipewire pipewire-alsa pipewire-pulse pipewire-jack
+sudo pacman -S --noconfirm alsa-utils alsa-plugins pipewire pipewire-alsa pipewire-pulse pipewire-jack
 yay -S --noconfirm zramd nerd-fonts-fantasque-sans-mono
 
 ### CDX

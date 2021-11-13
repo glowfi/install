@@ -72,6 +72,7 @@ exec dwm
 
 # INSTALL DWM 
 cd ~/install/configs/dwm-6.2
+sudo cp config.def.h config.h
 sudo make clean install
 cd ..
 
