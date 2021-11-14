@@ -12,14 +12,14 @@ static const char *colorname[NUMCOLS] = {
 static const int failonclear = 1;
 
 /* default message */
-static const char * message ="\n" 
-"To whomesover it may concern,\n"
-"\n"
+static const char * message ="\n"
 "Pssst......\n"
+"\n"
+"\n"
 "If you are reading this and wondering what this is then let \n"
 "me tell you that I am currently taking a nap PLEASE DO NOT DISTURB ME!\n"
-"If you want me to wake up and make me do all the menial jobs you humans gives us\n"
-"then start typing the correct password .Bye can't talk much I'm feeling sleepy...\n"
+"If you want me to wake up and make me do all the menial jobs you humans gives me\n"
+"then start typing the correct password.Bye can't talk much I'm feeling sleepy...\n"
 "Hope you enter the wrong password.\n"
 "\n"
 "\n"
