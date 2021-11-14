@@ -49,6 +49,11 @@ yay -S --noconfirm toilet toilet-fonts
 git clone https://github.com/xero/figlet-fonts
 sudo cp -r figlet-fonts/* /usr/share/figlet/fonts
 rm -rf figlet-fonts
+git clone https://github.com/pipeseroni/pipes.sh 
+cd pipes.sh
+sudo make clean install
+cd ..
+rm -rf pipes.sh
 git clone https://github.com/xorg62/tty-clock
 cd tty-clock
 sudo make clean install
