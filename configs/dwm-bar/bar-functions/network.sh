@@ -8,12 +8,12 @@ dwm_networkmanager () {
     if [ "$CONNAME" = "" ]; then
         CONNAME=$(nmcli -t -f active,ssid dev wifi | grep '^yes' | cut -c 5-)
     fi
+    printf "%s" "$SEP2"
     if [ "$CONNAME" = "" ]; then
         printf "❌ %s\n" "noWifi"
     else
         printf "🌐 %s\n" "$CONNAME"
     fi
-    printf "%s" "$SEP2"
 }
 
 dwm_networkmanager
