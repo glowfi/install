@@ -46,7 +46,7 @@ echo "# Resolution
 xrandr --output eDP-1 --mode 1336x768 &
 
 # Picom 
-picom -f &
+picom -f --experimental-backends --backend glx &
 
 # Hotkey daemon
 dxhd -b &
