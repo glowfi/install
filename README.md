@@ -1,2 +1,2 @@
 # install
-install scripts and dotfiles
+install scripts and dotfiles.
