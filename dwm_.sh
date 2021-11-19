@@ -96,3 +96,28 @@ cd ..
 # INSTALL TOPBAR
 cp -r ~/install/configs/dwm-bar ~
 cd
+
+# UPDATE MIMETYPE
+touch ~/zathura.desktop
+sudo touch zathura.desktop
+cp -r ~/install/configs/zathura ~/.config
+
+sudo echo "[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Zathura
+Comment=A minimalistic PDF viewer
+Comment[de]=Ein minimalistischer PDF-Betrachter
+Exec=zathura %f
+Terminal=false
+Categories=Office;Viewer;
+MimeType=application/pdf;
+" >> ~/zathura.desktop
+sudo mv ~/zathura.desktop /usr/share/applications
+
+
+xdg-mime default sxiv.desktop image/png
+xdg-mime default sxiv.desktop image/jpg
+xdg-mime default sxiv.desktop image/jpeg
+xdg-mime default zathura.desktop application/pdf
+
