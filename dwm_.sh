@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # CORE PACAKAGES
-sudo pacman -S --noconfirm xorg-server xorg-xinit xorg-xrandr xorg-xsetroot 
+sudo pacman -S --noconfirm xorg-server xorg-xinit xorg-xrandr xorg-xsetroot xautolock 
 sudo pacman -S --noconfirm pulsemixer pamixer
 sudo pacman -S --noconfirm lxrandr brightnessctl picom feh xdg-user-dirs xdg-desktop-portal-kde xdg-utils  
 sudo pacman -S --noconfirm mtpfs gvfs-mtp
@@ -56,6 +56,9 @@ sh ~/.pw.sh &
 
 # Wallpaper
 sh ~/.wall.sh &
+
+# Autolock
+xautolock -time 5 -locker slock &
 
 # dwm-bar
 ~/dwm-bar/dwm_bar.sh &
