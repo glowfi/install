@@ -106,4 +106,6 @@ cp -r ~/install/configs/kitty ~/.config/
 
 # CHANGE DEFAULT SHELL
 
-sudo usermod --shell /bin/fish john
+echo "What would be the username?"
+read uname
+sudo usermod --shell /bin/fish $uname

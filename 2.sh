@@ -33,11 +33,16 @@ echo "127.0.1.1 arch.localdomain arch" >> /etc/hosts
 
 # SET USER
 
+echo "What would be the username?"
+read uname
+echo "What would be the fullname of the user?"
+read fname
+
 echo root:password | chpasswd
-useradd -mG wheel john
-usermod -c "John Doe" john
-echo john:password | chpasswd
-echo "john ALL=(ALL) ALL" >> /etc/sudoers.d/john
+useradd -mG wheel $uname
+usermod -c "$fname" $uname
+echo $uname:password | chpasswd
+echo "$uname ALL=(ALL) ALL" >> /etc/sudoers.d/$uname
 
 
 # PACAKGES
