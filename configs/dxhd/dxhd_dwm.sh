@@ -42,7 +42,7 @@
 
 ## Dmenu
 #super + w
-    dmenu_run -l 3 -fn "Fantasque Sans Mono Bold"
+    dmenu_run -l 10 -fn "Fantasque Sans Mono Bold"
 
 ## Random Wallpaper
 #super + z
